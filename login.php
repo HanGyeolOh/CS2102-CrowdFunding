@@ -12,7 +12,7 @@
 
    <head>
       <title>Login</title>
-      <link href = "css/bootstrap.min.css" rel = "stylesheet">
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
       <style>
          body {
@@ -83,7 +83,7 @@
 
    <body>
       <div class = "container title">
-        <h1>Enter Username and Password</h1>
+        <h1>User Login</h1>
       </div>
 
       <div class = "container form-signin">
@@ -130,8 +130,8 @@
          </form>
 
           <div class = "container logout">
-            Click here to clean <a href = "logout.php" tite = "Logout">Session.
-           </div>
+            <a href = "logout.php" class = "Logout title">Clear Session
+          </div>
       </div>
 
       <?php
