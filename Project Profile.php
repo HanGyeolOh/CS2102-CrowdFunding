@@ -8,10 +8,10 @@
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <?php
-$dbconn = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=s9349553e")
+$dbconn = pg_connect("host=localhost port=5432 dbname=crowd_funding user=postgres password=ok950209")
     or die('Could not connect: ' . pg_last_error());
 ?>
- 
+
 <style>
 .jumbotron{
     background-color:#2C3539;
@@ -63,36 +63,36 @@ $dbconn = pg_connect("host=localhost port=5432 dbname=postgres user=postgres pas
 
 <!-- Collapsible Navigation Bar -->
 <div class="container">
- 
+
 <!-- .navbar-fixed-top, or .navbar-fixed-bottom can be added to keep the nav bar fixed on the screen -->
 <nav class="navbar navbar-default">
   <div class="container-fluid">
- 
+
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
- 
+
       <!-- Button that toggles the navbar on and off on small screens -->
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
- 
+
       <!-- Hides information from screen readers -->
         <span class="sr-only"></span>
- 
+
         <!-- Draws 3 bars in navbar button when in small mode -->
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
- 
+
       <!-- You'll have to add padding in your image on the top and right of a few pixels (CSS Styling will break the navbar) -->
       <a class="pull-left" href="#"><img src="img/logo.png"></a>
     </div>
- 
+
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="Homepage.php">Home<span class="sr-only">(current)</span></a></li>
         <li><a href="#">About</a></li>
-        <li><a href="#">Funded Projects</a></li>       
+        <li><a href="#">Funded Projects</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Create <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -102,7 +102,7 @@ $dbconn = pg_connect("host=localhost port=5432 dbname=postgres user=postgres pas
         </li>
         <li><a href="#">Contact Us</a></li>
       </ul>
-      
+
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -119,13 +119,13 @@ $dbconn = pg_connect("host=localhost port=5432 dbname=postgres user=postgres pas
       <img src="img/companylogo1.jpg" class="title-style center-block" id="companylogo1" width="60" height="80">
       <div class="caption">
         <p class="text-center">By<a href="user%20profile.php" class="btn" role="button btn-xs">John Smith</a></p>
-      </div>  
+      </div>
     </div>
 
     <!-- Project Info -->
     <div class="col-lg-9 col-md-9 col-sm-7 col-xs-7">
       <h2 class="text-primary">Formula XYZ <a href="#" class="btn btn-info">Funding</a></h2>
-      <h2><small>Consulting services for companies looking to integrate IoT with their legacy systems</small></h2> 
+      <h2><small>Consulting services for companies looking to integrate IoT with their legacy systems</small></h2>
       <div class="progress">
         <div class="progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
         <p class="text-center">60% Raised</p>
@@ -154,7 +154,7 @@ $dbconn = pg_connect("host=localhost port=5432 dbname=postgres user=postgres pas
   <li data-target="#theCarousel" data-slide-to="2"></li>
   </ol>
 
-  <div class="carousel-inner">  
+  <div class="carousel-inner">
     <div class="item active">
     <img src="img/test1.png" alt="First Slide">
     <div class="slide1"></div>
@@ -190,7 +190,7 @@ $dbconn = pg_connect("host=localhost port=5432 dbname=postgres user=postgres pas
 
 <?php
 pg_close($dbconn);
-?> 
+?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 

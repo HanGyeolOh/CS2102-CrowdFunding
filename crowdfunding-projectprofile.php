@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <?php
-$dbconn = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=s9349553e")
+$dbconn = pg_connect("host=localhost port=5432 dbname=crowd_funding user=postgres password=ok950209")
     or die('Could not connect: ' . pg_last_error());
 ?>
 

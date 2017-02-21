@@ -105,7 +105,7 @@
 
                   echo 'You have entered valid use name and password';
 
-                  header('Location: crowdfunding-userprofile.php');
+                  header('Location: User Profile.php');
                }else {
                   $msg = 'Wrong username or password';
                }
