@@ -102,6 +102,7 @@
                   $_SESSION['valid'] = true;
                   $_SESSION['timeout'] = time();
                   $_SESSION['username'] = $username;
+                  $_SESSION['name'] = pg_fetch_result($result, 0 ,0);
 
                   echo 'You have entered valid use name and password';
 

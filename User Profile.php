@@ -139,13 +139,14 @@
 
     <ul class="list-group">
       <?php
-        $query = "SELECT title, description FROM projects
+        $query = "SELECT title, description, project_id FROM projects
                   WHERE project_id IN (SELECT project_id FROM ownership WHERE owner_email = 'john_smith@gmail.com')";
         $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
 
         while ($row = pg_fetch_row($result)) {
           $title = $row[0];
           $description = $row[1];
+          $id = $row[2];
            echo "<li class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
              <img src='img/companylogo1.jpg' id='companylogo1' width='100' height='100'>
              <div class='caption'>
@@ -153,7 +154,7 @@
                <p class='text-justify'>$description</p>
                <p>
                  <a href='#' class='btn btn-success pull-left'>Funded</a>
-                 <a href='Project%20Profile.php' class='btn btn-primary pull-right' role='button'>Find out more</a>
+                 <a href='Project%20Profile.php?id=$id' class='btn btn-primary pull-right' role='button'>Find out more</a>
                </p>
              </div>
            </li>";
@@ -170,13 +171,14 @@
 
     <ul class="list-group">
       <?php
-        $query = "SELECT title, description FROM projects
+        $query = "SELECT title, description, project_id FROM projects
                   WHERE project_id IN (SELECT project_id FROM investments WHERE investor_email = 'john_smith@gmail.com')";
         $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
 
         while ($row = pg_fetch_row($result)) {
           $title = $row[0];
           $description = $row[1];
+          $id = $row[2];
            echo "<li class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
              <img src='img/companylogo2.jpg' id='companylogo2' width='100' height='100'>
              <div class='caption'>
@@ -184,7 +186,7 @@
                <p class='text-justify'>$description</p>
                <p>
                  <a href='#' class='btn btn-info pull-left'>Funding</a>
-                 <a href='Project%20Profile.php' class='btn btn-primary pull-right' role='button'>Find out more</a>
+                 <a href='Project%20Profile.php?id=$id' class='btn btn-primary pull-right' role='button'>Find out more</a>
                </p>
              </div>
            </li>";

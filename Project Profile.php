@@ -8,8 +8,27 @@
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <?php
-$dbconn = pg_connect("host=localhost port=5432 dbname=crowd_funding user=postgres password=ok950209")
-    or die('Could not connect: ' . pg_last_error());
+    session_start();
+    $dbconn = pg_connect("host=localhost port=5432 dbname=crowd_funding user=postgres password=ok950209")
+      or die('Could not connect: ' . pg_last_error());
+    $project_id = $_GET['id'];
+    $query = "SELECT * FROM projects WHERE project_id = $project_id";
+    $result = pg_query($dbconn, $query);
+    $row = pg_fetch_row($result);
+    $title = $row[0];
+    $description = $row[1];
+    $start_date = $row[2];
+    $end_date = $row[3];
+    $target_amount = number_format($row[5]);
+    $current_amount = number_format($row[6]);
+    $category = $row[7];
+
+    $days_left = ceil(abs(strtotime($end_date) - strtotime($start_date)) / 86400);
+    $progress = (((float)((int)$row[6] / (int)$row[5])) * 100);
+
+    $query = "SELECT name FROM users WHERE email IN (SELECT owner_email FROM ownership WHERE project_id = $project_id)";
+    $result = pg_query($dbconn, $query);
+    $owner_name = pg_fetch_result($result, 0, 0);
 ?>
 
 <style>
@@ -56,6 +75,17 @@ $dbconn = pg_connect("host=localhost port=5432 dbname=crowd_funding user=postgre
   width:640px;
   height:360px;
 }
+
+.progress {
+    text-align:center;
+}
+.progress-value {
+    position:absolute;
+    right:0;
+    left:0;
+    color: #BDBDBD;
+}
+
 </style>
 </head>
 
@@ -103,6 +133,10 @@ $dbconn = pg_connect("host=localhost port=5432 dbname=crowd_funding user=postgre
         <li><a href="#">Contact Us</a></li>
       </ul>
 
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="logout.php">Logout</a></li>
+      </ul>
+
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -118,24 +152,26 @@ $dbconn = pg_connect("host=localhost port=5432 dbname=crowd_funding user=postgre
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
       <img src="img/companylogo1.jpg" class="title-style center-block" id="companylogo1" width="60" height="80">
       <div class="caption">
-        <p class="text-center">By<a href="user%20profile.php" class="btn" role="button btn-xs">John Smith</a></p>
+        <p class="text-center">By
+          <a href="User%20Profile.php" class="btn" role="button btn-xs">
+            <?php echo $owner_name; ?>
+          </a>
+        </p>
       </div>
     </div>
 
     <!-- Project Info -->
     <div class="col-lg-9 col-md-9 col-sm-7 col-xs-7">
-      <h2 class="text-primary">Formula XYZ <a href="#" class="btn btn-info">Funding</a></h2>
-      <h2><small>Consulting services for companies looking to integrate IoT with their legacy systems</small></h2>
+      <h2 class="text-primary"> <?php echo $title; ?> <a href="#" class="btn btn-info">Funding</a></h2>
+      <h2><small> <?php echo $description; ?></small></h2>
       <div class="progress">
-        <div class="progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-        <p class="text-center">60% Raised</p>
-        </div>
+        <?php echo "<div class='progress-bar' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>"; ?>
+        <span class="progress-value"> <?php echo "$progress% Raised"; ?> </span>
       </div>
-
       <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-          <h3 class="text-info">$6,000<small><br>raised of $10,000 goal</small></h3>
-          <h3>25<small><br>days to go</small></h3>
+          <h3 class="text-info"> <?php echo $current_amount; ?> <small><br> <?php echo "raised of $target_amount goal" ?> </small></h3>
+          <h3><?php echo $days_left; ?><small><br>days to go</small></h3>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
           <a href="#" class="button-middle btn btn-info btn-lg pull-center">Invest In This Project</a>
