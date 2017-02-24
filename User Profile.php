@@ -26,6 +26,11 @@
     border:0;
     padding: 10px;
 }
+.text-description {
+  line-height: 2.5ex;
+  height: 10ex; /* 2.5ex for each visible line */
+  overflow: hidden;
+}
 </style>
 </head>
 
@@ -93,7 +98,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="logout.php">Logout</a></li>
       </ul>
-      
+
       <?php
       if(!isset($_SESSION['username'])) {
         echo
@@ -170,7 +175,7 @@
              <img src='img/companylogo1.jpg' id='companylogo1' width='100' height='100'>
              <div class='caption'>
                <h4 class='text-center'>$title</h4>
-               <p class='text-justify'>$description</p>
+               <p class='text-justify text-description'>$description</p>
                <p>
                  <a href='#' class='btn btn-success pull-left'>Funded</a>
                  <a href='Project%20Profile.php?id=$id' class='btn btn-primary pull-right' role='button'>Find out more</a>
@@ -206,7 +211,7 @@
              <img src='img/companylogo2.jpg' id='companylogo2' width='100' height='100'>
              <div class='caption'>
                <h4 class='text-center'>$title</h4>
-               <p class='text-justify'>$description</p>
+               <p class='text-justify text-description'>$description</p>
                <p>
                  <a href='#' class='btn btn-info pull-left'>Funding</a>
                  <a href='Project%20Profile.php?id=$id' class='btn btn-primary pull-right' role='button'>Find out more</a>
