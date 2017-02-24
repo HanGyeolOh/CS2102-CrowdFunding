@@ -106,7 +106,7 @@
 		<div class="col-lg-3">
 		<div class="input-group">
 			<span class="input-group-addon">Title</span>
-			<input type="text" class="form-control" id="title" placeholder="Search Keywords">
+			<input type="text" class="form-control" id="title" placeholder="Search Keywords!">
 		</div>
 		</div>
 
@@ -186,11 +186,11 @@
 	</div>
 </div>
 
-	<a class="left carousel-control" href="#theCarousel" data-slide="prev"></a>
-	<span class="glyphicon glyphicon-chevron-left"></span>
+	<a class="left carousel-control" href="#theCarousel" data-slide="prev">
+	<span class="glyphicon glyphicon-chevron-left"></span></a>
 
-	<a class="right carousel-control" href="#theCarousel" data-slide="next"></a>
-	<span class="glyphicon glyphicon-chevron-right"></span>
+	<a class="right carousel-control" href="#theCarousel" data-slide="next">
+	<span class="glyphicon glyphicon-chevron-right"></span></a>
 
 </div>
 
