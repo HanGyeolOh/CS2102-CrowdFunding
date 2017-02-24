@@ -71,7 +71,7 @@
       </button>
 
       <!-- You'll have to add padding in your image on the top and right of a few pixels (CSS Styling will break the navbar) -->
-      <a class="pull-left" href="#"><img src="img/logo.png"></a>
+      <a class="pull-left" href="Homepage.php"><img src="img/logo.png"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -90,9 +90,29 @@
         <li><a href="#">Contact Us</a></li>
       </ul>
 
+<<<<<<< HEAD
       <ul class="nav navbar-nav navbar-right">
         <li><a href="logout.php">Logout</a></li>
       </ul>
+=======
+      <?php
+      if(!isset($_SESSION['username'])) {
+        echo
+        "<ul class='nav navbar-nav navbar-right'>
+          <li><a href='login.php'>Login</a></li>
+        </ul>";
+      }
+      else{
+        echo
+        "<ul class='nav navbar-nav navbar-right'>
+          <li><a href='User Profile.php'>My Profile</a></li>
+        </ul>
+        <ul class='nav navbar-nav navbar-right'>
+          <li><a href='logout.php'>Logout</a></li>
+        </ul>";
+      }
+      ?>
+>>>>>>> 7ade575e52a312eb0c598e4a569bf52208534972
 
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
