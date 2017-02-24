@@ -45,6 +45,12 @@
 </head>
 
 <body>
+
+<?php
+    $dbconn = pg_connect("host=localhost port=5432 dbname=crowd_funding user=postgres password=nothing")
+      or die('Could not connect: ' . pg_last_error());
+?>
+
 	<!-- Collapsible Navigation Bar -->
 <div class="container">
  
@@ -96,89 +102,94 @@
 <div class="container">
 <h4><a href="#searchBox" data-toggle="collapse">Search</a></h4>
 <div class="container" id="searchBox">
+<form class="form-horizontal" role="form" method="post" action="Search Results.php">
 	<div class="jumbotron">
 	<td class="row">
 		<!--The Title Search-->
 		<div class="col-lg-3">
 		<div class="input-group">
 			<span class="input-group-addon">Title</span>
-			<input type="text" class="form-control" placeholder="Search Keywords">
+			<input type="text" class="form-control" id="title" placeholder="Search Keywords">
 		</div>
 		</div>
+		
 		<!--Category Search-->
 		<div class="col-lg-3">
-			<div class="form-group">
-			<!--<span class="input-group-addon">Category</span>-->
-			<select class="form-control" id="sel1">
+		<div class="form-group">
+			<select class="form-control" id="cat" name="cat">
+				<option>Select a category</option>
 				<option>Technology</option>
 				<option>Music</option>
 				<option>Lifestyle</option>
 				<option>Photography</option>
-			</select>	
-			</div>
+			</select>
 		</div>
+		</div>
+	
 		<!--Start date picker-->
 		<div class="col-lg-3">
 		<div class="input-group">
 			<span class="input-group-addon">Date</span>
-			<input type="text" class="form-control" placeholder="Start Date">
+			<input type="text" class="form-control" id="date" name="date" placeholder="Start Date">
 		</div>
-	    </div>
+		</div>
+		
 	    <!--Submit button-->
-	    <a href="Search%20Results.html" class="btn btn-default btn-md pull-right" role="button">Submit</a>
+		<input id="submit" name="submit" type="submit" value="Submit" class="btn btn-default btn-md pull-right">
 	</td>
 	</div>
+</form>
 </div>
 </div>
 
-<!--table to display results-->
-<div class="container">
-<table class="table table-bordered table-striped table-hover">
-  <thead>
-    <tr>
-      <th class="text-center">#</th>
-      <th class="text-center">Title</th>
-      <th class="text-center">Description</th>
-      <th class="text-center">Funding Sought</th>
-      <th class="text-center">Amount Raised</th>
-      <th class="text-center">Donate!</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Project 1</td>
-      <td>Describe me</td>
-      <td>45,000</td>
-      <td>123</td>
-      <td><p><a href="#" class="btn btn-primary btn-xs">Donate!</a></p> </td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Project 2</td>
-      <td>Can't Think</td>
-      <td>1,000</td>
-      <td>999</td>
-      <td><p><a href="#" class="btn btn-primary btn-xs">Donate!</a></p> </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Project 3</td>
-      <td>Desc</td>
-      <td>3,333</td>
-      <td>1,234</td>
-      <td><p><a href="#" class="btn btn-primary btn-xs">Donate!</a></p> </td>
-    </tr>
-    <tr>
-      <th scope="row">4</th>
-      <td>Project 4</td>
-      <td>This is cool</td>
-      <td>45,000</td>
-      <td>22,123</td>
-      <td><p><a href="#" class="btn btn-primary btn-xs">Donate!</a></p> </td>
-  </tbody>
+<?php
+if(isset($_POST['submit'])){
+	$title = $_POST['title'];
+	$category = $_POST['cat'];
+	
+	$query="SELECT title, description, target_amount, current_amount
+	FROM projects 
+	WHERE lower(title) like lower('%$title%')
+	AND category_id='$category'";
+	
+	$result = pg_query($query) or die('Query failed: ' . pg_last_error());
+
+	$index = 0;
+    while ($row = pg_fetch_row($result)){
+      $retrieved_title = $row[0];
+	  $retrieved_desc = $row[1];
+	  $retrieved_target = $row[2];
+	  $retrieved_current = $row[3];
+	  $index++;
+    }
+	echo "<div class='container'>
+	<table class='table table-bordered table-striped table-hover'>
+	<thead>
+	<tr>
+	<th class='text-center'>#</th>
+	<th class='text-center'>Title</th>
+	<th class='text-center'>Description</th>
+    <th class='text-center'>Funding Sought</th>
+    <th class='text-center'>Amount Raised</th>	
+	<th class='text-center'>Donate!</th>
+  </tr>
+  </thead>";
+  
+	echo "<td align='center'>$index</td>
+	<td align='center'>$retrieved_title</td>
+	<td align='center'>$retrieved_desc</td>
+	<td align='center'>$retrieved_target</td>
+	<td align='center'>$retrieved_current</td>
+	<td align='center'><p><a href='#' class='btn btn-primary btn-xs'>Donate!</a></p> </td>";
+    pg_free_result($result);
+}
+?>
 </table>
 </div>
+
+<!-- Display search results -->
+
+  
 <!--Adding Pagingation at bottom-->
 <div class="container">
 <nav>

@@ -92,42 +92,46 @@
 </nav>
 </div>
 
-<!--For making the search bar-->
 <div class="container">
 <h4><a href="#searchBox" data-toggle="collapse">Search</a></h4>
 <div class="container" id="searchBox">
+<form class="form-horizontal" role="form" method="post" action="Search Results.php">
 	<div class="jumbotron">
 	<td class="row">
 		<!--The Title Search-->
 		<div class="col-lg-3">
 		<div class="input-group">
 			<span class="input-group-addon">Title</span>
-			<input type="text" class="form-control" placeholder="Search Keywords">
+			<input type="text" class="form-control" id="title" placeholder="Search Keywords!">
 		</div>
 		</div>
+		
 		<!--Category Search-->
 		<div class="col-lg-3">
-			<div class="form-group">
-			<!--<span class="input-group-addon">Category</span>-->
-			<select class="form-control" id="sel1">
+		<div class="form-group">
+			<select class="form-control" id="cat" name="cat">
+				<option>Select a category</option>
 				<option>Technology</option>
 				<option>Music</option>
 				<option>Lifestyle</option>
 				<option>Photography</option>
-			</select>	
-			</div>
+			</select>
 		</div>
+		</div>
+	
 		<!--Start date picker-->
 		<div class="col-lg-3">
 		<div class="input-group">
 			<span class="input-group-addon">Date</span>
-			<input type="text" class="form-control" placeholder="Start Date">
+			<input type="text" class="form-control" id="date" name="date" placeholder="Start Date">
 		</div>
-	    </div>
+		</div>
+		
 	    <!--Submit button-->
-	    <a href="Search%20Results.php" class="btn btn-default btn-md pull-right" role="button">Submit</a>
+		<input id="submit" name="submit" type="submit" value="Submit" class="btn btn-default btn-md pull-right">
 	</td>
 	</div>
+</form>
 </div>
 </div>
 
