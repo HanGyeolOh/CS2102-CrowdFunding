@@ -128,7 +128,7 @@
 		<div class="col-lg-3">
 		<div class="input-group">
 			<span class="input-group-addon">Title</span>
-			<input type="text" class="form-control" id="title" placeholder="Search Keywords!">
+			<input type="text" class="form-control" id="title" name="title" placeholder="Search Keywords!">
 		</div>
 		</div>
 
