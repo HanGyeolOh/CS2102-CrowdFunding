@@ -11,7 +11,7 @@
     session_start();
     require('dbconn.php');
     $project_id = $_GET['id'];
-    $query = "SELECT * FROM projects WHERE project_id = $project_id";
+    $query = "SELECT * FROM projects WHERE project_id = '$project_id'";
     $result = pg_query($dbconn, $query);
     $row = pg_fetch_row($result);
     $title = $row[0];
