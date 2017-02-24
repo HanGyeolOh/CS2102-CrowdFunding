@@ -33,8 +33,7 @@
 
   <?php
       session_start();
-      $dbconn = pg_connect("host=localhost port=5432 dbname=crowd_funding user=postgres password=ok950209")
-        or die('Could not connect: ' . pg_last_error());
+      require('dbconn.php');
 
       $email = $_SESSION['username'];
       $query = "SELECT * FROM users WHERE email = '$email';";
