@@ -10,8 +10,6 @@
 <?php
     session_start();
     require('dbconn.php');
-    $dbconn = pg_connect("host=localhost port=5432 dbname=crowd_funding user=postgres password=ok950209")
-      or die('Could not connect: ' . pg_last_error());
     $project_id = $_GET['id'];
     $query = "SELECT * FROM projects WHERE project_id = $project_id";
     $result = pg_query($dbconn, $query);

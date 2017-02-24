@@ -139,7 +139,7 @@
     <ul class="list-group">
       <?php
         $query = "SELECT title, description, project_id FROM projects
-                  WHERE project_id IN (SELECT project_id FROM ownership WHERE owner_email = '$email')";
+                  WHERE project_id IN (SELECT project_id FROM ownership WHERE publisher_email = '$email')";
         $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
 
         while ($row = pg_fetch_row($result)) {
