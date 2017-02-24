@@ -139,7 +139,7 @@
     <ul class="list-group">
       <?php
         $query = "SELECT title, description, project_id FROM projects
-                  WHERE project_id IN (SELECT project_id FROM ownership WHERE owner_email = 'john_smith@gmail.com')";
+                  WHERE project_id IN (SELECT project_id FROM ownership WHERE owner_email = '$email')";
         $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
 
         while ($row = pg_fetch_row($result)) {
@@ -171,7 +171,7 @@
     <ul class="list-group">
       <?php
         $query = "SELECT title, description, project_id FROM projects
-                  WHERE project_id IN (SELECT project_id FROM investments WHERE investor_email = 'john_smith@gmail.com')";
+                  WHERE project_id IN (SELECT project_id FROM investments WHERE investor_email = '$email')";
         $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
 
         while ($row = pg_fetch_row($result)) {
@@ -198,7 +198,7 @@
 
 
 <?php
-pg_close($dbconn);
+  pg_close($dbconn);
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
