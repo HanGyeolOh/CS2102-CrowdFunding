@@ -10,10 +10,8 @@
 <?php
     session_start();
     require('dbconn.php');
-    $dbconn = pg_connect("host=localhost port=5432 dbname=crowd_funding user=postgres password=ok950209")
-      or die('Could not connect: ' . pg_last_error());
     $project_id = $_GET['id'];
-    $query = "SELECT * FROM projects WHERE project_id = $project_id";
+    $query = "SELECT * FROM projects WHERE project_id = '$project_id'";
     $result = pg_query($dbconn, $query);
     $row = pg_fetch_row($result);
     $title = $row[0];
@@ -27,7 +25,7 @@
     $days_left = ceil(abs(strtotime($end_date) - strtotime($start_date)) / 86400);
     $progress = (((float)((int)$row[6] / (int)$row[5])) * 100);
 
-    $query = "SELECT name FROM users WHERE email IN (SELECT owner_email FROM ownership WHERE project_id = $project_id)";
+    $query = "SELECT name FROM users WHERE email = ANY (SELECT publisher_email FROM ownership WHERE project_id = '$project_id')";
     $result = pg_query($dbconn, $query);
     $owner_name = pg_fetch_result($result, 0, 0);
 ?>
@@ -115,7 +113,7 @@
       </button>
 
       <!-- You'll have to add padding in your image on the top and right of a few pixels (CSS Styling will break the navbar) -->
-      <a class="pull-left" href="#"><img src="img/logo.png"></a>
+      <a class="pull-left" href="Homepage.php"><img src="img/logo.png"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -134,9 +132,23 @@
         <li><a href="#">Contact Us</a></li>
       </ul>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="logout.php">Logout</a></li>
-      </ul>
+      <?php
+      if(!isset($_SESSION['username'])) {
+        echo
+        "<ul class='nav navbar-nav navbar-right'>
+          <li><a href='login.php'>Login</a></li>
+        </ul>";
+      }
+      else{
+        echo
+        "<ul class='nav navbar-nav navbar-right'>
+          <li><a href='User Profile.php'>My Profile</a></li>
+        </ul>
+        <ul class='nav navbar-nav navbar-right'>
+          <li><a href='logout.php'>Logout</a></li>
+        </ul>";
+      }
+      ?>
 
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

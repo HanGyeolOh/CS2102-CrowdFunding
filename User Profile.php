@@ -71,7 +71,7 @@
       </button>
 
       <!-- You'll have to add padding in your image on the top and right of a few pixels (CSS Styling will break the navbar) -->
-      <a class="pull-left" href="#"><img src="img/logo.png"></a>
+      <a class="pull-left" href="Homepage.php"><img src="img/logo.png"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -93,6 +93,24 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="logout.php">Logout</a></li>
       </ul>
+      
+      <?php
+      if(!isset($_SESSION['username'])) {
+        echo
+        "<ul class='nav navbar-nav navbar-right'>
+          <li><a href='login.php'>Login</a></li>
+        </ul>";
+      }
+      else{
+        echo
+        "<ul class='nav navbar-nav navbar-right'>
+          <li><a href='User Profile.php'>My Profile</a></li>
+        </ul>
+        <ul class='nav navbar-nav navbar-right'>
+          <li><a href='logout.php'>Logout</a></li>
+        </ul>";
+      }
+      ?>
 
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -139,14 +157,16 @@
     <ul class="list-group">
       <?php
         $query = "SELECT title, description, project_id FROM projects
-                  WHERE project_id IN (SELECT project_id FROM ownership WHERE owner_email = 'john_smith@gmail.com')";
+                  WHERE project_id IN (SELECT project_id FROM ownership WHERE publisher_email = '$email')";
         $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
-
+        $count = 0;
         while ($row = pg_fetch_row($result)) {
           $title = $row[0];
           $description = $row[1];
           $id = $row[2];
-           echo "<li class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
+          $count++;
+           echo "
+            <li class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-5 pull-left'>
              <img src='img/companylogo1.jpg' id='companylogo1' width='100' height='100'>
              <div class='caption'>
                <h4 class='text-center'>$title</h4>
@@ -157,6 +177,9 @@
                </p>
              </div>
            </li>";
+           if($count%4 == 0) {
+            echo "<div class='clearfix visible-lg'></div>";
+           }
         }
       ?>
     </ul>
@@ -171,14 +194,15 @@
     <ul class="list-group">
       <?php
         $query = "SELECT title, description, project_id FROM projects
-                  WHERE project_id IN (SELECT project_id FROM investments WHERE investor_email = 'john_smith@gmail.com')";
+                  WHERE project_id IN (SELECT project_id FROM investments WHERE investor_email = '$email')";
         $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
-
+        $count = 0;
         while ($row = pg_fetch_row($result)) {
+          $count++;
           $title = $row[0];
           $description = $row[1];
           $id = $row[2];
-           echo "<li class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
+           echo "<li class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-5'>
              <img src='img/companylogo2.jpg' id='companylogo2' width='100' height='100'>
              <div class='caption'>
                <h4 class='text-center'>$title</h4>
@@ -189,6 +213,9 @@
                </p>
              </div>
            </li>";
+           if($count%4 == 0) {
+            echo "<div class='clearfix visible-lg'></div>";
+           }
         }
       ?>
     </ul>
@@ -198,7 +225,7 @@
 
 
 <?php
-pg_close($dbconn);
+  pg_close($dbconn);
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
