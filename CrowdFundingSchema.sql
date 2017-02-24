@@ -16,7 +16,7 @@ email VARCHAR(256) PRIMARY KEY,
 dob DATE NOT NULL,
 address VARCHAR(256) NOT NULL,
 password VARCHAR(32) NOT NULL,
-status VARCHAR(12) CONSTRAINT status CHECK(status = 'ACTIVE' OR status = 'DEACTIVATED') 
+status VARCHAR(12) CONSTRAINT status CHECK(status = 'ACTIVE' OR status = 'DEACTIVATED') DEFAULT 'ACTIVE'
 );
 
 /* 
@@ -42,7 +42,7 @@ project_id CHAR(14) PRIMARY KEY,
 target_amount INT NOT NULL,
 current_amount INT NOT NULL,
 category VARCHAR(32) NOT NULL,
-status VARCHAR(16) CONSTRAINT status CHECK(status = 'ACTIVE' OR status = 'DELETED')
+status VARCHAR(16) CONSTRAINT status CHECK(status = 'ACTIVE' OR status = 'DELETED') DEFAULT 'ACTIVE'
 );
 
 /* 
