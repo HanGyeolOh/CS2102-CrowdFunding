@@ -25,7 +25,7 @@
     $days_left = ceil(abs(strtotime($end_date) - strtotime($start_date)) / 86400);
     $progress = (((float)((int)$row[6] / (int)$row[5])) * 100);
 
-    $query = "SELECT name FROM users WHERE email IN (SELECT owner_email FROM ownership WHERE project_id = $project_id)";
+    $query = "SELECT name FROM users WHERE email = ANY (SELECT publisher_email FROM ownership WHERE project_id = '$project_id')";
     $result = pg_query($dbconn, $query);
     $owner_name = pg_fetch_result($result, 0, 0);
 ?>
