@@ -28,14 +28,14 @@ insert into projects values ('Pixelvar','Smartphone Controlled Handheld Light Pa
 insert into projects values ('Senstone','Intelligent Wearable Voice Recorder','2015-10-10','2018-07-04','kkkht0012','5600','0','Technology','ACTIVE');
 insert into projects values ('Gravity XL','High performance grappling hook','2013-03-18','2017-09-02','kkkht0022','20099','0','Sports','ACTIVE');
 insert into projects values ('Steadicam','Smartphone Stabilizer','2015-05-27','2018-09-15','kkkht0009','15310','0','Technology','ACTIVE');
-insert into projects values ('Mastery Journal','Master productivity',' discipline and focus in 100 days','2015-04-22','2017-07-21','kkkht0020','4560','0','Productivity','ACTIVE');
+insert into projects values ('Mastery Journal','Master productivity discipline and focus in 100 days','2015-04-22','2017-07-21','kkkht0020','4560','0','Productivity','ACTIVE');
 insert into projects values ('REFYNE','The first modular titanium EDC pen and flashlight','2014-11-27','2017-10-26','kkkht0016','20030','0','Productivity','ACTIVE');
 insert into projects values ('TAB','The bag that grows with your needs','2013-10-03','2018-12-14','kkkht0007','22201','0','Travel','ACTIVE');
 insert into projects values ('KAI','Turn any pair of glasses into smart glasses!','2013-03-18','2017-09-15','kkkht0014','45002','0','Technology','ACTIVE');
 insert into projects values ('The Last Garden','Robotanists in the Post-Apocalypse','2013-10-16','2018-07-09','kkkht0006','12345','0','Game','ACTIVE');
 insert into projects values ('UNO II','The First Interchangeable Backpack','2014-11-13','2018-08-07','kkkht0005','20080','0','Travel','ACTIVE');
-insert into projects values ('selfly camera','The smart','flying','phone case camera','2014-09-08','2018-08-03','kkkht0004','540010','0','Technology','ACTIVE');
+insert into projects values ('selfly camera','The smart flying phone case camera','2014-09-08','2018-08-03','kkkht0004','540010','0','Technology','ACTIVE');
 insert into projects values ('JACK','Make any headphones wireless','2014-06-14','2018-09-30','kkkht0003','2000','0','Technology','ACTIVE');
-insert into projects values ('Acteon Compression Packing Cubes','Pack More Carry Less','2013-12-16','2017-09-03','kkkht0002','67800','0','Travel','ACTIVE');
-insert into projects values ('Bullet 02','Worlds Smallest Flashlight',' Even Smaller','2014-12-13','2018-02-01','kkkht0001','1500','0','Technology','ACTIVE');
+insert into projects values ('Acteon Compression Packing Cubes',' Pack More Carry Less','2013-12-16','2017-09-03','kkkht0002','67800','0','Travel','ACTIVE');
+insert into projects values ('Bullet 02','Worlds Smallest Flashlight Even Smaller','2014-12-13','2018-02-01','kkkht0001','1500','0','Technology','ACTIVE');
 
