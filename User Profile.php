@@ -90,11 +90,10 @@
         <li><a href="#">Contact Us</a></li>
       </ul>
 
-<<<<<<< HEAD
       <ul class="nav navbar-nav navbar-right">
         <li><a href="logout.php">Logout</a></li>
       </ul>
-=======
+      
       <?php
       if(!isset($_SESSION['username'])) {
         echo
@@ -112,7 +111,6 @@
         </ul>";
       }
       ?>
->>>>>>> 7ade575e52a312eb0c598e4a569bf52208534972
 
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
