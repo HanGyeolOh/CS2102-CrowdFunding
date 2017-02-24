@@ -108,7 +108,7 @@
 		<div class="col-lg-3">
 		<div class="input-group">
 			<span class="input-group-addon">Title</span>
-			<input type="text" class="form-control" id="title" placeholder="Search Keywords">
+			<input type="text" class="form-control" id="title" name="title" placeholder="Search Keywords">
 		</div>
 		</div>
 
@@ -149,14 +149,14 @@
 
 <?php
 if(isset($_POST['submit'])){
+
 	$title = $_POST['title'];
 	$category = $_POST['cat'];
-
+	
 	$query="SELECT title, description, target_amount, current_amount
 	FROM projects
-	WHERE lower(title) like lower('%$title%')
-	AND category='$category'";
-
+	WHERE lower(title) like lower('%".$title."%')";
+	
 	$result = pg_query($query) or die('Query failed: ' . pg_last_error());
 
 	$index = 0;
