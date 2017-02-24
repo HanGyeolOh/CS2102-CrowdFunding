@@ -56,13 +56,13 @@ project_id - project_id of the project invested in, must be existing project.
 */
 
 CREATE TABLE investments (
-transaction_id VARCHAR(256) PRIMARY KEY
+transaction_id VARCHAR(256) PRIMARY KEY,
 transaction_date DATE NOT NULL,
 investment_amount INT NOT NULL,
 investor_email VARCHAR(256) ,
 project_id CHAR(14) ,
 FOREIGN KEY (investor_email) REFERENCES users(email) ON UPDATE CASCADE,
-FOREIGN KEY (project_id) REFERENCES projects(project_id),
+FOREIGN KEY (project_id) REFERENCES projects(project_id)
 );
 
 /* 
