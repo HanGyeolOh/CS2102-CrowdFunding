@@ -115,12 +115,18 @@
 		<!--Category Search-->
 		<div class="col-lg-3">
 		<div class="form-group">
-			<select class="form-control" id="cat" name="cat">
-				<option>Select a category</option>
-				<option>Technology</option>
-				<option>Music</option>
-				<option>Lifestyle</option>
-				<option>Photography</option>
+			<select class="form-control" id="cat" name="cat"><option value="">Select Category</option>
+			<?php
+			$query = 'SELECT DISTINCT category FROM projects';
+			$result = pg_query($query) or die('Query failed: ' . pg_last_error());
+         
+			while($line = pg_fetch_array($result, null, PGSQL_ASSOC)){
+				foreach ($line as $col_value) {
+					echo "<option value=\"".$col_value."\">".$col_value."</option><br>";
+				}
+			}
+			pg_free_result($result);
+			?>
 			</select>
 		</div>
 		</div>
