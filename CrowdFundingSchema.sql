@@ -14,8 +14,8 @@ CREATE TABLE users (
 name VARCHAR(32) NOT NULL,
 email VARCHAR(256) PRIMARY KEY,
 dob DATE NOT NULL,
-address VARCHAR(256),
-password VARCHAR(32) NOT NULL
+address VARCHAR(256) NOT NULL,
+password VARCHAR(32) NOT NULL,
 status VARCHAR(12) CONSTRAINT status CHECK(status = 'ACTIVE' OR status = 'DEACTIVATED') 
 );
 
@@ -40,9 +40,9 @@ start_date DATE NOT NULL,
 end_date DATE NOT NULL,
 project_id CHAR(14) PRIMARY KEY,
 target_amount INT NOT NULL,
-current_amount INT,
-category VARCHAR(32),
-status VARCHAR(16) CONSTRAINT status CHECK(status = 'SUCCESS' OR status = 'FAILURE')
+current_amount INT NOT NULL,
+category VARCHAR(32) NOT NULL,
+status VARCHAR(16) CONSTRAINT status CHECK(status = 'ACTIVE' OR status = 'DELETED')
 );
 
 /* 
@@ -59,8 +59,8 @@ CREATE TABLE investments (
 transaction_id VARCHAR(256) PRIMARY KEY
 transaction_date DATE NOT NULL,
 investment_amount INT NOT NULL,
-investor_email VARCHAR(256),
-project_id CHAR(14),
+investor_email VARCHAR(256) ,
+project_id CHAR(14) ,
 FOREIGN KEY (investor_email) REFERENCES users(email) ON UPDATE CASCADE,
 FOREIGN KEY (project_id) REFERENCES projects(project_id),
 );
@@ -76,8 +76,8 @@ project_id - project_id of the project invested in, must be existing project.
 */
 
 CREATE TABLE ownership (
-publisher_email VARCHAR(256),
-project_id CHAR(14),
+publisher_email VARCHAR(256) ,
+project_id CHAR(14) ,
 FOREIGN KEY (publisher_email) REFERENCES users(email) ON UPDATE CASCADE,
 FOREIGN KEY (project_id) REFERENCES projects(project_id),
 PRIMARY KEY (publisher_email,project_id)
