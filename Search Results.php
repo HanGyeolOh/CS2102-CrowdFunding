@@ -108,7 +108,7 @@
 		<div class="col-lg-3">
 		<div class="input-group">
 			<span class="input-group-addon">Title</span>
-			<input type="text" class="form-control" id="title" name="title" placeholder="Search Keywords">
+			<input type="text" class="form-control" id="title" name="title" placeholder="Search Keywords!">
 		</div>
 		</div>
 
@@ -175,14 +175,8 @@ if(isset($_POST['submit'])){
 	$result = pg_query($query) or die('Query failed: ' . pg_last_error());
 
 	$index = 0;
-    while ($row = pg_fetch_row($result)){
-      $retrieved_title = $row[0];
-	  $retrieved_desc = $row[1];
-	  $retrieved_target = $row[2];
-	  $retrieved_current = $row[3];
-	  $index++;
-    }
-	echo "<div class='container'>
+	
+		echo "<div class='container'>
 	<table class='table table-bordered table-striped table-hover'>
 	<thead>
 	<tr>
@@ -194,13 +188,21 @@ if(isset($_POST['submit'])){
 	<th class='text-center'>Donate!</th>
   </tr>
   </thead>";
+  
+    while ($row = pg_fetch_row($result)){
+      $retrieved_title = $row[0];
+	  $retrieved_desc = $row[1];
+	  $retrieved_target = $row[2];
+	  $retrieved_current = $row[3];
+	  $index++;
 
-	echo "<td align='center'>$index</td>
+	echo "<tr><td align='center'>$index</td>
 	<td align='center'>$retrieved_title</td>
 	<td align='center'>$retrieved_desc</td>
 	<td align='center'>$retrieved_target</td>
 	<td align='center'>$retrieved_current</td>
-	<td align='center'><p><a href='#' class='btn btn-primary btn-xs'>Donate!</a></p> </td>";
+	<td align='center'><p><a href='#' class='btn btn-primary btn-xs'>Donate!</a></p> </td></tr>";
+	}
     pg_free_result($result);
 }
 ?>
