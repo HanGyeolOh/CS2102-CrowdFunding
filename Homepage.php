@@ -24,6 +24,9 @@
     border-bottom: 1px solid #ddd;
     padding: 10px;
 }
+.logo{
+	padding: 5px;
+}
 .nav-tabs {
     margin-bottom: 0;
 }
@@ -76,7 +79,7 @@
       </button>
 
       <!-- You'll have to add padding in your image on the top and right of a few pixels (CSS Styling will break the navbar) -->
-      <a class="pull-left" href="Homepage.php"><img src="img/logo.png"></a>
+      <a class="pull-left logo" href="Homepage.php"><img src="img/fundhunter.png" height="40" width="40"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
