@@ -90,70 +90,9 @@
 
 <body>
 
-<!-- Collapsible Navigation Bar -->
-<div class="container">
-
-<!-- .navbar-fixed-top, or .navbar-fixed-bottom can be added to keep the nav bar fixed on the screen -->
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-
-      <!-- Button that toggles the navbar on and off on small screens -->
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-
-      <!-- Hides information from screen readers -->
-        <span class="sr-only"></span>
-
-        <!-- Draws 3 bars in navbar button when in small mode -->
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-
-      <!-- You'll have to add padding in your image on the top and right of a few pixels (CSS Styling will break the navbar) -->
-      <a class="pull-left" href="Homepage.php"><img src="img/logo.png"></a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="Homepage.php">Home<span class="sr-only">(current)</span></a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Funded Projects</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Create <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">User</a></li>
-            <li><a href="#">Project</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Contact Us</a></li>
-      </ul>
-
-      <?php
-      if(!isset($_SESSION['username'])) {
-        echo
-        "<ul class='nav navbar-nav navbar-right'>
-          <li><a href='login.php'>Login</a></li>
-        </ul>";
-      }
-      else{
-        echo
-        "<ul class='nav navbar-nav navbar-right'>
-          <li><a href='User Profile.php'>My Profile</a></li>
-        </ul>
-        <ul class='nav navbar-nav navbar-right'>
-          <li><a href='logout.php'>Logout</a></li>
-        </ul>";
-      }
-      ?>
-
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-</div>
+<?php
+  require('NavigationBar.php');
+?>
 
 <!-- Project Profile -->
 
