@@ -31,6 +31,7 @@
 ?>
 
 <style>
+
 .jumbotron{
     background-color:#2C3539;
     color:white;
@@ -105,7 +106,7 @@
       <img src="img/companylogo1.jpg" class="title-style center-block" id="companylogo1" width="60" height="80">
       <div class="caption">
         <p class="text-center">By
-          <a href="User%20Profile.php" class="btn" role="button btn-xs">
+          <a href="User%20Profile.php" class="btn btn-info" role="button btn-xs">
             <?php echo $owner_name; ?>
           </a>
         </p>
@@ -126,7 +127,7 @@
           <h3><?php echo $days_left; ?><small><br>days to go</small></h3>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-          <a href="#" class="button-middle btn btn-info btn-lg pull-center">Invest In This Project</a>
+          <a href="investment%20page.php?id=<?php echo $project_id; ?>" class="button-middle btn btn-info btn-lg pull-center">Invest In This Project</a>
         </div>
       </div>
     </div>
