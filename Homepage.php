@@ -218,7 +218,7 @@
 							<p class='text-narrow'>funded</p>
 						</div>
 						<div class='col-lg-4'>
-							<p class='text-strong'>$current_amount</p>
+							<p class='text-strong'>$$current_amount</p>
 							<p class='text-narrow'>invested</p>
 						</div>
 						<div class='col-lg-4'>

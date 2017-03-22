@@ -19,15 +19,10 @@ category VARCHAR(32) NOT NULL,
 logo_url VARCHAR(256) NOT NULL
 );
 
-CREATE TABLE project_pictures (
-picture_url VARCHAR(256) PRIMARY KEY
-);
-
 CREATE TABLE contain(
 project_id CHAR(14),
-picture_url VARCHAR(256),
-FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE CASCADE,
-FOREIGN KEY (picture_url) REFERENCES project_pictures(picture_url)
+picture_url VARCHAR(256) PRIMARY KEY,
+FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE CASCADE
 );
 
 CREATE TABLE investments (
@@ -44,6 +39,6 @@ CREATE TABLE ownership (
 publisher_email VARCHAR(256) ,
 project_id CHAR(14) ,
 FOREIGN KEY (publisher_email) REFERENCES users(email) ON UPDATE CASCADE ON DELETE CASCADE,
-FOREIGN KEY (project_id) REFERENCES projects(project_id),
+FOREIGN KEY (project_id) REFERENCES projects(project_id) ON DELETE CASCADE,
 PRIMARY KEY (publisher_email,project_id)
 );
