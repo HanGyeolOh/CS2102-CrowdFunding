@@ -201,11 +201,11 @@
           echo "
 			<div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
 				<div>
-					<img class= 'img-rounded project-img' src='$logo_url' href='Project%20Profile.php?id=$id' role='button'>
+					<img class= 'img-rounded project-img btn' src='$logo_url' href='Project%20Profile.php?id=$id'>
 				</div>
 				<div class='caption'>
-					<p class='h4' href='Project%20Profile.php?id=$id' role='button'>$title</p>
-					<p class='h5' href='#' role='button'>by $owner_name</p>
+					<a class='btn' href='Project%20Profile.php?id=$id'><p class='h4'>$title</p></a>
+					<p>by <a class='btn' href='#'><p class='h5' > $owner_name</p></a></p>
 					<p class='text-justify text-description'>$description</p>
 				</div>
 				<div class='my-footer'>
