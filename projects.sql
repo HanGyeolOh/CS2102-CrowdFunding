@@ -3,17 +3,7 @@
 projects
 
 ***************************/
-/* 
-prevent characters like & in strings to be interpreted  by Oracle 
-remove in PostfreSQL
-*/
-set define off
-/*
-ALTER SESSION modifies the date format YYYY-MM-DD in Oracle
-the default date format is '01-Jan-07' (DD-MON-YY)
-remove for PostgreSQL
-*/
-alter session set NLS_DATE_FORMAT='YYYY-MM-DD';
+
 
 insert into projects values ('GRINder','The unique columbia coffee grinder','2013-02-25','2017-08-21','kkkht0023','10252','0','Food','image/company/grinder.jpg');
 insert into projects values ('DoggyGo','Smartest dog tracker for dog collar','2013-04-11','2018-09-07','kkkht0021','12309','0','Technology','image/company/doggygo.gif');

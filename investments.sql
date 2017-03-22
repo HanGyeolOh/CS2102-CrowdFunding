@@ -3,17 +3,7 @@
 investments
 
 ***************************/
-/* 
-prevent characters like & in strings to be interpreted  by Oracle 
-remove in PostfreSQL
-*/
-set define off
-/*
-ALTER SESSION modifies the date format YYYY-MM-DD in Oracle
-the default date format is '01-Jan-07'); (DD-MON-YY)
-remove for PostgreSQL
-*/
-alter session set NLS_DATE_FORMAT='YYYY-MM-DD';
+
 
 insert into investments values ('tran000001','2017-03-27','4437','robert234@nus.edu.sg','kkkht0018');
 insert into investments values ('tran000002','2017-03-07','843','elle093@gmail.com','kkkht0012');

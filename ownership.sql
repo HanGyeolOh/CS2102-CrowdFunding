@@ -3,17 +3,7 @@
 ownership
 
 ***************************/
-/* 
-prevent characters like & in strings to be interpreted  by Oracle 
-remove in PostfreSQL
-*/
-set define off
-/*
-ALTER SESSION modifies the date format YYYY-MM-DD in Oracle
-the default date format is '01-Jan-07' (DD-MON-YY)
-remove for PostgreSQL
-*/
-alter session set NLS_DATE_FORMAT='YYYY-MM-DD';
+
 
 insert into ownership values ('racccoon@gmail.com','kkkht0001');
 insert into ownership values ('elle093@gmail.com','kkkht0002');
