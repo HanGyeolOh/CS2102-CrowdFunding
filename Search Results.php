@@ -55,35 +55,69 @@
 ?>
 
 <?php
-if(isset($_POST['submit'])){
-	$title = "";
-	$cateogory = "";
-	$title = $_POST['title'];
-	$category = $_POST['cat'];
+if(true){
 	
-	if(strcmp($title,"")==0){
+	if (isset($_GET["category"])) { 
+	$category  = $_GET["category"]; 
+	} else { 
+	$category = $_POST['cat']; 
+	}  
+  
+	if (isset($_GET["title"])) { 
+	$title  = $_GET["title"]; 
+	} else { 
+	$title = $_POST['title']; 
+	}  
+
+	$limit = 5;  
+	if (isset($_GET["page"])) { 
+	$page  = $_GET["page"]; 
+	} else { 
+	$page=1; 
+	}
+	
+	$start_from = ($page-1) * $limit;  
+		
+	if(strcmp($title,"")==0){ 
 		$query="SELECT title, description, target_amount, current_amount
 		FROM projects
-		WHERE category='$category'";
+		WHERE category='$category' 
+		ORDER BY title ASC LIMIT $limit OFFSET $start_from";   
+		echo "<b>SQL:  </b>".$query."<br><br>";
+		$result = pg_query($query) or die('Query failed: ' . pg_last_error()); 
 	}
 	else if(strcmp($category, "")==0){
-		$query="SELECT title, description, target_amount, current_amount
-		FROM projects
-		WHERE lower(title) like lower('%".$title."%')";
-	}
-	else{
+		$limit = 5;  
+		if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
+		$start_from = ($page-1) * $limit;  
+  
 		$query="SELECT title, description, target_amount, current_amount
 		FROM projects
 		WHERE lower(title) like lower('%".$title."%')
-		AND category='$category'";
+		ORDER BY title ASC LIMIT $limit OFFSET $start_from";
+		echo "<b>SQL:   </b>".$query."<br><br>";
+		$result = pg_query($query) or die('Query failed: ' . pg_last_error()); 
 	}
-
-	
-	$result = pg_query($query) or die('Query failed: ' . pg_last_error());
+	else{
+		$limit = 5;  
+		if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
+		$start_from = ($page-1) * $limit;  
+  
+		$query="SELECT title, description, target_amount, current_amount
+		FROM projects
+		WHERE lower(title) like lower('%".$title."%')
+		AND category='$category'
+		ORDER BY title ASC LIMIT $limit OFFSET $start_from";
+		echo "<b>SQL:   </b>".$query."<br><br>";
+		$result = pg_query($query) or die('Query failed: ' . pg_last_error()); 
+	}
 
 	$index = 0;
 	
-		echo "<div class='container'>
+?>
+
+
+	<div class='container'>
 	<table class='table table-bordered table-striped table-hover'>
 	<thead>
 	<tr>
@@ -94,8 +128,9 @@ if(isset($_POST['submit'])){
     <th class='text-center'>Amount Raised</th>
 	<th class='text-center'>Donate!</th>
   </tr>
-  </thead>";
-  
+  </thead>
+	
+<?php
     while ($row = pg_fetch_row($result)){
       $retrieved_title = $row[0];
 	  $retrieved_desc = $row[1];
@@ -110,39 +145,31 @@ if(isset($_POST['submit'])){
 	<td align='center'>$retrieved_current</td>
 	<td align='center'><p><a href='#' class='btn btn-primary btn-xs'>Donate!</a></p> </td></tr>";
 	}
+	echo "</table>";
+	
     pg_free_result($result);
 }
 ?>
 </table>
+</tbody> 
 </div>
 
 <!-- Display search results -->
 
-
 <!--Adding Pagingation at bottom-->
-<div class="container">
-<nav>
-	<div class="text-center">
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-  </div>
-</nav>
-</div><br>
+<?php  
+$sql = "SELECT COUNT(title) FROM projects";  
+$rs_result = pg_query($sql);  
+$row = pg_fetch_row($rs_result);  
+$total_records = $row[0];  
+$total_pages = ceil($total_records / $limit);  
+$pagLink = "<div class='pagination'>";  
+for ($i=1; $i<=$total_pages; $i++) {  
+             $pagLink .= "<a href='Search%20Results.php?page=".$i."&category=".$category."&title=".$title."'>".$i."</a>"; 
+			 
+};  
+echo $pagLink . "</div>";  
+?>
 
 <?php
   pg_close($dbconn);
