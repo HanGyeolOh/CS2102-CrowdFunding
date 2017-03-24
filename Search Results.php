@@ -77,16 +77,16 @@ if(true){
 	}
 	
 	$start_from = ($page-1) * $limit;  
-		
+	$restrictions = "ORDER BY title ASC LIMIT $limit OFFSET $start_from";	
+	
 	if(strcmp($title,"")==0){ 
 		$query="SELECT title, description, target_amount, current_amount
 		FROM projects
-		WHERE category='$category' 
-		ORDER BY title ASC LIMIT $limit OFFSET $start_from";   
-		echo "<b>SQL:  </b>".$query."<br><br>";
-		$result = pg_query($query) or die('Query failed: ' . pg_last_error()); 
-	}
-	else if(strcmp($category, "")==0){
+		WHERE category='$category'";
+		$complete_query = $query . $restrictions;	
+		$result = pg_query($complete_query) or die('Query failed: ' . pg_last_error()); 
+		
+	} else if(strcmp($category, "")==0){
 		$limit = 5;  
 		if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
 		$start_from = ($page-1) * $limit;  
@@ -95,10 +95,9 @@ if(true){
 		FROM projects
 		WHERE lower(title) like lower('%".$title."%')
 		ORDER BY title ASC LIMIT $limit OFFSET $start_from";
-		echo "<b>SQL:   </b>".$query."<br><br>";
 		$result = pg_query($query) or die('Query failed: ' . pg_last_error()); 
-	}
-	else{
+		
+	} else{
 		$limit = 5;  
 		if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
 		$start_from = ($page-1) * $limit;  
@@ -108,12 +107,11 @@ if(true){
 		WHERE lower(title) like lower('%".$title."%')
 		AND category='$category'
 		ORDER BY title ASC LIMIT $limit OFFSET $start_from";
-		echo "<b>SQL:   </b>".$query."<br><br>";
 		$result = pg_query($query) or die('Query failed: ' . pg_last_error()); 
 	}
-
-	$index = 0;
 	
+	$index = ($page - 1) * $limit + 1;
+
 ?>
 
 
@@ -132,22 +130,21 @@ if(true){
 	
 <?php
     while ($row = pg_fetch_row($result)){
-      $retrieved_title = $row[0];
-	  $retrieved_desc = $row[1];
-	  $retrieved_target = $row[2];
-	  $retrieved_current = $row[3];
-	  $index++;
+		$retrieved_title = $row[0];
+		$retrieved_desc = $row[1];
+		$retrieved_target = $row[2];
+		$retrieved_current = $row[3];
 
-	echo "<tr><td align='center'>$index</td>
-	<td align='center'>$retrieved_title</td>
-	<td align='center'>$retrieved_desc</td>
-	<td align='center'>$retrieved_target</td>
-	<td align='center'>$retrieved_current</td>
-	<td align='center'><p><a href='#' class='btn btn-primary btn-xs'>Donate!</a></p> </td></tr>";
-	}
-	echo "</table>";
+		echo "<tr><td align='center'>$index</td>
+		<td align='center'>$retrieved_title</td>
+		<td align='center'>$retrieved_desc</td>
+		<td align='center'>$retrieved_target</td>
+		<td align='center'>$retrieved_current</td>
+		<td align='center'><p><a href='#' class='btn btn-primary btn-xs'>Donate!</a></p> </td></tr>";
 	
-    pg_free_result($result);
+	$index++;
+	}
+	echo "</table>"; 
 }
 ?>
 </table>
@@ -157,17 +154,16 @@ if(true){
 <!-- Display search results -->
 
 <!--Adding Pagingation at bottom-->
-<?php  
-$sql = "SELECT COUNT(title) FROM projects";  
-$rs_result = pg_query($sql);  
-$row = pg_fetch_row($rs_result);  
-$total_records = $row[0];  
-$total_pages = ceil($total_records / $limit);  
+<?php
+$rs_result = pg_query($query);    
+$total_records = pg_num_rows($rs_result);  
+$total_pages = ceil($total_records / $limit); 
 $pagLink = "<div class='pagination'>";  
 for ($i=1; $i<=$total_pages; $i++) {  
              $pagLink .= "<a href='Search%20Results.php?page=".$i."&category=".$category."&title=".$title."'>".$i."</a>"; 
 			 
 };  
+pg_free_result($result);
 echo $pagLink . "</div>";  
 ?>
 
