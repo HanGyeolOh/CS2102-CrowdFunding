@@ -158,28 +158,31 @@ if(true){
 <nav>
 <div class="text-center">
 <ul class="pagination">
-<li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
 <?php
 
 $rs_result = pg_query($query);    
 $total_records = pg_num_rows($rs_result);  
 $total_pages = ceil($total_records / $limit); 
+
+if($page != 1){
+	$previous_page = $page - 1;
+	echo "<li><a href='Search%20Results.php?page=".$previous_page."&category=".$category."&title=".$title."'>&laquo;</a></li>";
+}
+
 for ($i=1; $i<=$total_pages; $i++) {  
-             $pagLink .= "<a href='Search%20Results.php?page=".$i."&category=".$category."&title=".$title."'>".$i."</a>"; 
-			 
-};  
+    $pageLink .= "<a href='Search%20Results.php?page=".$i."&category=".$category."&title=".$title."'>".$i."</a>"; 			 
+}
+  
 pg_free_result($result);
-echo '<li>'. $pagLink .'</li>';
+
+echo '<li>'. $pageLink .'</li>';
+
+if($page != $total_pages){
+	$next_page = $page + 1;
+	echo "<li><a href='Search%20Results.php?page=".$next_page."&category=".$category."&title=".$title."'>&raquo;</a></li>";
+}
 
 ?>
-<li>
-<a href="#" aria-label="Next">
-<span aria-hidden="true">&raquo;</span>
-</a>
 </li>
 </ul>
 </div>
