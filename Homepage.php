@@ -178,94 +178,58 @@
 <div class="container">
 	<h3>New projects</h3><hr>
 	<div class='row'>
-		<div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
-			<div>
-				<img class= 'img-rounded project-img' src='img/nyc-skyline.jpg' href='Project%20Profile.php?id=$id' role='button'>
-			</div>
-			<div class='caption'>
-				<p class='h4' href='Project%20Profile.php?id=$id' role='button'>$title</p>
-				<p class='h5' href='#' role='button'>by $owner_name</p>
-				<p class='text-justify text-description'>$description</p>
-			</div>
-			<div class='my-footer'>
-				<div class='progress'>
-	        <div class='progress-bar' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>
-	      </div>
-				<div class='caption'>
-					<div class='col-lg-4'>
-						<p class='text-strong'>$progress %</p>
-						<p class='text-narrow'>funded</p>
-					</div>
-					<div class='col-lg-4'>
-						<p class='text-strong'>$current_amount</p>
-						<p class='text-narrow'>invested</p>
-					</div>
-					<div class='col-lg-4'>
-						<p class='text-strong'>36</p>
-						<p class='text-narrow'>days to go</p>
-					</div>
-				</div>
-			</div>
-		</div>
+	<?php
+        $query = "SELECT p.title, p.description, p.project_id, p.logo_url, u.name, p.start_date, p.end_date, p.target_amount, p.current_amount 
+        			FROM projects p, ownership o, users u
+        			WHERE p.project_id = o.project_id AND u.email = o.publisher_email";
+        $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
 
-		<div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
-			<div>
-				<img class= 'img-rounded project-img' src='img/nyc-skyline.jpg' href='Project%20Profile.php?id=$id' role='button'>
-			</div>
-			<div class='caption'>
-				<p class='h4' href='Project%20Profile.php?id=$id' role='button'>$title</p>
-				<p class='h5' href='#' role='button'>by $owner_name</p>
-				<p class='text-justify text-description'>$description</p>
-			</div>
-			<div class='my-footer'>
-				<div class='progress'>
-	        <div class='progress-bar' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>
-	      </div>
+        while ($row = pg_fetch_row($result)) {
+          $title = $row[0];
+          $description = $row[1];
+          $id = $row[2];
+          $logo_url = $row[3];
+          $owner_name = $row[4];
+          $start_date = $row[5];
+          $end_date = $row[6];
+          $target_amount = number_format($row[7]);
+    	  $current_amount = number_format($row[8]);
+
+    	  $days_left = ceil(abs(strtotime($end_date) - strtotime($start_date)) / 86400);
+    	  $progress = round ( (((float)((int)$row[8] / (int)$row[7])) * 100), 0);
+
+          echo "
+			<div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
+				<div>
+					<img class= 'img-rounded project-img btn' src='$logo_url' href='Project%20Profile.php?id=$id'>
+				</div>
 				<div class='caption'>
-					<div class='col-lg-4'>
-						<p class='text-strong'>$progress %</p>
-						<p class='text-narrow'>funded</p>
-					</div>
-					<div class='col-lg-4'>
-						<p class='text-strong'>$current_amount</p>
-						<p class='text-narrow'>invested</p>
-					</div>
-					<div class='col-lg-4'>
-						<p class='text-strong'>36</p>
-						<p class='text-narrow'>days to go</p>
+					<a class='btn' href='Project%20Profile.php?id=$id'><p class='h4'>$title</p></a>
+					<p>by <a class='btn' href='#'><p class='h5' > $owner_name</p></a></p>
+					<p class='text-justify text-description'>$description</p>
+				</div>
+				<div class='my-footer'>
+					<div class='progress'>
+		        <div class='progress-bar' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>
+		      </div>
+					<div class='caption'>
+						<div class='col-lg-4'>
+							<p class='text-strong'>$progress %</p>
+							<p class='text-narrow'>funded</p>
+						</div>
+						<div class='col-lg-4'>
+							<p class='text-strong'>$$current_amount</p>
+							<p class='text-narrow'>invested</p>
+						</div>
+						<div class='col-lg-4'>
+							<p class='text-strong'>$days_left</p>
+							<p class='text-narrow'>days to go</p>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
-			<div>
-				<img class= 'img-rounded project-img' src='img/nyc-skyline.jpg' href='Project%20Profile.php?id=$id' role='button'>
-			</div>
-			<div class='caption'>
-				<p class='h4' href='Project%20Profile.php?id=$id' role='button'>$title</p>
-				<p class='h5' href='#' role='button'>by $owner_name</p>
-				<p class='text-justify text-description'>$description</p>
-			</div>
-			<div class='my-footer'>
-				<div class='progress'>
-	        <div class='progress-bar' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>
-	      </div>
-				<div class='caption'>
-					<div class='col-lg-4'>
-						<p class='text-strong'>$progress %</p>
-						<p class='text-narrow'>funded</p>
-					</div>
-					<div class='col-lg-4'>
-						<p class='text-strong'>$current_amount</p>
-						<p class='text-narrow'>invested</p>
-					</div>
-					<div class='col-lg-4'>
-						<p class='text-strong'>36</p>
-						<p class='text-narrow'>days to go</p>
-					</div>
-				</div>
-			</div>
-		</div>
+			</div>";
+        }
+     ?>
 	</div>
 </div>
 

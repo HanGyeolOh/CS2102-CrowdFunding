@@ -21,6 +21,7 @@
     $target_amount = number_format($row[5]);
     $current_amount = number_format($row[6]);
     $category = $row[7];
+    $logo_url = $row[8];
 
     $days_left = ceil(abs(strtotime($end_date) - strtotime($start_date)) / 86400);
     $progress = (((float)((int)$row[6] / (int)$row[5])) * 100);
@@ -103,7 +104,8 @@
   <div class="row">
     <!-- Project Logo and Creator -->
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-      <img src="img/companylogo1.jpg" class="title-style center-block" id="companylogo1" width="60" height="80">
+      <?php echo "<img src='$logo_url' class='title-style center-block' id='companylogo1' width='60' height='80'>";
+      ?>
       <div class="caption">
         <p class="text-center">By
           <a href="User%20Profile.php" class="btn btn-info" role="button btn-xs">
