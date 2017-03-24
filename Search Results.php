@@ -154,19 +154,37 @@ if(true){
 <!-- Display search results -->
 
 <!--Adding Pagingation at bottom-->
+<div class="container">
+<nav>
+<div class="text-center">
+<ul class="pagination">
+<li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
 <?php
+
 $rs_result = pg_query($query);    
 $total_records = pg_num_rows($rs_result);  
 $total_pages = ceil($total_records / $limit); 
-$pagLink = "<div class='pagination'>";  
 for ($i=1; $i<=$total_pages; $i++) {  
              $pagLink .= "<a href='Search%20Results.php?page=".$i."&category=".$category."&title=".$title."'>".$i."</a>"; 
 			 
 };  
 pg_free_result($result);
-echo $pagLink . "</div>";  
-?>
+echo '<li>'. $pagLink .'</li>';
 
+?>
+<li>
+<a href="#" aria-label="Next">
+<span aria-hidden="true">&raquo;</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+</div><br>
 <?php
   pg_close($dbconn);
 ?>
