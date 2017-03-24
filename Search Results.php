@@ -48,15 +48,10 @@
 
 <?php
     require('dbconn.php');
-?>
-
-<?php
     require('NavigationBar.php');
 ?>
 
 <?php
-if(true){
-	
 	if (isset($_GET["category"])) { 
 	$category  = $_GET["category"]; 
 	} else { 
@@ -115,19 +110,21 @@ if(true){
 ?>
 
 
-	<div class='container'>
-	<table class='table table-bordered table-striped table-hover'>
-	<thead>
-	<tr>
-	<th class='text-center'>#</th>
-	<th class='text-center'>Title</th>
-	<th class='text-center'>Description</th>
-    <th class='text-center'>Funding Sought</th>
-    <th class='text-center'>Amount Raised</th>
-	<th class='text-center'>Donate!</th>
-  </tr>
-  </thead>
-	
+<div class='container'>
+<table class='table table-bordered table-striped table-hover'>
+<thead>
+<tr>
+<th class='text-center'>#</th>
+<th class='text-center'>Title</th>
+<th class='text-center'>Description</th>
+<th class='text-center'>Funding Sought</th>
+<th class='text-center'>Amount Raised</th>
+<th class='text-center'>Donate!</th>
+</tr>
+</thead>
+
+<!-- Display search results -->
+
 <?php
     while ($row = pg_fetch_row($result)){
 		$retrieved_title = $row[0];
@@ -142,52 +139,51 @@ if(true){
 		<td align='center'>$retrieved_current</td>
 		<td align='center'><p><a href='#' class='btn btn-primary btn-xs'>Donate!</a></p> </td></tr>";
 	
-	$index++;
+		$index++;
 	}
 	echo "</table>"; 
-}
 ?>
+
 </table>
 </tbody> 
 </div>
 
-<!-- Display search results -->
-
-<!--Adding Pagingation at bottom-->
+<!--Adding Pagination at bottom-->
 <div class="container">
 <nav>
 <div class="text-center">
 <ul class="pagination">
+
 <?php
+	$rs_result = pg_query($query);    
+	$total_records = pg_num_rows($rs_result);  
+	$total_pages = ceil($total_records / $limit); 
 
-$rs_result = pg_query($query);    
-$total_records = pg_num_rows($rs_result);  
-$total_pages = ceil($total_records / $limit); 
+	if($page != 1){
+		$previous_page = $page - 1;
+		echo "<li><a href='Search%20Results.php?page=".$previous_page."&category=".$category."&title=".$title."'>&laquo;</a></li>";
+	}
 
-if($page != 1){
-	$previous_page = $page - 1;
-	echo "<li><a href='Search%20Results.php?page=".$previous_page."&category=".$category."&title=".$title."'>&laquo;</a></li>";
-}
-
-for ($i=1; $i<=$total_pages; $i++) {  
-    $pageLink .= "<a href='Search%20Results.php?page=".$i."&category=".$category."&title=".$title."'>".$i."</a>"; 			 
-}
+	for ($i=1; $i<=$total_pages; $i++) {  
+		$pageLink .= "<a href='Search%20Results.php?page=".$i."&category=".$category."&title=".$title."'>".$i."</a>"; 			 
+	}
   
-pg_free_result($result);
+	pg_free_result($result);
 
-echo '<li>'. $pageLink .'</li>';
+	echo '<li>'. $pageLink .'</li>';
 
-if($page != $total_pages){
-	$next_page = $page + 1;
-	echo "<li><a href='Search%20Results.php?page=".$next_page."&category=".$category."&title=".$title."'>&raquo;</a></li>";
-}
-
+	if($page != $total_pages){
+		$next_page = $page + 1;
+		echo "<li><a href='Search%20Results.php?page=".$next_page."&category=".$category."&title=".$title."'>&raquo;</a></li>";
+	}
 ?>
+
 </li>
 </ul>
 </div>
 </nav>
 </div><br>
+
 <?php
   pg_close($dbconn);
 ?>
