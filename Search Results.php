@@ -41,6 +41,7 @@
   width:640px;
   height:360px;
 }
+a.current{background: #f00; color:#fff; border: 1px solid #000}
 </style>
 </head>
 
@@ -63,7 +64,7 @@
 	} else { 
 	$title = $_POST['title']; 
 	}  
-
+	
 	$limit = 5;  
 	if (isset($_GET["page"])) { 
 	$page  = $_GET["page"]; 
@@ -74,30 +75,23 @@
 	$start_from = ($page-1) * $limit;  
 	$restrictions = "ORDER BY title ASC LIMIT $limit OFFSET $start_from";	
 	
-	if(strcmp($title,"")==0){ 
-		$query="SELECT title, description, target_amount, current_amount
+	if(strcmp($title,"")==0) { 
+		$query="SELECT title, description, target_amount, current_amount, start_date
 		FROM projects
 		WHERE category='$category'";
 		$complete_query = $query . $restrictions;	
 		$result = pg_query($complete_query) or die('Query failed: ' . pg_last_error()); 
+
 		
-	} else if(strcmp($category, "")==0){
-		$limit = 5;  
-		if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
-		$start_from = ($page-1) * $limit;  
-  
-		$query="SELECT title, description, target_amount, current_amount
+	} else if(strcmp($category,"")==0 && strcmp($start_date,"")==0){ // search by title only 
+		$query="SELECT title, description, target_amount, current_amount, start_date
 		FROM projects
-		WHERE lower(title) like lower('%".$title."%')
-		ORDER BY title ASC LIMIT $limit OFFSET $start_from";
-		$result = pg_query($query) or die('Query failed: ' . pg_last_error()); 
+		WHERE lower(title) like lower('%".$title."%')";
+		$complete_query = $query . $restrictions;	
+		$result = pg_query($complete_query) or die('Query failed: ' . pg_last_error()); 
 		
-	} else{
-		$limit = 5;  
-		if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };  
-		$start_from = ($page-1) * $limit;  
-  
-		$query="SELECT title, description, target_amount, current_amount
+	} else {
+		$query="SELECT title, description, target_amount, current_amount, start_date
 		FROM projects
 		WHERE lower(title) like lower('%".$title."%')
 		AND category='$category'
@@ -117,6 +111,7 @@
 <th class='text-center'>#</th>
 <th class='text-center'>Title</th>
 <th class='text-center'>Description</th>
+<th class='text-center'>Start Date</th>
 <th class='text-center'>Funding Sought</th>
 <th class='text-center'>Amount Raised</th>
 <th class='text-center'>Donate!</th>
@@ -129,12 +124,14 @@
     while ($row = pg_fetch_row($result)){
 		$retrieved_title = $row[0];
 		$retrieved_desc = $row[1];
-		$retrieved_target = $row[2];
+		$retrieved_target = $row[2];	
 		$retrieved_current = $row[3];
+		$retrieved_date = $row[4];
 
 		echo "<tr><td align='center'>$index</td>
 		<td align='center'>$retrieved_title</td>
 		<td align='center'>$retrieved_desc</td>
+		<td align='center'>$retrieved_date</td>
 		<td align='center'>$retrieved_target</td>
 		<td align='center'>$retrieved_current</td>
 		<td align='center'><p><a href='#' class='btn btn-primary btn-xs'>Donate!</a></p> </td></tr>";
@@ -161,11 +158,11 @@
 
 	if($page != 1){
 		$previous_page = $page - 1;
-		echo "<li><a href='Search%20Results.php?page=".$previous_page."&category=".$category."&title=".$title."'>&laquo;</a></li>";
+		echo "<li><a href='Search%20Results.php?page=".$previous_page."&category=".$category."&title=".$title."&start_date=".$start_date."'>&laquo;</a></li>";
 	}
 
 	for ($i=1; $i<=$total_pages; $i++) {  
-		$pageLink .= "<a href='Search%20Results.php?page=".$i."&category=".$category."&title=".$title."'>".$i."</a>"; 			 
+		$pageLink .= "<a href='Search%20Results.php?page=".$i."&category=".$category."&title=".$title."&start_date=".$start_date."'>".$i."</a>"; 			 
 	}
   
 	pg_free_result($result);
@@ -174,7 +171,7 @@
 
 	if($page != $total_pages){
 		$next_page = $page + 1;
-		echo "<li><a href='Search%20Results.php?page=".$next_page."&category=".$category."&title=".$title."'>&raquo;</a></li>";
+		echo "<li><a href='Search%20Results.php?page=".$next_page."&category=".$category."&title=".$title."&start_date=".$start_date."'>&raquo;</a></li>";
 	}
 ?>
 
