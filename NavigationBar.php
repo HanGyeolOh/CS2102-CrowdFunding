@@ -62,7 +62,7 @@
       <ul class="nav navbar-nav">
         <li><a href="About%20Us.php">About Us</a></li>
         <li><a href="#">Funded Projects</a></li>
-        <li><a href="Project%20Creation.php">Create a project</a></li>
+        <li><a href="ProjectCreation.php">Create a project</a></li>
       </ul>
 
       <?php
@@ -84,7 +84,7 @@
       ?>
 
       <ul class="nav navbar-nav navbar-right">
-      	<li><a href="User%20Creation.php">Register</a></li>
+      	<li><a href="UserCreation.php">Register</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right" id="searchLogo">

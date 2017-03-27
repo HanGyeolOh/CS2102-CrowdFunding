@@ -140,7 +140,7 @@
 		<p class="carousel-small-text">Fund Hunter provides a platform for creative individuals to realise their dreams.</p>
 		<p class="carousel-small-text">Make the first step and launch your project today.</p>
 		<br>
-		<p><a href="project%20creation.php" class="btn btn-primary btn-lg">Get started</a></p>
+		<p><a href="projectcreation.php" class="btn btn-primary btn-lg">Get started</a></p>
 	</div>
 	</div>
 
