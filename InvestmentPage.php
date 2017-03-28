@@ -138,7 +138,7 @@
                 </div>
               </div>
               <?php
-              require('Investment Page Popup.php');
+              require('InvestmentPagePopup.php');
               ?>
             </div>
           </div>

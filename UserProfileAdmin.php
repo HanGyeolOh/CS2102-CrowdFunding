@@ -125,7 +125,10 @@
 
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
       <a role="button" class="btn-warning btn" href="EditUserProfile.php" style="margin-top:25px; margin-bottom:25px;">Edit Profile Details</a>
-      <a role="button" class="btn-danger btn" style="margin-top:25px; margin-bottom:25px;">Delete Account</a>
+      <a role="button" class="btn-danger btn" data-toggle="modal" data-target="#modal-1" style="margin-top:25px; margin-bottom:25px;">Delete Account</a>
+      <?php
+        require('DeleteUserPopup.php');
+      ?>
     </div>
 
   </div>
