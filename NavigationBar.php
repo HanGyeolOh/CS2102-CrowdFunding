@@ -60,12 +60,13 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="About%20Us.php">About Us</a></li>
+        <li><a href="AboutUs.php">About Us</a></li>
         <li><a href="#">Funded Projects</a></li>
-        <li><a href="Project%20Creation.php">Create a project</a></li>
+        <li><a href="ProjectCreation.php">Create a project</a></li>
       </ul>
 
       <?php
+      $my_email = $_SESSION['username'];
       if(!isset($_SESSION['username'])) {
         echo
         "<ul class='nav navbar-nav navbar-right'>
@@ -75,7 +76,7 @@
       else{
         echo
         "<ul class='nav navbar-nav navbar-right'>
-          <li><a href='User Profile.php'>My Profile</a></li>
+          <li><a href='UserProfileAdmin.php'>My Profile</a></li>
         </ul>
         <ul class='nav navbar-nav navbar-right'>
           <li><a href='logout.php'>Logout</a></li>
@@ -84,7 +85,7 @@
       ?>
 
       <ul class="nav navbar-nav navbar-right">
-      	<li><a href="User%20Creation.php">Register</a></li>
+      	<li><a href="UserCreation.php">Register</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right" id="searchLogo">
