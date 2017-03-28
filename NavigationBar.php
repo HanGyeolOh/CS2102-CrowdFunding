@@ -66,6 +66,7 @@
       </ul>
 
       <?php
+      $my_email = $_SESSION['username'];
       if(!isset($_SESSION['username'])) {
         echo
         "<ul class='nav navbar-nav navbar-right'>
@@ -75,7 +76,7 @@
       else{
         echo
         "<ul class='nav navbar-nav navbar-right'>
-          <li><a href='User Profile.php'>My Profile</a></li>
+          <li><a href='UserProfile.php?email=$my_email'>My Profile</a></li>
         </ul>
         <ul class='nav navbar-nav navbar-right'>
           <li><a href='logout.php'>Logout</a></li>

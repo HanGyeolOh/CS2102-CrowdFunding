@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width = device-width, initial-scale = 1">
+<title>FundHunter</title>
 
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
@@ -184,7 +185,7 @@
 	<h3>New projects</h3><hr>
 	<div class='row'>
 	<?php
-        $query = "SELECT p.title, p.description, p.project_id, p.logo_url, u.name, p.start_date, p.end_date, p.target_amount, p.current_amount 
+        $query = "SELECT p.title, p.description, p.project_id, p.logo_url, u.name, p.start_date, p.end_date, p.target_amount, p.current_amount, o.publisher_email
         			FROM projects p, ownership o, users u
         			WHERE p.project_id = o.project_id AND u.email = o.publisher_email";
         $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
@@ -199,6 +200,7 @@
           $end_date = $row[6];
           $target_amount = number_format($row[7]);
     	  $current_amount = number_format($row[8]);
+    	  $publisher_email = $row[9];
 
     	  $days_left = ceil(abs(strtotime($end_date) - strtotime($start_date)) / 86400);
     	  $progress = round ( (((float)((int)$row[8] / (int)$row[7])) * 100), 0);
@@ -212,7 +214,7 @@
 					<p><a class='text-title black-font' href='ProjectProfile.php?id=$id'>$title</a></p>
 					<p>
 						<a class='text-title black-font'>by</a>
-						<a class='text-title black-font' href='#'>$owner_name</a>
+						<a class='text-title black-font' href='UserProfile.php?email=$publisher_email'>$owner_name</a>
 					</p>
 					<p class='text-justify'>$description</p>
 				</div>
