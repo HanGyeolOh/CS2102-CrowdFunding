@@ -78,22 +78,6 @@ function validatePassword() {
 }
 </script>
 
-<script type="text/javascript">
-function validateChangedField() {
-    var newname = document.forms["form"]["name"].value;
-    var newemail = document.forms["form"]["newemail"].value;
-    var newaddress = document.forms["form"]["address"].value;
-    var newdob = document.forms["form"]["dob"].value;
-    var name = <?php header("Content-type: text/javascript"); echo $name;?>;
-    var email = <?php header("Content-type: text/javascript"); echo $email;?>;
-    var address = <?php header("Content-type: text/javascript"); echo $address;?>;
-    var dob = <?php header("Content-type: text/javascript"); echo $dob;?>;
-    if (newname !== name || newemail !== email || newaddress !== address || newdob !== dob) {
-      document.getElementById("UserSubmitButton").disabled = false;
-    }
-}
-</script>
-
 <form action="EditUserForm.php" method="post" enctype="multipart/form-data" name="form">
   <div class="container">
     <div class="container">
@@ -105,29 +89,29 @@ function validateChangedField() {
         <div class="form-group row">
           <label for="example-text-input" class="col-2 col-form-label">Name</label>
           <div class="col-10">
-            <input class="form-control" type="text" id="example-text-input" name="name" required onkeyup="validateChangedField()" value="<?php echo $name; ?>"/>
+            <input class="form-control" type="text" id="example-text-input" name="name" required value="<?php echo $name; ?>"/>
           </div>
         </div>
         <div class="form-group row">
           <label for="example-email-input" class="col-2 col-form-label">Email</label>
           <div class="col-10">
-            <input class="form-control" type="email" id="example-email-input" name="newemail" required onkeyup="validateChangedField()" value="<?php echo $email; ?>"/>
+            <input class="form-control" type="email" id="example-email-input" name="newemail" required value="<?php echo $email; ?>"/>
           </div>
         </div>
         <div class="form-group row">
           <label for="example-text-input" class="col-2 col-form-label">Address</label>
           <div class="col-10">
-            <input class="form-control" type="text" id="example-text-input" name="address" required onkeyup="validateChangedField()" value="<?php echo $address; ?>"/>
+            <input class="form-control" type="text" id="example-text-input" name="address" required value="<?php echo $address; ?>"/>
           </div>
         </div>
         <div class="form-group row">
           <label for="example-date-input" class="col-2 col-form-label">Date of Birth</label>
           <div class="col-10">
-            <input class="form-control" type="date" id="example-date-input" name="dob" required onkeyup="validateChangedField()" value="<?php echo $dob; ?>"/>
+            <input class="form-control" type="date" id="example-date-input" name="dob" required value="<?php echo $dob; ?>"/>
           </div>
         </div>
 
-        <input type="submit" name="usersubmit" value="Submit" class="btn btn-default" id="UserSubmitButton" align="right"/ disabled>
+        <input type="submit" name="usersubmit" value="Submit" class="btn btn-default" id="UserSubmitButton" align="right"/>
       </div>
     </div>
   </div>
