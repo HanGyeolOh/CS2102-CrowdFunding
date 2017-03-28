@@ -153,7 +153,7 @@
 		<p class="carousel-small-text">Your customizable, palm-sized companion featuring a smart camera and automation skills.</p>
 		<p class="carousel-small-text">There for you wherever you go.</p>
 		<br>
-		<p><a href="project%20profile.php?id=kkkht0017" class="btn btn-primary btn-lg">Learn more</a></p>
+		<p><a href="projectprofile.php?id=kkkht0017" class="btn btn-primary btn-lg">Learn more</a></p>
 	</div>
 	</div>
 
@@ -165,7 +165,7 @@
 		<p class="carousel-med-text">Make Any Headphones Wireless</p><br>
 		<p class="carousel-small-text">This tiny device brings Bluetooth capability to all of your audio devices.</p>
 		<br>
-		<p><a href="project%20profile.php?id=kkkht0003" class="btn btn-primary btn-lg">Learn more</a></p>
+		<p><a href="projectprofile.php?id=kkkht0003" class="btn btn-primary btn-lg">Learn more</a></p>
 	</div>
 	</div>
 
@@ -206,10 +206,10 @@
           echo "
 			<div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
 				<div>
-					<img class= 'img-rounded project-img btn center-block' src='$logo_url' href='Project%20Profile.php?id=$id'>
+					<img class= 'img-rounded project-img btn center-block' src='$logo_url' href='ProjectProfile.php?id=$id'>
 				</div>
 				<div class='caption'>
-					<p><a class='text-title black-font' href='Project%20Profile.php?id=$id'>$title</a></p>
+					<p><a class='text-title black-font' href='ProjectProfile.php?id=$id'>$title</a></p>
 					<p>
 						<a class='text-title black-font'>by</a>
 						<a class='text-title black-font' href='#'>$owner_name</a>

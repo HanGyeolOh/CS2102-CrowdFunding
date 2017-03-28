@@ -158,11 +158,11 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 
 	if($page != 1){
 		$previous_page = $page - 1;
-		echo "<li><a href='Search%20Results.php?page=".$previous_page."&category=".$category."&title=".$title."&start_date=".$start_date."'>&laquo;</a></li>";
+		echo "<li><a href='SearchResults.php?page=".$previous_page."&category=".$category."&title=".$title."&start_date=".$start_date."'>&laquo;</a></li>";
 	}
 
 	for ($i=1; $i<=$total_pages; $i++) {  
-		$pageLink .= "<a href='Search%20Results.php?page=".$i."&category=".$category."&title=".$title."&start_date=".$start_date."'>".$i."</a>"; 			 
+		$pageLink .= "<a href='SearchResults.php?page=".$i."&category=".$category."&title=".$title."&start_date=".$start_date."'>".$i."</a>"; 			 
 	}
   
 	pg_free_result($result);
@@ -171,7 +171,7 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 
 	if($page != $total_pages){
 		$next_page = $page + 1;
-		echo "<li><a href='Search%20Results.php?page=".$next_page."&category=".$category."&title=".$title."&start_date=".$start_date."'>&raquo;</a></li>";
+		echo "<li><a href='SearchResults.php?page=".$next_page."&category=".$category."&title=".$title."&start_date=".$start_date."'>&raquo;</a></li>";
 	}
 ?>
 

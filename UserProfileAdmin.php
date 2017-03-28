@@ -111,7 +111,7 @@
                <p class='text-justify text-description'>$description</p>
                <p>
                  <a href='#' class='btn btn-success pull-left'>Funded</a>
-                 <a href='Project%20Profile.php?id=$id' class='btn btn-primary pull-right' role='button'>Find out more</a>
+                 <a href='ProjectProfile.php?id=$id' class='btn btn-primary pull-right' role='button'>Find out more</a>
                </p>
              </div>
            </li>";
@@ -143,7 +143,7 @@
                <p class='text-justify text-description'>$description</p>
                <p>
                  <a href='#' class='btn btn-info pull-left'>Funding</a>
-                 <a href='Project%20Profile.php?id=$id' class='btn btn-primary pull-right' role='button'>Find out more</a>
+                 <a href='ProjectProfile.php?id=$id' class='btn btn-primary pull-right' role='button'>Find out more</a>
                </p>
              </div>
            </li>";
