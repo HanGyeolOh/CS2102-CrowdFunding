@@ -28,6 +28,7 @@
     $query = "SELECT name FROM users WHERE email = ANY (SELECT publisher_email FROM ownership WHERE project_id = '$project_id')";
     $result = pg_query($dbconn, $query);
     $owner_name = pg_fetch_result($result, 0, 0);
+
   ?>
 
   <style>
@@ -96,6 +97,12 @@
     }
   </style>
 </head>
+<script>
+  function displayAmount() {
+    var amount = document.getElementById('donation_amount').value;
+    document.getElementById('amount').innerHTML = amount + " will go a long way to supporting our project!";
+  }
+</script>
 
 <body>
 
@@ -108,7 +115,7 @@
     <h3 class="text-center strong">
         <a href="Project%20Profile.php?id=<?php echo $project_id; ?>" role="button"><?php echo $title; ?> - <?php echo $description; ?></a>
     </h3>
-      <h5 class="text-center strong">     by           
+      <h5 class="text-center strong">     by
         <a href="User%20Profile.php" role="button"><?php echo $owner_name; ?></a>
       </h5>
     </p>
@@ -117,7 +124,6 @@
   <!-- Investment Option Form -->
   <div class="container">
     <div class="panel-group" id="accordion">
-
       <!-- Default investment option -->
       <div class="panel panel-info">
         <div class="panel-heading">
@@ -131,15 +137,36 @@
             <br>
             <p class="grey">You did it! You were able to hit the button and give a dollar to this project. Pat yourself on the back kind Sir, Madam, or Non-Gendered Person. You will be added to an ever-growing list of supporters on the webpage.</p>
             <div class="row">
+              <form action="Project Profile.php?id=<?php echo $project_id ?>" method="post">
               <div class="col-lg-4">
                 <div class="input-group has-success">
                   <span class="input-group-addon">SGD $</span>
-                  <input type="text" class="form-control" placeholder="Investment Amount Here">
+                  <input type="text" class="form-control" placeholder="Investment Amount Here" name="amount" id="donation_amount"/>
+                </div>
+              </div>
+
+              <div class="col-lg-2">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-1" onclick="displayAmount()">Continue</button>
+                <div class="modal fade" id="modal-1">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                          <h3 class="modal-title">Thank you for your investment! <span class="glyphicon glyphicon-heart"></span> </h3>
+                      </div>
+                      <div class="modal-body">
+                         Your investment of $<span id="amount" />
+                      </div>
+                      <div class="modal-footer">
+                        <input type="submit" class="btn btn-default" value="Confirm" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <?php
-              require('Investment Page Popup.php');
+              //require('Investment Page Popup.php');
               ?>
+              </form>
             </div>
           </div>
         </div>
@@ -167,7 +194,7 @@
               <?php
               require('Investment Page Popup.php');
               ?>
-            </div> 
+            </div>
           </div>
         </div>
       </div><br>
@@ -193,7 +220,7 @@
               <?php
               require('Investment Page Popup.php');
               ?>
-            </div> 
+            </div>
           </div>
         </div>
       </div>
@@ -202,6 +229,15 @@
   </div>
 
   <?php
+  if(isset($_POST["amount"])){
+    $donation_amount = $_POST["amount"];
+    $query = "SELECT current_amount FROM projects WHERE project_id = '$project_id'";
+    $result = pg_query($dbconn, $query);
+    $current_amount = pg_fetch_row($result)[0];
+    $new_amount = $current_amount + $donation_amount;
+    $query = "UPDATE projects SET current_amount = $new_amount WHERE project_id = '$project_id'";
+    $result = pg_query($dbconn, $query);
+  }
   pg_close($dbconn);
   ?>
 

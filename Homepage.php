@@ -75,10 +75,10 @@
 }
 .project-img{
   height:180px;
-  max-width:340px;
+  width:100%;
 }
 .thumbnail{
-	height:400px;
+	height:420px;
 	width:350px;
 	margin-left: 40px;
 }
@@ -91,11 +91,6 @@
 .text-narrow{
 	font-size:12px;
 	line-height: 0.5;
-}
-.text-title{
-	font-size:16px;
-	line-height: 1.2;
-	font-weight: bold;
 }
 .text-strong{
 	font-weight: bold;
@@ -206,15 +201,12 @@
           echo "
 			<div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
 				<div>
-					<img class= 'img-rounded project-img btn center-block' src='$logo_url' href='Project%20Profile.php?id=$id'>
+					<img class= 'img-rounded project-img btn' src='$logo_url' href='Project%20Profile.php?id=$id'>
 				</div>
 				<div class='caption'>
-					<p><a class='text-title black-font' href='Project%20Profile.php?id=$id'>$title</a></p>
-					<p>
-						<a class='text-title black-font'>by</a>
-						<a class='text-title black-font' href='#'>$owner_name</a>
-					</p>
-					<p class='text-justify'>$description</p>
+					<a class='btn' href='Project%20Profile.php?id=$id'><p class='h4'>$title</p></a>
+					<p>by <a class='btn' href='#'><p class='h5' > $owner_name</p></a></p>
+					<p class='text-justify text-description'>$description</p>
 				</div>
 				<div class='my-footer'>
 					<div class='progress'>
