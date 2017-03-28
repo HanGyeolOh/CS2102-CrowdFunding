@@ -31,6 +31,43 @@
   height: 10ex; /* 2.5ex for each visible line */
   overflow: hidden;
 }
+.black-font{
+  color: #000000;
+}
+.project-img{
+  height:180px;
+  max-width:340px;
+}
+.thumbnail{
+  height:400px;
+  width:350px;
+  margin-left: 40px;
+}
+.my-footer{
+  position: absolute;
+  width:100%;
+  bottom:15;
+  height:40px;
+}
+.text-narrow{
+  font-size:12px;
+  line-height: 0.5;
+}
+.text-title{
+  font-size:16px;
+  line-height: 1.2;
+  font-weight: bold;
+}
+.text-strong{
+  font-weight: bold;
+  font-size:12.5px;
+  line-height: 0.5;
+}
+.progress{
+  height:10px;
+  margin-bottom:4px;
+  width:340px;
+}
 </style>
 </head>
 
@@ -68,7 +105,7 @@
     </div>
 
     <!-- Profile Info Table -->
-    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+    <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
       <p>
         <?php echo '<h2 class="text-primary">'.$name.'</h2>'; ?>
       </p>
@@ -86,6 +123,11 @@
       </p>
     </div>
 
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+      <a role="button" class="btn-warning btn" href="EditUserProfile.php" style="margin-top:25px; margin-bottom:25px;">Edit Profile Details</a>
+      <a role="button" class="btn-danger btn" style="margin-top:25px; margin-bottom:25px;">Delete Account</a>
+    </div>
+
   </div>
 
   <div class="page-header">
@@ -96,7 +138,7 @@
 
     <ul class="list-group">
       <?php
-        $query = "SELECT title, description, project_id FROM projects
+        $query = "SELECT title, description, project_id, logo_url, start_date, end_date, target_amount, current_amount FROM projects
                   WHERE project_id IN (SELECT project_id FROM ownership WHERE publisher_email = '$email')";
         $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
 
@@ -104,17 +146,46 @@
           $title = $row[0];
           $description = $row[1];
           $id = $row[2];
-           echo "<li class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
-             <img src='img/companylogo1.jpg' id='companylogo1' width='100' height='100'>
-             <div class='caption'>
-               <h4 class='text-center'>$title</h4>
-               <p class='text-justify text-description'>$description</p>
-               <p>
-                 <a href='#' class='btn btn-success pull-left'>Funded</a>
-                 <a href='ProjectProfile.php?id=$id' class='btn btn-primary pull-right' role='button'>Find out more</a>
-               </p>
-             </div>
-           </li>";
+          $logo_url = $row[3];
+          $start_date = $row[4];
+          $end_date = $row[5];
+          $target_amount = number_format($row[6]);
+          $current_amount = number_format($row[7]);
+
+          $days_left = ceil(abs(strtotime($end_date) - strtotime($start_date)) / 86400);
+          $progress = round ( (((float)((int)$row[8] / (int)$row[7])) * 100), 0);
+           echo "
+           <div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
+        <div>
+          <img class= 'img-rounded project-img btn center-block' src='$logo_url' href='ProjectProfile.php?id=$id'>
+        </div>
+        <div class='caption'>
+          <p><a class='text-title black-font' href='ProjectProfile.php?id=$id'>$title</a></p>
+          <p class='text-justify'>$description</p>
+        </div>
+        <div> 
+          <button type='button' class='btn-warning btn' href='#' style='margin-left:10px;'>Edit Project</button>
+        </div>
+        <div class='my-footer'>
+          <div class='progress'>
+            <div class='progress-bar' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>
+          </div>
+          <div class='caption'>
+            <div class='col-lg-4'>
+              <p class='text-strong'>$progress %</p>
+              <p class='text-narrow'>funded</p>
+            </div>
+            <div class='col-lg-4'>
+              <p class='text-strong'>$$current_amount</p>
+              <p class='text-narrow'>invested</p>
+            </div>
+            <div class='col-lg-4'>
+              <p class='text-strong'>$days_left</p>
+              <p class='text-narrow'>days to go</p>
+            </div>
+          </div>
+        </div>
+      </div>";
         }
       ?>
     </ul>
@@ -128,25 +199,51 @@
 
     <ul class="list-group">
       <?php
-        $query = "SELECT title, description, project_id FROM projects
+        $query = "SELECT title, description, project_id, logo_url, start_date, end_date, target_amount, current_amount FROM projects
                   WHERE project_id IN (SELECT project_id FROM investments WHERE investor_email = '$email')";
         $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
 
-        while ($row = pg_fetch_row($result)) {
+    while ($row = pg_fetch_row($result)) {
           $title = $row[0];
           $description = $row[1];
           $id = $row[2];
-           echo "<li class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
-             <img src='img/companylogo2.jpg' id='companylogo2' width='100' height='100'>
-             <div class='caption'>
-               <h4 class='text-center'>$title</h4>
-               <p class='text-justify text-description'>$description</p>
-               <p>
-                 <a href='#' class='btn btn-info pull-left'>Funding</a>
-                 <a href='ProjectProfile.php?id=$id' class='btn btn-primary pull-right' role='button'>Find out more</a>
-               </p>
-             </div>
-           </li>";
+          $logo_url = $row[3];
+          $start_date = $row[4];
+          $end_date = $row[5];
+          $target_amount = number_format($row[6]);
+        $current_amount = number_format($row[7]);
+
+        $days_left = ceil(abs(strtotime($end_date) - strtotime($start_date)) / 86400);
+        $progress = round ( (((float)((int)$row[8] / (int)$row[7])) * 100), 0);
+           echo "
+           <div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
+        <div>
+          <img class= 'img-rounded project-img btn center-block' src='$logo_url' href='ProjectProfile.php?id=$id'>
+        </div>
+        <div class='caption'>
+          <p><a class='text-title black-font' href='ProjectProfile.php?id=$id'>$title</a></p>
+          <p class='text-justify'>$description</p>
+        </div>
+        <div class='my-footer'>
+          <div class='progress'>
+            <div class='progress-bar' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>
+          </div>
+          <div class='caption'>
+            <div class='col-lg-4'>
+              <p class='text-strong'>$progress %</p>
+              <p class='text-narrow'>funded</p>
+            </div>
+            <div class='col-lg-4'>
+              <p class='text-strong'>$$current_amount</p>
+              <p class='text-narrow'>invested</p>
+            </div>
+            <div class='col-lg-4'>
+              <p class='text-strong'>$days_left</p>
+              <p class='text-narrow'>days to go</p>
+            </div>
+          </div>
+        </div>
+      </div>";
         }
       ?>
     </ul>

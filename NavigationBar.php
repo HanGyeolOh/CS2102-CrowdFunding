@@ -76,7 +76,7 @@
       else{
         echo
         "<ul class='nav navbar-nav navbar-right'>
-          <li><a href='UserProfile.php?email=$my_email'>My Profile</a></li>
+          <li><a href='UserProfileAdmin.php'>My Profile</a></li>
         </ul>
         <ul class='nav navbar-nav navbar-right'>
           <li><a href='logout.php'>Logout</a></li>

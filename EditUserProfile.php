@@ -44,16 +44,22 @@
   <?php
       session_start();
       require('dbconn.php');
-      $email = $_GET['email'];
+      $email = $_SESSION['username'];
       $query = "SELECT * FROM users WHERE email = '$email'";
       $result = pg_query($dbconn, $query);
       $row = pg_fetch_row($result);
-      $name = $row[0];
-      $email = $row[1];
-      $dob = $row[2];
-      $address = $row[3];
-      $password = $row[4];
-      $image_url = $row[5];
+      if(pg_num_rows($result) == 1) {
+        $name = $row[0];
+        $email = $row[1];
+        $dob = $row[2];
+        $address = $row[3];
+        $password = $row[4];
+        $image_url = $row[5];
+      }
+      else {
+        die('Error fetching the user profile data. username: '.$_SESSION['username']);
+      }
+      
   ?>
 
 <script type="text/javascript">
