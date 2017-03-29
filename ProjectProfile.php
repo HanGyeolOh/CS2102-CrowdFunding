@@ -62,7 +62,6 @@
 .carousel{
     background: #2f4357;
     margin-top: 20px;
-    padding-bottom: 20px;
 }
 .carousel .item img{
     margin: 0 auto; /* Align slide image horizontally center */
