@@ -105,7 +105,7 @@
 
                   echo 'You have entered valid use name and password';
 
-                  header('Location: User Profile.php');
+                  header('Location: homepage.php');
                }else {
                   $msg = 'Wrong username or password';
                }
