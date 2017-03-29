@@ -59,7 +59,7 @@
       else {
         die('Error fetching the user profile data. username: '.$_SESSION['username']);
       }
-      
+
   ?>
 
 <script type="text/javascript">
@@ -80,7 +80,7 @@ function validatePassword() {
         document.getElementById("SubmitButton").disabled = true;
     } else if (password === password_check) {
         document.getElementById("password_verification").innerHTML="Password matched";
-        document.getElementById("SubmitButton").disabled = true;
+        document.getElementById("SubmitButton").disabled = false;
     }
 }
 </script>
@@ -97,12 +97,6 @@ function validatePassword() {
           <label for="example-text-input" class="col-2 col-form-label">Name</label>
           <div class="col-10">
             <input class="form-control" type="text" id="example-text-input" name="name" required value="<?php echo $name; ?>"/>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="example-email-input" class="col-2 col-form-label">Email</label>
-          <div class="col-10">
-            <input class="form-control" type="email" id="example-email-input" name="newemail" required value="<?php echo $email; ?>"/>
           </div>
         </div>
         <div class="form-group row">
