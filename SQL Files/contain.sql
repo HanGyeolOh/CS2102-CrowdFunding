@@ -17,6 +17,7 @@ insert into contain values ('kkkht0018','image/project/ferro/ferro3.jpg');
 
 insert into contain values ('kkkht0017','image/project/plen/plen1.jpg');
 insert into contain values ('kkkht0017','image/project/plen/plen2.gif');
+insert into contain values ('kkkht0017','image/project/plen/plen3.jpg');
 
 insert into contain values ('kkkht0013','image/project/jolly/jolly1.jpg');
 insert into contain values ('kkkht0013','image/project/jolly/jolly2.gif');
@@ -76,8 +77,9 @@ insert into contain values ('kkkht0005','image/project/uno/uno3.jpg');
 insert into contain values ('kkkht0004','image/project/selfly/selfly1.jpg');
 insert into contain values ('kkkht0004','image/project/selfly/selfly2.gif');
 
-insert into contain values ('kkkht0003','image/project/jack/jack1.jpg');
+insert into contain values ('kkkht0003','image/project/jack/jack1.png');
 insert into contain values ('kkkht0003','image/project/jack/jack2.jpg');
+insert into contain values ('kkkht0003','image/project/jack/jack3.jpg');
 
 insert into contain values ('kkkht0002','image/project/acteon/acteon1.jpg');
 

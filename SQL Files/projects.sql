@@ -12,9 +12,9 @@ insert into projects values ('PLEN Cube','Portable Personal Assistant Robot','20
 insert into projects values ('Jollylook','The first cardboard vintage instant camera','2014-02-11','2018-08-06','kkkht0013','12090','0','Fashion','image/company/jolly.png');
 insert into projects values ('EAROS','In-Ear Protection Solution for Music Enthusiasts','2015-08-13','2018-03-01','kkkht0011','2000','0','Fashion','image/company/earos.jpg');
 insert into projects values ('Macchina','The ultimate tool for taking control of your car','2013-03-16','2018-11-23','kkkht0010','6780','0','Technology','image/company/macchina.jpg');
-insert into projects values ('Intelligent Security','Camera Cover for Webcam','2013-05-31','2018-10-04','kkkht0008','200','0','Technology','image/company/secure.jpg');
-insert into projects values ('Campy Creatures','Card game for filthy casual mortals','2013-06-10','2018-10-22','kkkht0019','111','0','Game','image/company/creature.png');
-insert into projects values ('Pixelvar','Smartphone Controlled Handheld Light Painting','2015-06-24','2018-09-09','kkkht0015','1234','0','Toy','image/company/pixel.jpg');
+insert into projects values ('Intelligent Security','Camera Cover for Webcam','2013-05-31','2018-10-04','kkkht0008','4000','0','Technology','image/company/secure.jpg');
+insert into projects values ('Campy Creatures','Card game for filthy casual mortals','2013-06-10','2018-10-22','kkkht0019','1110','0','Game','image/company/creature.png');
+insert into projects values ('Pixelvar','Smartphone Controlled Handheld Light Painting','2015-06-24','2018-09-09','kkkht0015','2414','0','Toy','image/company/pixel.jpg');
 insert into projects values ('Senstone','Intelligent Wearable Voice Recorder','2015-10-10','2018-07-04','kkkht0012','5600','0','Technology','image/company/senstone.jpg');
 insert into projects values ('Gravity XL','High performance grappling hook','2013-03-18','2017-09-02','kkkht0022','20099','0','Sports','image/company/gravity.png');
 insert into projects values ('Steadicam','Smartphone Stabilizer','2015-05-27','2018-09-15','kkkht0009','15310','0','Technology','image/company/steadi.gif');
