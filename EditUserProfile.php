@@ -67,9 +67,10 @@ function validatePassword() {
     var currentpassword_check = document.forms["passwordform"]["currentpassword"].value;
     var password = document.forms["passwordform"]["password"].value;
     var password_check = document.forms["passwordform"]["password_check"].value;
-    var currentpassword = <?php header("Content-type: text/javascript"); echo $password;?>;
-    if (currentpassword_check == currentpassword) {
+    var currentpassword = <?php echo json_encode($password);?>;
+    if (currentpassword_check === currentpassword) {
       document.getElementById("current_password_check").innerHTML="Password checked";
+      document.getElementById("SubmitButton").disabled = true;
     }
     if(password == ""){
         document.getElementById("password_verification").innerHTML="";
@@ -77,9 +78,9 @@ function validatePassword() {
     } else if (password !== password_check) {
         document.getElementById("password_verification").innerHTML="Password does not match";
         document.getElementById("SubmitButton").disabled = true;
-    } else if (currentpassword_check == currentpassword) {
+    } else if (password === password_check) {
         document.getElementById("password_verification").innerHTML="Password matched";
-        document.getElementById("SubmitButton").disabled = false;
+        document.getElementById("SubmitButton").disabled = true;
     }
 }
 </script>

@@ -65,6 +65,12 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 	$title = $_POST['title']; 
 	}  
 	
+	if (isset($_GET["date"])) { 
+	$date  = $_GET["date"]; 
+	} else { 
+	$date = $_POST['date']; 
+	}  
+	
 	$limit = 5;  
 	if (isset($_GET["page"])) { 
 	$page  = $_GET["page"]; 
@@ -75,29 +81,54 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 	$start_from = ($page-1) * $limit;  
 	$restrictions = "ORDER BY title ASC LIMIT $limit OFFSET $start_from";	
 	
-	if(strcmp($title,"")==0) { 
-		$query="SELECT title, description, target_amount, current_amount, start_date
+	
+	if (strcmp($title,"")==0 && strcmp($date,"")==0 && strcmp($category,"")==0){ //empty search
+		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
+		FROM projects ";
+	
+	} else if (strcmp($title,"")==0 && strcmp($date,"")==0) { // search by category only
+		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
 		FROM projects
 		WHERE category='$category'";
-		$complete_query = $query . $restrictions;	
-		$result = pg_query($complete_query) or die('Query failed: ' . pg_last_error()); 
-
 		
-	} else if(strcmp($category,"")==0 && strcmp($start_date,"")==0){ // search by title only 
-		$query="SELECT title, description, target_amount, current_amount, start_date
+	} else if(strcmp($category,"")==0 && strcmp($date,"")==0){ // search by title only 
+		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
 		FROM projects
 		WHERE lower(title) like lower('%".$title."%')";
-		$complete_query = $query . $restrictions;	
-		$result = pg_query($complete_query) or die('Query failed: ' . pg_last_error()); 
+	
+	} else if(strcmp($category,"")==0 && strcmp($title,"")==0){ // search by year only 
+		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
+		FROM projects
+		WHERE EXTRACT(YEAR FROM start_date) = '$date'";
+
+	} else if(strcmp($category,"")==0){ // search by year and title only 
+		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
+		FROM projects
+		WHERE EXTRACT(YEAR FROM start_date) = '$date'
+		AND lower(title) like lower('%".$title."%')";
 		
-	} else {
-		$query="SELECT title, description, target_amount, current_amount, start_date
+	} else if(strcmp($date,"")==0){ // search by category & title
+		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
 		FROM projects
 		WHERE lower(title) like lower('%".$title."%')
+		AND category='$category'";
+	
+	} else if(strcmp($title,"")==0){ // search by category and date
+		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
+		FROM projects
+		WHERE EXTRACT(YEAR FROM start_date) = '$date'
+		AND category='$category'";
+	
+	} else { // search by category, title, date
+		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
+		FROM projects
+		WHERE EXTRACT(YEAR FROM start_date) = '$date'
 		AND category='$category'
-		ORDER BY title ASC LIMIT $limit OFFSET $start_from";
-		$result = pg_query($query) or die('Query failed: ' . pg_last_error()); 
+		AND lower(title) like lower('%".$title."%')";
 	}
+	
+	$complete_query = $query . $restrictions;	
+	$result = pg_query($complete_query) or die('Query failed: ' . pg_last_error()); 
 	
 	$index = ($page - 1) * $limit + 1;
 
@@ -114,7 +145,7 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 <th class='text-center'>Start Date</th>
 <th class='text-center'>Funding Sought</th>
 <th class='text-center'>Amount Raised</th>
-<th class='text-center'>Donate!</th>
+<th class='text-center'>Invest!</th>
 </tr>
 </thead>
 
@@ -127,6 +158,7 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 		$retrieved_target = $row[2];	
 		$retrieved_current = $row[3];
 		$retrieved_date = $row[4];
+		$project_id = $row[5];
 
 		echo "<tr><td align='center'>$index</td>
 		<td align='center'>$retrieved_title</td>
@@ -134,7 +166,7 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 		<td align='center'>$retrieved_date</td>
 		<td align='center'>$retrieved_target</td>
 		<td align='center'>$retrieved_current</td>
-		<td align='center'><p><a href='#' class='btn btn-primary btn-xs'>Donate!</a></p> </td></tr>";
+		<td align='center'><p><a href='ProjectProfile.php?id=".$project_id."' class='btn btn-primary btn-xs'>Invest!</a></p> </td></tr>";
 	
 		$index++;
 	}
@@ -142,7 +174,6 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 ?>
 
 </table>
-</tbody> 
 </div>
 
 <!--Adding Pagination at bottom-->
@@ -158,20 +189,20 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 
 	if($page != 1){
 		$previous_page = $page - 1;
-		echo "<li><a href='SearchResults.php?page=".$previous_page."&category=".$category."&title=".$title."&start_date=".$start_date."'>&laquo;</a></li>";
+		echo "<li><a href='SearchResults.php?page=".$previous_page."&category=".$category."&title=".$title."&date=".$date."'>&laquo;</a></li>";
 	}
 
 	for ($i=1; $i<=$total_pages; $i++) {  
-		$pageLink .= "<a href='SearchResults.php?page=".$i."&category=".$category."&title=".$title."&start_date=".$start_date."'>".$i."</a>"; 			 
+		$pageLink .= "<a href='SearchResults.php?page=".$i."&category=".$category."&title=".$title."&date=".$date."'>".$i."</a>"; 			 
 	}
   
 	pg_free_result($result);
-
+	
 	echo '<li>'. $pageLink .'</li>';
 
 	if($page != $total_pages){
 		$next_page = $page + 1;
-		echo "<li><a href='SearchResults.php?page=".$next_page."&category=".$category."&title=".$title."&start_date=".$start_date."'>&raquo;</a></li>";
+		echo "<li><a href='SearchResults.php?page=".$next_page."&category=".$category."&title=".$title."&date=".$date."'>&raquo;</a></li>";
 	}
 ?>
 
@@ -189,4 +220,3 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
->>>>>>> 9850bd8dcdd8c19c290169a18d72d0b3d09ffa19:SearchResults.php
