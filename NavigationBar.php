@@ -98,7 +98,7 @@
 </div>
 
 <div class="container collapse" id="searchBox">
-<form class="form-horizontal" role="form" method="post" action="Search Results.php">
+<form class="form-horizontal" role="form" method="post" action="SearchResults.php">
 	<div class="jumbotron">
 	<td class="row">
 		<!--The Title Search-->
