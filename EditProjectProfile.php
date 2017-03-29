@@ -71,10 +71,10 @@
       else {
         die('Error fetching the user profile data. username: '.$_SESSION['username']);
       }
-      
+
   ?>
 
-  <form action="ProjectCreationForm.php" method="post" enctype="multipart/form-data" name="form">
+  <form action="EditProjectForm.php?id=<?php echo $project_id; ?>" method="post" enctype="multipart/form-data" name="form">
   <div class="container">
     <div class="container">
       <h2 style="padding-left:0px" color="black">Edit your project details</h2>
@@ -127,17 +127,6 @@
 
         <input type="submit" name="submit" value="Submit" class="btn btn-default" id="SubmitButton" align="right"/>
 
-        <div class="container">
-              <div class="container">
-                <div style="max-width: 650px; margin: auto;">
-                  <h2 class="page-header">Project Image Upload</h2>
-                  <p class="lead">Select a PNG or JPEG image, having maximum size <span id="max-size"></span> KB.</p>
-                </div>
-                <div class="form-group" align="center">
-                  <input type="file" name="file" id="file" required/>
-                </div>
-              </div>
-          </div>
       </div>
     </div>
   </div>

@@ -98,23 +98,23 @@
 ?>
 
 <?php
-  
-  $limit = 10;  
-  if (isset($_GET["page"])) { 
-  $page  = $_GET["page"]; 
-  } else { 
-  $page=1;  
+
+  $limit = 10;
+  if (isset($_GET["page"])) {
+  $page  = $_GET["page"];
+  } else {
+  $page=1;
   }
-  
-  $start_from = ($page-1) * $limit;  
-  
+
+  $start_from = ($page-1) * $limit;
+
     $query="SELECT users.name, investments.transaction_date, investments.investment_amount
     FROM users, investments
     WHERE investments.project_id='$project_id'
     AND investments.investor_email=users.email
     ORDER BY transaction_date ASC LIMIT $limit OFFSET $start_from";
-    $result = pg_query($query) or die('Query failed: ' . pg_last_error()); 
-  
+    $result = pg_query($query) or die('Query failed: ' . pg_last_error());
+
   $index = ($page - 1) * $limit + 1;
 
 ?>
@@ -152,7 +152,7 @@
           <h3><?php echo $days_left; ?><small><br>days to go</small></h3>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-          <a href="investmentpage.php?id=<?php echo $project_id; ?>" class="button-middle btn btn-info btn-lg pull-center">Invest In This Project</a>
+          <a href="EditProjectProfile.php?id=<?php echo $project_id; ?>" class="button-middle btn btn-warning btn-lg pull-center">Edit Project</a>
         </div>
       </div>
     </div>
@@ -177,16 +177,16 @@
     while ($row = pg_fetch_row($result)){
     $retrieved_name = $row[0];
     $retrieved_date = $row[1];
-    $retrieved_amt = $row[2];  
+    $retrieved_amt = $row[2];
 
     echo "<tr><td align='center'>$index</td>
     <td align='center'>$retrieved_name</td>
     <td align='center'>$retrieved_date</td>
     <td align='center'>$retrieved_amt</td></tr>";
-  
+
     $index++;
   }
-  echo "</table>"; 
+  echo "</table>";
 ?>
 
 </table>
@@ -200,19 +200,19 @@
 <ul class="pagination">
 
 <?php
-  $rs_result = pg_query($query);    
-  $total_records = pg_num_rows($rs_result);  
-  $total_pages = ceil($total_records / $limit); 
+  $rs_result = pg_query($query);
+  $total_records = pg_num_rows($rs_result);
+  $total_pages = ceil($total_records / $limit);
 
   if($page != 1){
     $previous_page = $page - 1;
     echo "<li><a href='AdminProjectProfile.php?page=".$previous_page."&pid=".$project_id."'>&laquo;</a></li>";
   }
 
-  for ($i=1; $i<=$total_pages; $i++) {  
-    $pageLink .= "<a href='AdminProjectProfile.php?page=".$i."&pid=".$project_id."'>".$i."</a>";        
+  for ($i=1; $i<=$total_pages; $i++) {
+    $pageLink .= "<a href='AdminProjectProfile.php?page=".$i."&pid=".$project_id."'>".$i."</a>";
   }
-  
+
   pg_free_result($result);
 
   echo '<li>'. $pageLink .'</li>';
@@ -227,7 +227,7 @@
 </ul>
 </div>
 </nav>
-</div><br>  
+</div><br>
 
 <?php
 pg_close($dbconn);

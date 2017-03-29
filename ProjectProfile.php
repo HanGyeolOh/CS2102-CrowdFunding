@@ -129,7 +129,7 @@
           <h3><?php echo $days_left; ?><small><br>days to go</small></h3>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-          <a href="investmentpage.php?id=<?php echo $project_id; ?>" class="button-middle btn btn-info btn-lg pull-center">Invest In This Project</a>
+          <a href="InvestmentPage.php?id=<?php echo $project_id; ?>" class="button-middle btn btn-info btn-lg pull-center">Invest In This Project</a>
         </div>
       </div>
     </div>
@@ -137,7 +137,7 @@
 </div>
 
 <?php
-  
+
   $query = "SELECT COUNT(*) FROM contain WHERE project_id = '$project_id'";
   $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
   $image_count = pg_fetch_result($result, 0, 0);
@@ -147,7 +147,7 @@
   $picture_url1 = pg_fetch_result($result, 0, 0);
   $picture_url2 = pg_fetch_result($result, 1, 0);
   $picture_url3 = pg_fetch_result($result, 2, 0);
-  
+
   if ($image_count == 1) {
     echo "
     <div id='theCarousel' class='carousel slide' data-ride='carousel'>
