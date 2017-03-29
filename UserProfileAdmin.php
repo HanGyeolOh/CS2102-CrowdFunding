@@ -167,7 +167,8 @@
           <p class='text-justify'>$description</p>
         </div>
         <div> 
-          <button type='button' class='btn-warning btn' href='#' style='margin-left:10px;'>Edit Project</button>
+          <button type='button' class='btn-info btn' href='ProjectProfileAdmin.php?id=$id' style='margin-left:10px;'>Project Summary</button>
+          <button type='button' class='btn-warning btn pull-right' href='EditProjectProfile.php?id=$id' style='margin-left:10px;'>Edit Project</button>
         </div>
         <div class='my-footer'>
           <div class='progress'>
