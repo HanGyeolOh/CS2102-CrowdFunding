@@ -189,4 +189,3 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
->>>>>>> 9850bd8dcdd8c19c290169a18d72d0b3d09ffa19:SearchResults.php

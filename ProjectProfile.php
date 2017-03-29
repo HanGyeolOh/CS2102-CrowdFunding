@@ -30,6 +30,10 @@
     $result = pg_query($dbconn, $query);
     $owner_name = pg_fetch_result($result, 0, 0);
     $publisher_email = pg_fetch_result($result, 0, 1);
+
+    $query = "SELECT COUNT(*) FROM contain WHERE project_id = '$project_id'";
+    $result = pg_query($dbconn, $query);
+    $image_count = pg_fetch_result($result, 0, 0);
 ?>
 
 <style>
@@ -139,12 +143,6 @@
 
 <!-- (2) Project Carousel -->
 <div id="theCarousel" class="carousel slide" data-ride="carousel">
-
-  <ol class="carousel-indicators">
-  <li data-target="#theCarousel" data-slide-to="0" class="active"></li>
-  <li data-target="#theCarousel" data-slide-to="1"></li>
-  <li data-target="#theCarousel" data-slide-to="2"></li>
-  </ol>
 
   <div class="carousel-inner">
     <div class="item active">
