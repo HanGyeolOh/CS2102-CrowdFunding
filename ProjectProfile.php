@@ -30,10 +30,6 @@
     $result = pg_query($dbconn, $query);
     $owner_name = pg_fetch_result($result, 0, 0);
     $publisher_email = pg_fetch_result($result, 0, 1);
-
-    $query = "SELECT COUNT(*) FROM contain WHERE project_id = '$project_id'";
-    $result = pg_query($dbconn, $query);
-    $image_count = pg_fetch_result($result, 0, 0);
 ?>
 
 <style>
@@ -141,46 +137,105 @@
   </div>
 </div>
 
-<!-- (2) Project Carousel -->
-<div id="theCarousel" class="carousel slide" data-ride="carousel">
+<?php
+  
+  $query = "SELECT COUNT(*) FROM contain WHERE project_id = '$project_id'";
+  $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
+  $image_count = pg_fetch_result($result, 0, 0);
 
-  <div class="carousel-inner">
-    <div class="item active">
-    <img src="img/test1.png" alt="First Slide">
-    <div class="slide1"></div>
-    <div class="carousel-caption">
-      <h1>Caption for Project Image 1</h1>
-    </div>
+  $query = "SELECT picture_url FROM contain WHERE project_id = '$project_id'";
+  $result = pg_query($dbconn, $query);
+  $picture_url1 = pg_fetch_result($result, 0, 0);
+  $picture_url2 = pg_fetch_result($result, 1, 0);
+  $picture_url3 = pg_fetch_result($result, 2, 0);
+  
+  if ($image_count == 1) {
+    echo "
+    <div id='theCarousel' class='carousel slide' data-ride='carousel'>
+
+    <div class='carousel-inner'>
+      <div class='item active'>
+      <img src='$picture_url1' alt='First Slide'>
+      <div class='slide1'></div>
+      </div>
+
     </div>
 
-    <div class="item">
-    <img src="img/test2.png" alt="Second Slide">
-    <div class="slide2"></div>
-    <div class="carousel-caption">
-      <h1>Caption for Project Image 2</h1>
+    <a class='left carousel-control' href='#theCarousel' data-slide='prev'>
+    <span class='glyphicon glyphicon-chevron-left'></span></a>
+
+    <a class='right carousel-control' href='#theCarousel' data-slide='next'>
+    <span class='glyphicon glyphicon-chevron-right'></span></a>
+
     </div>
+    ";
+  }
+
+  if ($image_count == 2) {
+    echo "
+    <div id='theCarousel' class='carousel slide' data-ride='carousel'>
+
+    <div class='carousel-inner'>
+      <div class='item active'>
+      <img src='$picture_url1' alt='First Slide'>
+      <div class='slide1'></div>
+      </div>
+
+      <div class='item'>
+      <img src='$picture_url2' alt='Second Slide'>
+      <div class='slide2'></div>
+      </div>
+
     </div>
 
-    <div class="item">
-    <img src="img/test3.png" alt="Third Slide">
-    <div class="slide3"></div>
-    <div class="carousel-caption">
-      <h1>Caption for Project Image 3</h1>
+    <a class='left carousel-control' href='#theCarousel' data-slide='prev'>
+    <span class='glyphicon glyphicon-chevron-left'></span></a>
+
+    <a class='right carousel-control' href='#theCarousel' data-slide='next'>
+    <span class='glyphicon glyphicon-chevron-right'></span></a>
+
     </div>
+    ";
+  }
+
+  if ($image_count == 3) {
+    echo "
+    <div id='theCarousel' class='carousel slide' data-ride='carousel'>
+
+    <div class='carousel-inner'>
+      <div class='item active'>
+      <img src='$picture_url1' alt='First Slide'>
+      <div class='slide1'></div>
+      </div>
+
+      <div class='item'>
+      <img src='$picture_url2' alt='Second Slide'>
+      <div class='slide2'></div>
+      </div>
+
+      <div class='item'>
+      <img src='$picture_url3' alt='Third Slide'>
+      <div class='slide3'></div>
+      </div>
+
     </div>
-  </div>
 
-  <a class="left carousel-control" href="#theCarousel" data-slide="prev">
-  <span class="glyphicon glyphicon-chevron-left"></span></a>
+    <a class='left carousel-control' href='#theCarousel' data-slide='prev'>
+    <span class='glyphicon glyphicon-chevron-left'></span></a>
 
-  <a class="right carousel-control" href="#theCarousel" data-slide="next">
-  <span class="glyphicon glyphicon-chevron-right"></span></a>
+    <a class='right carousel-control' href='#theCarousel' data-slide='next'>
+    <span class='glyphicon glyphicon-chevron-right'></span></a>
 
-</div>
+    </div>
+    ";
+  }
+?>
 
 <?php
 pg_close($dbconn);
 ?>
+
+</body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
