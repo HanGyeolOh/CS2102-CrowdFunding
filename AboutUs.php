@@ -72,7 +72,7 @@
 
 <!-- Photos of Team -->
 <div class="container">
-<h2 class="text-center">Our Team!</h2>
+<h2 class="text-center">Our Team</h2>
 <br>
 <div class="col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-4 col-xs-4">
 	<img src="img/heisenberg.jpg" class="img-circle center-block" width="80" height="80">
