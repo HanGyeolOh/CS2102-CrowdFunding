@@ -62,3 +62,23 @@ BEFORE DELETE
 ON users
 FOR EACH ROW
 EXECUTE PROCEDURE alter_investment();
+
+
+
+CREATE OR REPLACE FUNCTION alter_current_amount()
+RETURNS TRIGGER AS $$
+BEGIN
+UPDATE projects
+SET current_amount = current_amount + NEW.investment_amount
+WHERE project_id = NEW.project_id; 
+
+RETURN NEW;
+END; $$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER alter_current_amount
+BEFORE INSERT 
+ON investments
+FOR EACH ROW
+EXECUTE PROCEDURE alter_current_amount();
+
