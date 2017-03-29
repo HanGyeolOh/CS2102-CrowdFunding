@@ -68,21 +68,19 @@ function validatePassword() {
     var password = document.forms["passwordform"]["password"].value;
     var password_check = document.forms["passwordform"]["password_check"].value;
     var currentpassword = <?php echo json_encode($password);?>;
-    if (currentpassword_check == currentpassword) {
+    if (currentpassword_check === currentpassword) {
       document.getElementById("current_password_check").innerHTML="Password checked";
+      document.getElementById("SubmitButton").disabled = true;
     }
     if(password == ""){
         document.getElementById("password_verification").innerHTML="";
         document.getElementById("SubmitButton").disabled = true;
-        console.log("Debug1");
     } else if (password !== password_check) {
         document.getElementById("password_verification").innerHTML="Password does not match";
         document.getElementById("SubmitButton").disabled = true;
-        console.log("Debug2");
     } else if (password === password_check) {
         document.getElementById("password_verification").innerHTML="Password matched";
-        document.getElementById("SubmitButton").disabled = false;
-        console.log("Debug3");
+        document.getElementById("SubmitButton").disabled = true;
     }
 }
 </script>
