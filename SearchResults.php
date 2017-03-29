@@ -81,45 +81,46 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 	$start_from = ($page-1) * $limit;  
 	$restrictions = "ORDER BY title ASC LIMIT $limit OFFSET $start_from";	
 	
+	
 	if (strcmp($title,"")==0 && strcmp($date,"")==0 && strcmp($category,"")==0){ //empty search
-		$query="SELECT title, description, target_amount, current_amount, start_date
+		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
 		FROM projects ";
 	
 	} else if (strcmp($title,"")==0 && strcmp($date,"")==0) { // search by category only
-		$query="SELECT title, description, target_amount, current_amount, start_date
+		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
 		FROM projects
 		WHERE category='$category'";
 		
 	} else if(strcmp($category,"")==0 && strcmp($date,"")==0){ // search by title only 
-		$query="SELECT title, description, target_amount, current_amount, start_date
+		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
 		FROM projects
 		WHERE lower(title) like lower('%".$title."%')";
 	
 	} else if(strcmp($category,"")==0 && strcmp($title,"")==0){ // search by year only 
-		$query="SELECT title, description, target_amount, current_amount, start_date
+		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
 		FROM projects
 		WHERE EXTRACT(YEAR FROM start_date) = '$date'";
 
 	} else if(strcmp($category,"")==0){ // search by year and title only 
-		$query="SELECT title, description, target_amount, current_amount, start_date
+		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
 		FROM projects
 		WHERE EXTRACT(YEAR FROM start_date) = '$date'
 		AND lower(title) like lower('%".$title."%')";
 		
 	} else if(strcmp($date,"")==0){ // search by category & title
-		$query="SELECT title, description, target_amount, current_amount, start_date
+		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
 		FROM projects
 		WHERE lower(title) like lower('%".$title."%')
 		AND category='$category'";
 	
 	} else if(strcmp($title,"")==0){ // search by category and date
-		$query="SELECT title, description, target_amount, current_amount, start_date
+		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
 		FROM projects
 		WHERE EXTRACT(YEAR FROM start_date) = '$date'
 		AND category='$category'";
 	
 	} else { // search by category, title, date
-		$query="SELECT title, description, target_amount, current_amount, start_date
+		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
 		FROM projects
 		WHERE EXTRACT(YEAR FROM start_date) = '$date'
 		AND category='$category'
@@ -144,7 +145,7 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 <th class='text-center'>Start Date</th>
 <th class='text-center'>Funding Sought</th>
 <th class='text-center'>Amount Raised</th>
-<th class='text-center'>Donate!</th>
+<th class='text-center'>Invest!</th>
 </tr>
 </thead>
 
@@ -157,6 +158,7 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 		$retrieved_target = $row[2];	
 		$retrieved_current = $row[3];
 		$retrieved_date = $row[4];
+		$project_id = $row[5];
 
 		echo "<tr><td align='center'>$index</td>
 		<td align='center'>$retrieved_title</td>
@@ -164,7 +166,7 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 		<td align='center'>$retrieved_date</td>
 		<td align='center'>$retrieved_target</td>
 		<td align='center'>$retrieved_current</td>
-		<td align='center'><p><a href='#' class='btn btn-primary btn-xs'>Donate!</a></p> </td></tr>";
+		<td align='center'><p><a href='ProjectProfile.php?id=".$project_id."' class='btn btn-primary btn-xs'>Invest!</a></p> </td></tr>";
 	
 		$index++;
 	}
