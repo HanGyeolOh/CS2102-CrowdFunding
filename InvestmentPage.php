@@ -137,113 +137,24 @@
             <br>
             <p class="grey">You did it! You were able to hit the button and give a dollar to this project. Pat yourself on the back kind Sir, Madam, or Non-Gendered Person. You will be added to an ever-growing list of supporters on the webpage.</p>
             <div class="row">
-              <form action="Project Profile.php?id=<?php echo $project_id ?>" method="post">
+              <form action="InvestmentResult.php?id=<?php echo $project_id;?>" method="post">
               <div class="col-lg-4">
                 <div class="input-group has-success">
                   <span class="input-group-addon">SGD $</span>
                   <input type="text" class="form-control" placeholder="Investment Amount Here" name="amount" id="donation_amount"/>
                 </div>
               </div>
-
               <div class="col-lg-2">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-1" onclick="displayAmount()">Continue</button>
-                <div class="modal fade" id="modal-1">
-                  <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                          <h3 class="modal-title">Thank you for your investment! <span class="glyphicon glyphicon-heart"></span> </h3>
-                      </div>
-                      <div class="modal-body">
-                         Your investment of $<span id="amount" />
-                      </div>
-                      <div class="modal-footer">
-                        <input type="submit" class="btn btn-default" value="Confirm" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#modal-1" onclick="displayAmount()">Continue</button>
               </div>
-              <?php
-              //require('Investment Page Popup.php');
-              ?>
               </form>
             </div>
           </div>
         </div>
       </div><br>
 
-      <!-- To loop through for 1 or more investment option set up by user -->
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a href="#investmentoption1" data-toggle="collapse" data-parent="accordion">$10 or more</a>
-          </h4>
-        </div>
-        <div id="investmentoption1" class="panel-collapse collapse">
-          <div class="panel-body">
-          <h4>The Board!</h4>
-            <br>
-            <p class="grey">You get a fully built and tested Robot Core board and hookup wires. Happy robot building!</p>
-            <div class="row">
-              <div class="col-lg-4">
-                <div class="input-group has-success">
-                  <span class="input-group-addon">SGD $</span>
-                  <input type="text" class="form-control" placeholder="Investment Amount Here">
-                </div>
-              </div>
-              <?php
-              require('Investment Page Popup.php');
-              ?>
-            </div>
-          </div>
-        </div>
-      </div><br>
-
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a href="#investmentoption2" data-toggle="collapse" data-parent="accordion">$500 or more</a>
-          </h4>
-        </div>
-        <div id="investmentoption2" class="panel-collapse collapse">
-          <div class="panel-body">
-          <h4>The Class Set!</h4>
-            <br>
-            <p class="grey">You get a dozen fully built and tested Robot Core boards and hookup wires. This is a perfect combination for STEM in the classroom. From automated green houses, robots and even solar trackers, these boards can do it all. Extra resources and support for educators will be provided to get you started.</p>
-            <div class="row">
-              <div class="col-lg-4">
-                <div class="input-group has-success">
-                  <span class="input-group-addon">SGD $</span>
-                  <input type="text" class="form-control" placeholder="Investment Amount Here">
-                </div>
-              </div>
-              <?php
-              require('Investment Page Popup.php');
-              ?>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <?php
-  if(isset($_POST["amount"])){
-    $donation_amount = $_POST["amount"];
-    $query = "SELECT current_amount FROM projects WHERE project_id = '$project_id'";
-    $result = pg_query($dbconn, $query);
-    $current_amount = pg_fetch_row($result)[0];
-    $new_amount = $current_amount + $donation_amount;
-    $query = "UPDATE projects SET current_amount = $new_amount WHERE project_id = '$project_id'";
-    $result = pg_query($dbconn, $query);
-  }
-  pg_close($dbconn);
-  ?>
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
-
