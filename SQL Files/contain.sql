@@ -87,3 +87,36 @@ insert into contain values ('kkkht0001','image/project/bullet/bullet3.gif');
 
 
 
+
+
+insert into contain values ('kkkht0024','image/project/chameleon/chameleon1.jpg');
+insert into contain values ('kkkht0024','image/project/chameleon/chameleon2.jpg');
+
+insert into contain values ('kkkht0025','image/project/golf/golf1.jpg');
+insert into contain values ('kkkht0025','image/project/golf/golf2.jpg');
+
+insert into contain values ('kkkht0026','image/project/shake/shake1.jpg');
+insert into contain values ('kkkht0026','image/project/shake/shake2.jpg');
+insert into contain values ('kkkht0026','image/project/shake/shake3.jpg');
+
+insert into contain values ('kkkht0027','image/project/zora/zora1.jpg');
+insert into contain values ('kkkht0027','image/project/zora/zora2.jpg');
+
+insert into contain values ('kkkht0028','image/project/iconiq/iconiq1.jpg');
+insert into contain values ('kkkht0028','image/project/iconiq/iconiq2.jpg');
+insert into contain values ('kkkht0028','image/project/iconiq/iconiq3.jpg');
+
+insert into contain values ('kkkht0029','image/project/revo/revo1.jpg');
+insert into contain values ('kkkht0029','image/project/revo/revo2.jpg');
+insert into contain values ('kkkht0029','image/project/revo/revo3.png');
+
+insert into contain values ('kkkht0030','image/project/cube/cube1.jpg');
+insert into contain values ('kkkht0030','image/project/cube/cube2.jpg');
+
+insert into contain values ('kkkht0031','image/project/omiga/omiga1.gif');
+insert into contain values ('kkkht0031','image/project/omiga/omiga2.png');
+insert into contain values ('kkkht0031','image/project/omiga/omiga3.png');
+
+insert into contain values ('kkkht0032','image/project/arcane/arcane1.png');
+insert into contain values ('kkkht0032','image/project/arcane/arcane2.png');
+insert into contain values ('kkkht0032','image/project/arcane/arcane3.gif');

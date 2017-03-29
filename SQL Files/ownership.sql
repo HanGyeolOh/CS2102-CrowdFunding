@@ -29,3 +29,12 @@ insert into ownership values ('jonathanclone@clone.com','kkkht0021');
 insert into ownership values ('alvinator@gmail.com','kkkht0022');
 insert into ownership values ('allllllmight@anime.com','kkkht0023');
 
+insert into ownership values ('doe@doe.com','kkkht0024');
+insert into ownership values ('gabbi@hotmail.com','kkkht0025');
+insert into ownership values ('sevendeadlysins@anime.com','kkkht0026');
+insert into ownership values ('howtotrainyourtrain@movie.com.usa','kkkht0027');
+insert into ownership values ('jonathanclone@clone.com','kkkht0028');
+insert into ownership values ('alvinator@gmail.com','kkkht0029');
+insert into ownership values ('robert234@nus.edu.sg','kkkht0030');
+insert into ownership values ('allllllmight@anime.com','kkkht0031');
+insert into ownership values ('tommytrain@yahoo.com.sg','kkkht0032');

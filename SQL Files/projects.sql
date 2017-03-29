@@ -29,3 +29,12 @@ insert into projects values ('JACK','Make any headphones wireless','2014-06-14',
 insert into projects values ('Acteon Compression Packing Cubes',' Pack More Carry Less','2013-12-16','2017-09-03','kkkht0002','67800','0','Travel','image/company/acteon.png');
 insert into projects values ('Bullet 02','Worlds Smallest Flashlight Even Smaller','2014-12-13','2018-02-01','kkkht0001','1500','0','Technology','image/company/bullet.gif');
 
+insert into projects values ('Chameleon Ankle Boots','Any Hue in One Shoe','2015-12-13','2018-08-12','kkkht0024','5600','0','Fashion','image/company/chameleon.jpg');
+insert into projects values ('DV8 Sports','Golf Without Obstacles','2016-12-13','2017-01-12','kkkht0025','15000','0','Sports','image/company/golf.jpg');
+insert into projects values ('InteliShake','Smart sports drinks bottle and built-in storage','2016-02-17','2016-05-12','kkkht0026','1230','0','Sports','image/company/shake.png');
+insert into projects values ('Zora Food','Wild Zora Meat & Veggie Paleo Snack Bars','2015-09-17','2017-05-12','kkkht0027','3500','0','Food','image/company/zora.png');
+insert into projects values ('Iconiq','The Stackable Insulated Food Container','2015-09-17','2018-01-12','kkkht0028','7000','0','Food','image/company/iconiq.png');
+insert into projects values ('Revo Spinner','Exotic EDC Fidget Spinner','2016-09-17','2018-01-12','kkkht0029','5000','0','Toy','image/company/revo.png');
+insert into projects values ('Fidget Cube','A Vinyl Desk Toy','2015-12-17','2017-10-12','kkkht0030','6500','0','Toy','image/company/cube.png');
+insert into projects values ('Omiga','A fast-paced action card game for two players. Play it anywhere!','2016-08-17','2017-12-12','kkkht0031','3700','0','Game','image/company/omiga.jpg');
+insert into projects values ('Arcane','An adventure-survival role playing game','2015-08-17','2018-12-12','kkkht0032','1500','0','Game','image/company/arcane.png');

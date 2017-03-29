@@ -25,3 +25,19 @@ insert into users values ('Jonathan','jonathanclone@clone.com','1993-05-28','Blk
 insert into users values ('Thomas','howtotrainyourtrain@movie.com.usa','1993-05-29','6 Joo Koon Green','482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
 insert into users values ('Jon','doe@doe.com','1993-05-1','Blk 41 Marine Parade Street 87, #06-42','482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
 insert into users values ('Jonas','singalion@lioncity.com','1974-04-25','Blk 45 Marine Parade Street 01, #05-55','482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
+
+
+insert into users values ('Justin','jake@hotmail.com','1900-05-21','Blk 278 Serangoon Gardens Street 88, #10-29','482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
+insert into users values ('Susan','bot123@gmail.com','1930-11-15','3 Bukit Ho Swee Garden','482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
+insert into users values ('Jenson','jenrole@nus.edu.sg','1931-05-16','6 Mandai Point','482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
+insert into users values ('Elizabeth','electric@gmail.com','1993-05-17','Blk 46 Lorong 14 Clementi, #07-11','482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
+insert into users values ('Benjamin','benny12345@zmail.com','1123-02-19','77 Jalan Chempaka Kuning','482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
+insert into users values ('Jonathan','joona99@gmail.com','1993-05-20','Blk 141 Jurong Central Street 81, #02-04','482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
+insert into users values ('Benjim','bjoy@amail.com','1993-05-21','Blk 45 Kallang Street 20, #14-21','482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
+insert into users values ('Red','pokemon@gmail.com','1993-05-22','6 Paya Lebar Vista, #18-11','482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
+insert into users values ('Priscilla','kittykat19213@dmail.com','1993-05-23','8 Punggol Lane, #18-14','482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
+insert into users values ('Alvan','might12400@anime.com','1993-05-25','15 Rochor Circle','482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
+insert into users values ('Eliza','seventynine@dmail.com','1993-05-26','112 Jurong West Terrace','482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
+insert into users values ('Jonathan','jonathanclone2123@clone.com','1993-05-28','Blk 142 Sengkang Street 70, #06-09','482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
+insert into users values ('Alvin','hoasdwr@iiemail.com.usa','1993-05-29','2001 Joo Koon Green','482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
+insert into users values ('Robby','robbie@gmail.sg','1993-05-12','Blk 124 Marine Parade Street' ,'482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
