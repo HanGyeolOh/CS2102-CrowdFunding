@@ -105,16 +105,29 @@
         <input type="submit" name="submit" value="Submit" class="btn btn-default" id="SubmitButton" align="right"/>
 
         <div class="container">
-              <div class="container">
-                <div style="max-width: 650px; margin: auto;">
-                  <h2 class="page-header">Project Image Upload</h2>
-                  <p class="lead">Select a PNG or JPEG image, having maximum size <span id="max-size"></span> KB.</p>
-                </div>
-                <div class="form-group" align="center">
-                  <input type="file" name="file" id="file" required/>
-                </div>
-              </div>
+          <div class="container">
+            <div style="max-width: 650px; margin: auto;">
+              <h3 class="page-header">Project Logo Upload</h3>
+              <p class="lead h5">Upload 1 representative image for your project or company. Select a PNG or JPEG image, having maximum size <span id="max-size"></span> KB.</p>
+            </div>
+            <div class="form-group" align="center">
+              <input type="file" name="file" id="file" required/>
+            </div>
           </div>
+        </div>
+
+        <div class="container">
+          <div class="container">
+            <div style="max-width: 650px; margin: auto;">
+              <h3 class="page-header">Project Images Upload</h3>
+              <p class="lead h5">Upload 1 to 3 images of your project for potential investors to view. Select PNG or JPEG images, having maximum size <span id="max-size"></span> KB.</p>
+            </div>
+            <div class="form-group" align="center">
+              <input type="file" name="file" id="file" required/>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
