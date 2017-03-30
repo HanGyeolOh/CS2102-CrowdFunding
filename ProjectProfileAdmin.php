@@ -22,8 +22,14 @@
     $current_amount = number_format($row[6]);
     $category = $row[7];
     $logo_url = $row[8];
+    $current_date = date("Y/m/d");
 
-    $days_left = ceil(abs(strtotime($end_date) - strtotime($start_date)) / 86400);
+    if(strtotime($end_date) - strtotime($current_date) <= 0) {
+      $days_left = 0;
+      $expired = true;
+    } else {
+      $days_left = ceil(abs(strtotime($end_date) - strtotime($current_date)) / 86400);
+    }
     $progress = (((float)((int)$row[6] / (int)$row[5])) * 100);
 
     $query = "SELECT name, email FROM users WHERE email = ANY (SELECT publisher_email FROM ownership WHERE project_id = '$project_id')";
@@ -140,7 +146,15 @@
 
     <!-- Project Info -->
     <div class="col-lg-9 col-md-9 col-sm-7 col-xs-7">
-      <h2 class="text-primary"> <?php echo $title; ?> <a href="#" class="btn btn-info">Funding</a></h2>
+      <h2 class="text-primary"> <?php echo $title; ?>
+        <?php
+          if($expired) {
+            echo "<a href='#' class='btn btn-danger'>Expired</a>";
+          } else {
+            echo "<a href=''#' class='btn btn-info'>Funding</a>";
+          }
+        ?>
+      </h2>
       <h2><small> <?php echo $description; ?></small></h2>
       <div class="progress">
         <?php echo "<div class='progress-bar' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>"; ?>

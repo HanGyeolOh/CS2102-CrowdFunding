@@ -24,7 +24,12 @@
     $logo_url = $row[8];
     $current_date = date("Y/m/d");
 
-    $days_left = ceil(abs(strtotime($end_date) - strtotime($current_date)) / 86400);
+    if(strtotime($end_date) - strtotime($current_date) <= 0) {
+      $days_left = 0;
+      $expired = true;
+    } else {
+      $days_left = ceil(abs(strtotime($end_date) - strtotime($current_date)) / 86400);
+    }
     $progress = (((float)((int)$row[6] / (int)$row[5])) * 100);
 
     $query = "SELECT name, email FROM users WHERE email = ANY (SELECT publisher_email FROM ownership WHERE project_id = '$project_id')";
@@ -118,7 +123,15 @@
 
     <!-- Project Info -->
     <div class="col-lg-9 col-md-9 col-sm-7 col-xs-7">
-      <h2 class="text-primary"> <?php echo $title; ?> <a href="#" class="btn btn-info">Funding</a></h2>
+      <h2 class="text-primary"> <?php echo $title; ?>
+        <?php
+          if($expired) {
+            echo "<a href='#' class='btn btn-danger'>Expired</a></h2>";
+          } else {
+            echo "<a href=''#' class='btn btn-info'>Funding</a></h2>";
+          }
+        ?>
+      </h2>
       <h2><small> <?php echo $description; ?></small></h2>
       <div class="progress">
         <?php echo "<div class='progress-bar' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>"; ?>
@@ -130,7 +143,13 @@
           <h3><?php echo $days_left; ?><small><br>days to go</small></h3>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-          <a href="InvestmentPage.php?id=<?php echo $project_id; ?>" class="button-middle btn btn-info btn-lg pull-center">Invest In This Project</a>
+          <?php
+            if($expired) {
+              echo "<a href='#' class='button-middle btn btn-danger btn-lg pull-center'>Deadline Expired</a>";
+            } else {
+              echo "<a href='InvestmentPage.php?id=<?php echo $project_id; ?>' class='button-middle btn btn-info btn-lg pull-center'>Invest In This Project</a>";
+            }
+          ?>
         </div>
       </div>
     </div>
