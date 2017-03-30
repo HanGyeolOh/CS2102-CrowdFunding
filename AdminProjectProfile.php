@@ -151,9 +151,6 @@
           <h3 class="text-info"> <?php echo $current_amount; ?> <small><br> <?php echo "raised of $target_amount goal" ?> </small></h3>
           <h3><?php echo $days_left; ?><small><br>days to go</small></h3>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-          <a href="investmentpage.php?id=<?php echo $project_id; ?>" class="button-middle btn btn-info btn-lg pull-center">Invest In This Project</a>
-        </div>
       </div>
     </div>
   </div>

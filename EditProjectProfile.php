@@ -76,6 +76,14 @@
 
   <form action="ProjectCreationForm.php" method="post" enctype="multipart/form-data" name="form">
   <div class="container">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+      <button type="button" class="btn-danger btn" data-toggle="modal" data-target="#modal-2" style="margin-top:25px; margin-bottom:25px;">Delete Project</button>
+      <?php
+        require('DeleteProjectPopup.php');
+      ?>
+    </div>
+  </div>
+  <div class="container">
     <div class="container">
       <h2 style="padding-left:0px" color="black">Edit your project details</h2>
       <h4 style="padding-left:0px">Please change your Project's information below!</h4>
