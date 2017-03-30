@@ -61,7 +61,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="AboutUs.php">About Us</a></li>
-        <li><a href="#">Funded Projects</a></li>
+        <li><a href="SuccessfulPage.php">Funded Projects</a></li>
         <li><a href="ProjectCreation.php">Create a project</a></li>
       </ul>
 
