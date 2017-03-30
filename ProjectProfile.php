@@ -22,8 +22,9 @@
     $current_amount = number_format($row[6]);
     $category = $row[7];
     $logo_url = $row[8];
+    $current_date = date("Y/m/d");
 
-    $days_left = ceil(abs(strtotime($end_date) - strtotime($start_date)) / 86400);
+    $days_left = ceil(abs(strtotime($end_date) - strtotime($current_date)) / 86400);
     $progress = (((float)((int)$row[6] / (int)$row[5])) * 100);
 
     $query = "SELECT name, email FROM users WHERE email = ANY (SELECT publisher_email FROM ownership WHERE project_id = '$project_id')";

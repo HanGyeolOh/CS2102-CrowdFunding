@@ -142,10 +142,12 @@
           $start_date = $row[4];
           $end_date = $row[5];
           $target_amount = number_format($row[6]);
-    	  $current_amount = number_format($row[7]);
+    	    $current_amount = number_format($row[7]);
 
-    	  $days_left = ceil(abs(strtotime($end_date) - strtotime($start_date)) / 86400);
-    	  $progress = round ( (((float)((int)$row[8] / (int)$row[7])) * 100), 0);
+    	    $current_date = date("Y/m/d");
+
+          $days_left = ceil(abs(strtotime($end_date) - strtotime($current_date)) / 86400);
+    	    $progress = round ( (((float)((int)$row[7] / (int)$row[6])) * 100), 0);
            echo "
            <div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
 				<div>
@@ -203,7 +205,7 @@
     	  $current_amount = number_format($row[7]);
 
     	  $days_left = ceil(abs(strtotime($end_date) - strtotime($start_date)) / 86400);
-    	  $progress = round ( (((float)((int)$row[8] / (int)$row[7])) * 100), 0);
+    	  $progress = round ( (((float)((int)$row[7] / (int)$row[6])) * 100), 0);
            echo "
            <div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
 				<div>

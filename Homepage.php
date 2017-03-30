@@ -202,7 +202,9 @@
     	  $current_amount = number_format($row[8]);
     	  $publisher_email = $row[9];
 
-    	  $days_left = ceil(abs(strtotime($end_date) - strtotime($start_date)) / 86400);
+    	  $current_date = date("Y/m/d");
+
+    	  $days_left = ceil(abs(strtotime($end_date) - strtotime($current_date)) / 86400);
     	  $progress = round ( (((float)((int)$row[8] / (int)$row[7])) * 100), 0);
 
           echo "
