@@ -16,8 +16,8 @@
           All your projects will be deleted and the process is irreversible.
         </div> 
         <div class="modal-footer">
-          <a href="" class="btn btn-success" data-dismiss="modal">Cancel</a>
-          <a href="" class="btn btn-Warning" href="">Delete</a>
+          <a class="btn btn-success" data-dismiss="modal">Cancel</a>
+          <a class="btn btn-Warning" href="DeleteUserAccount.php">Delete</a>
         </div>
       </div>
     </div>
