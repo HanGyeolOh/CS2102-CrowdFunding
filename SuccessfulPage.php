@@ -79,7 +79,7 @@
   max-width:340px;
 }
 .thumbnail{
-	height:400px;
+	height:390px;
 	width:350px;
 	margin-left: 40px;
 }
@@ -87,7 +87,10 @@
 	position: absolute;
 	width:100%;
 	bottom:15;
-	height:40px;
+	height:50px;
+}
+.my-footer-past{
+	height:70px;
 }
 .text-narrow{
 	font-size:12px;
@@ -147,7 +150,13 @@
     	  $days_left = ceil(abs(strtotime($end_date) - strtotime($current_date)) / 86400);
     	  $progress = round ( (((float)((int)$row[8] / (int)$row[7])) * 100), 0);
 
-          echo "
+    	  $query = "SELECT COUNT(*)
+        			FROM projects p, investments i
+        			WHERE p.project_id = i.project_id AND p.project_id = '$id'";
+          $result_two = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
+          $num_investor = pg_fetch_result($result_two, 0, 0);
+
+		  echo "
 			<div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
 				<div>
 					<img class= 'img-rounded project-img btn center-block' src='$logo_url' href='ProjectProfile.php?id=$id'>
@@ -159,27 +168,53 @@
 						<a class='text-title black-font' href='UserProfile.php?email=$publisher_email'>$owner_name</a>
 					</p>
 					<p class='text-justify'>$description</p>
-				</div>
-				<div class='my-footer'>
-					<div class='progress'>
-		        <div class='progress-bar' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>
-		      </div>
+				</div>";
+			if(strtotime($date_today) > strtotime($end_date)) { //Time elapsed case
+				echo "
+				<div class='my-footer-past'><hr>
 					<div class='caption'>
-						<div class='col-lg-4'>
-							<p class='text-strong'>$progress %</p>
-							<p class='text-narrow'>funded</p>
-						</div>
-						<div class='col-lg-4'>
+						<div class='col-lg-9'>
 							<p class='text-strong'>$$current_amount</p>
-							<p class='text-narrow'>invested</p>
-						</div>
-						<div class='col-lg-4'>
-							<p class='text-strong'>$days_left</p>
-							<p class='text-narrow'>days to go</p>
+							<p class='text-narrow'>invested of $$target_amount target</p>
+						</div>  
+						<div class='col-lg-3'>
+							<p class='text-strong'>$num_investor</p>
+							<p class='text-narrow'>investors</p>
 						</div>
 					</div>
 				</div>
 			</div>";
+		    } else {	//Still funding case
+		    	echo "
+		    	<div class='my-footer'>
+		    		<div class='progress'>";
+		    	if ($progress >= 100) {
+		    		echo "
+		        		<div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>";
+		        } else {
+		        	echo "
+		        		<div class='progress-bar' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>";
+		        }
+		      	echo"
+		      		</div>
+		    		<div class='caption'>
+		    			<div class='col-lg-4'>
+		    				<p class='text-strong'>$progress %</p>
+		    				<p class='text-narrow'>funded</p>
+		    			</div>
+		    			<div class='col-lg-4'>
+							<p class='text-strong'>$$current_amount</p>
+							<p class='text-narrow'>invested</p>
+						</div>  
+		    			<div class='col-lg-4'>
+		    				<p class='text-strong'>$days_left</p>
+		    				<p class='text-narrow'>days to go</p>
+		    			</div>
+		    		</div>
+		    	</div>
+		    </div>";
+		   }
+						
         }
      ?>
 	</div>
@@ -215,6 +250,12 @@
     	  $days_left = ceil(abs(strtotime($end_date) - strtotime($current_date)) / 86400);
     	  $progress = round ( (((float)((int)$row[8] / (int)$row[7])) * 100), 0);
 
+    	  $query = "SELECT COUNT(*)
+        			FROM projects p, investments i
+        			WHERE p.project_id = i.project_id AND p.project_id = '$id'";
+          $result_two = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
+          $num_investor = pg_fetch_result($result_two, 0, 0);
+
           echo "
 			<div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
 				<div>
@@ -227,27 +268,52 @@
 						<a class='text-title black-font' href='UserProfile.php?email=$publisher_email'>$owner_name</a>
 					</p>
 					<p class='text-justify'>$description</p>
-				</div>
-				<div class='my-footer'>
-					<div class='progress'>
-		        <div class='progress-bar' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>
-		      </div>
+				</div>";
+			if(strtotime($date_today) > strtotime($end_date)) { //Time elapsed case
+				echo "
+				<div class='my-footer-past'><hr>
 					<div class='caption'>
-						<div class='col-lg-4'>
-							<p class='text-strong'>$progress %</p>
-							<p class='text-narrow'>funded</p>
-						</div>
-						<div class='col-lg-4'>
+						<div class='col-lg-9'>
 							<p class='text-strong'>$$current_amount</p>
-							<p class='text-narrow'>invested</p>
-						</div>
-						<div class='col-lg-4'>
-							<p class='text-strong'>$days_left</p>
-							<p class='text-narrow'>days to go</p>
+							<p class='text-narrow'>invested of $$target_amount target</p>
+						</div>  
+						<div class='col-lg-3'>
+							<p class='text-strong'>$num_investor</p>
+							<p class='text-narrow'>investors</p>
 						</div>
 					</div>
 				</div>
 			</div>";
+		    } else {	//Still funding case
+		    	echo "
+		    	<div class='my-footer'>
+		    		<div class='progress'>";
+		    	if ($progress >= 100) {
+		    		echo "
+		        		<div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>";
+		        } else {
+		        	echo "
+		        		<div class='progress-bar' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>";
+		        }
+		      	echo"
+		      		</div>
+		    		<div class='caption'>
+		    			<div class='col-lg-4'>
+		    				<p class='text-strong'>$progress %</p>
+		    				<p class='text-narrow'>funded</p>
+		    			</div>
+		    			<div class='col-lg-4'>
+							<p class='text-strong'>$$current_amount</p>
+							<p class='text-narrow'>invested</p>
+						</div>  
+		    			<div class='col-lg-4'>
+		    				<p class='text-strong'>$days_left</p>
+		    				<p class='text-narrow'>days to go</p>
+		    			</div>
+		    		</div>
+		    	</div>
+		    </div>";
+		   }
         }
      ?>
 	</div>
