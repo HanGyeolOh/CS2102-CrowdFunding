@@ -87,7 +87,7 @@
 	</div>
 </div>
 <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-	<img src="img/heisenberg.jpg" class="img-circle center-block" width="80" height="80">
+	<img src="img/kianming.jpg" class="img-circle center-block" width="80" height="80">
 	<div class="caption">
 	<h4 class="text-center">Kian Ming</h4>
 	</div>
