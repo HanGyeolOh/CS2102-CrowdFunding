@@ -15,7 +15,12 @@
     $email = $_SESSION['username'];
     $donation_amount = $_POST["amount"];
     $date = date("Y-m-d");
-    $query = "INSERT INTO investments VALUES ('tran000200', '$date', '$donation_amount', '$email', '$project_id')";
+
+    $query = "SELECT MAX(transaction_id) FROM investments";
+    $result = pg_query($dbconn, $query);
+    $transaction_id = pg_fetch_result($result, 0, 0) + 1;
+
+    $query = "INSERT INTO investments VALUES ($transaction_id, '$date', '$donation_amount', '$email', $project_id)";
     $result = pg_query($dbconn, $query);
   }
   pg_close($dbconn);

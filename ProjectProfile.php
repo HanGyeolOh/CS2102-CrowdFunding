@@ -11,7 +11,7 @@
     session_start();
     require('dbconn.php');
     $project_id = $_GET['id'];
-    $query = "SELECT * FROM projects WHERE project_id = '$project_id'";
+    $query = "SELECT * FROM projects WHERE project_id = $project_id";
     $result = pg_query($dbconn, $query);
     $row = pg_fetch_row($result);
     $title = $row[0];
@@ -32,7 +32,7 @@
     }
     $progress = (((float)((int)$row[6] / (int)$row[5])) * 100);
 
-    $query = "SELECT name, email FROM users WHERE email = ANY (SELECT publisher_email FROM ownership WHERE project_id = '$project_id')";
+    $query = "SELECT name, email FROM users WHERE email = ANY (SELECT publisher_email FROM ownership WHERE project_id = $project_id)";
     $result = pg_query($dbconn, $query);
     $owner_name = pg_fetch_result($result, 0, 0);
     $publisher_email = pg_fetch_result($result, 0, 1);
@@ -158,11 +158,11 @@
 
 <?php
 
-  $query = "SELECT COUNT(*) FROM contain WHERE project_id = '$project_id'";
+  $query = "SELECT COUNT(*) FROM contain WHERE project_id = $project_id";
   $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
   $image_count = pg_fetch_result($result, 0, 0);
 
-  $query = "SELECT picture_url FROM contain WHERE project_id = '$project_id'";
+  $query = "SELECT picture_url FROM contain WHERE project_id = $project_id";
   $result = pg_query($dbconn, $query);
   $picture_url1 = pg_fetch_result($result, 0, 0);
   $picture_url2 = pg_fetch_result($result, 1, 0);

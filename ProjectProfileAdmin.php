@@ -11,7 +11,7 @@
     session_start();
     require('dbconn.php');
     $project_id = $_GET['id'];
-    $query = "SELECT * FROM projects WHERE project_id = '$project_id'";
+    $query = "SELECT * FROM projects WHERE project_id = $project_id";
     $result = pg_query($dbconn, $query);
     $row = pg_fetch_row($result);
     $title = $row[0];
@@ -32,7 +32,7 @@
     }
     $progress = (((float)((int)$row[6] / (int)$row[5])) * 100);
 
-    $query = "SELECT name, email FROM users WHERE email = ANY (SELECT publisher_email FROM ownership WHERE project_id = '$project_id')";
+    $query = "SELECT name, email FROM users WHERE email = ANY (SELECT publisher_email FROM ownership WHERE project_id = $project_id)";
     $result = pg_query($dbconn, $query);
     $owner_name = pg_fetch_result($result, 0, 0);
     $publisher_email = pg_fetch_result($result, 0, 1);
@@ -116,7 +116,7 @@
 
     $query="SELECT users.name, investments.transaction_date, investments.investment_amount
     FROM users, investments
-    WHERE investments.project_id='$project_id'
+    WHERE investments.project_id=$project_id
     AND investments.investor_email=users.email
     ORDER BY transaction_date ASC LIMIT $limit OFFSET $start_from";
     $result = pg_query($query) or die('Query failed: ' . pg_last_error());

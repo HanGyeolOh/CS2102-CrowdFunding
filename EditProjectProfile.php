@@ -58,7 +58,7 @@
       require('dbconn.php');
       $project_id = $_GET['id'];
       $email = $_SESSION['username'];
-      $query = "SELECT * FROM projects WHERE project_id = '$project_id'";
+      $query = "SELECT * FROM projects WHERE project_id = $project_id";
       $result = pg_query($dbconn, $query);
       $row = pg_fetch_row($result);
       if(pg_num_rows($result) == 1) {

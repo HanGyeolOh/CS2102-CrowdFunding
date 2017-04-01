@@ -130,7 +130,7 @@
          </form>
 
           <div class = "container logout">
-            <a href = "logout.php" class = "Logout title">Clear Session
+            <a href = "Homepage.php" class = "homepage">Back to Homepage
           </div>
       </div>
 

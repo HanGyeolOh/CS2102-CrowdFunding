@@ -1,16 +1,18 @@
 <?php
 session_start();
+require('dbconn.php');
 if(isset($_POST['submit'])){
   $title = $_POST["title"];
   $description = $_POST["description"];
   $start_date = $_POST["start_date"];
   $end_date = $_POST["end_date"];
-  ///////////////////////////////////////////// Need to implement
-  $project_id = "temporary_id";
-  /////////////////////////////////////////////
   $target_amount = $_POST["target_amount"];
   $current_amount = 0;
   $category = $_POST["category"];
+
+  $query = "SELECT MAX(project_id) FROM projects";
+  $result = pg_query($dbconn, $query);
+  $project_id = pg_fetch_result($result, 0, 0) + 1;
 
   $max_size = 500 * 1024; // 500 KB
   $validextensions = array("jpeg", "jpg", "png");
@@ -42,6 +44,7 @@ if(isset($_POST['submit'])){
           {
             $sourcePath = $_FILES["logo"]["tmp_name"];
             $targetPath = $destination_directory . $project_id;
+            $logo_url = $targetPath;
             move_uploaded_file($sourcePath, $targetPath);
             echo "<div class=\"alert alert-success\" role=\"alert\">";
             echo "<p>Image uploaded successful</p>";
@@ -95,6 +98,7 @@ if(isset($_POST['submit'])){
           {
             $sourcePath = $_FILES["file1"]["tmp_name"];
             $targetPath = $destination_directory . $project_id . '_1';
+            $picture_url_1 = $targetPath;
             move_uploaded_file($sourcePath, $targetPath);
             echo "<div class=\"alert alert-success\" role=\"alert\">";
             echo "<p>Image uploaded successful</p>";
@@ -143,6 +147,7 @@ if(isset($_POST['submit'])){
           {
             $sourcePath = $_FILES["file2"]["tmp_name"];
             $targetPath = $destination_directory . $project_id . '_2';
+            $picture_url_2 = $targetPath;
             move_uploaded_file($sourcePath, $targetPath);
             echo "<div class=\"alert alert-success\" role=\"alert\">";
             echo "<p>Image uploaded successful</p>";
@@ -191,6 +196,7 @@ if(isset($_POST['submit'])){
           {
             $sourcePath = $_FILES["file3"]["tmp_name"];
             $targetPath = $destination_directory . $project_id . '_3';
+            $picture_url_3 = $targetPath;
             move_uploaded_file($sourcePath, $targetPath);
             echo "<div class=\"alert alert-success\" role=\"alert\">";
             echo "<p>Image uploaded successful</p>";
@@ -213,11 +219,40 @@ if(isset($_POST['submit'])){
     }
   }
 
-  // require('dbconn.php');
-  // $query = "INSERT INTO projects VALUES('$title', '$description', '$start_date', '$end_date', '$project_id', $target_amount, $current_amount, '$category')";
-  // $result = pg_query($dbconn, $query);
-  //
-  // header("Location: Project Profile.php?id=$project_id");
+  require('dbconn.php');
+
+  // if ($_FILES["logo"]["type"] == "image/png") {
+  //   $logo_url = "image/company/$project_id.png";
+  // } else if ($_FILES["logo"]["type"] == "image/jpg") {
+  //   $logo_url = "image/company/$project_id.jpg";
+  // } else if ($_FILES["logo"]["type"] == "image/jpeg") {
+  //   $logo_url = "image/company/$project_id.jpeg";
+  // } else if ($_FILES["logo"]["type"] == "image/gif") {
+  //   $logo_url = "image/company/$project_id.gif";
+  // }
+
+  $query = "INSERT INTO projects VALUES('$title', '$description', '$start_date', '$end_date', $project_id, $target_amount, $current_amount, '$category', '$logo_url')";
+  $result = pg_query($dbconn, $query);
+  echo pg_last_error($dbconn);
+
+  $email = $_SESSION['username'];
+  $query = "INSERT INTO ownership VALUES('$email', $project_id)";
+  $result = pg_query($dbconn, $query);
+  echo pg_last_error($dbconn);
+
+  $query = "INSERT INTO contain VALUES($project_id, '$picture_url_1')";
+  $result = pg_query($dbconn, $query);
+  echo pg_last_error($dbconn);
+
+  $query = "INSERT INTO contain VALUES($project_id, '$picture_url_2')";
+  $result = pg_query($dbconn, $query);
+  echo pg_last_error($dbconn);
+
+  $query = "INSERT INTO contain VALUES($project_id, '$picture_url_3')";
+  $result = pg_query($dbconn, $query);
+  echo pg_last_error($dbconn);
+
+  header("Location: ProjectProfile.php?id=$project_id");
   }
 
-  ?>
+?>
