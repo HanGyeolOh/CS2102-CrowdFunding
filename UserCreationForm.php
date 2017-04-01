@@ -8,6 +8,8 @@ if(isset($_POST['submit'])){
   $password = MD5($_POST["password"]);
   $password_check = MD5($_POST["password_check"]);
 
+  $new_password = $password;
+
   if ( isset($_FILES["file"]["type"]) )
   {
     $max_size = 500 * 1024; // 500 KB
@@ -60,10 +62,10 @@ if(isset($_POST['submit'])){
   }
 
   require('dbconn.php');
-  $query = "INSERT INTO users VALUES($name, $email, $dob, $address, $password, $targetPath)";
+  $query = "INSERT INTO users VALUES('$name', '$email', '$dob', '$address', '$new_password', '$targetPath')";
   $result = pg_query($dbconn, $query);
 
   $_SESSION['username'] = $email;
-  header('Location: User Profile.php');
+  header('Location: UserProfileAdmin.php');
 }
 ?>
