@@ -113,7 +113,7 @@
 		<div class="col-lg-3">
 		<div class="input-group">
 			<span class="input-group-addon">Title</span>
-			<input type="text" class="form-control" id="title" name="title" placeholder="Search Keywords!">
+			<input type="text" class="form-control" id="title" name="title" placeholder="Search Keywords">
 		</div>
 		</div>
 
@@ -140,7 +140,7 @@
 		<div class="col-lg-3">
 		<div class="input-group">
 			<span class="input-group-addon">Date</span>
-			<input type="text" class="form-control" id="date" name="date" placeholder="Start Date">
+			<input type="text" class="form-control" id="date" name="date" placeholder="Start Date (YYYY)">
 		</div>
 		</div>
 
