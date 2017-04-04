@@ -127,9 +127,7 @@
 	<h3>All projects!</h3><hr>
 	<div class='row'>
 	<?php
-        $query = "SELECT p.title, p.description, p.project_id, p.logo_url, u.name, p.start_date, p.end_date, p.target_amount, p.current_amount, o.publisher_email
-        			FROM projects p, ownership o, users u
-        			WHERE p.project_id = o.project_id AND u.email = o.publisher_email";
+        $query = "SELECT * FROM thumbnail_info";
         $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
         $date_today = date("Ymd");
         while ($row = pg_fetch_row($result)) {
@@ -159,7 +157,7 @@
 			<div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
 				<div>
 				<a href='ProjectProfile.php?id=$id'>
-					<img class= 'img-rounded project-img btn center-block' src='$logo_url'></a>
+					<img class= 'img-rounded btn center-block' src='$logo_url' style='height:180px; max-width:340px;'></a>
 				</div>
 				<div class='caption'>
 					<p><a class='text-title black-font' href='ProjectProfile.php?id=$id'>$title</a></p>

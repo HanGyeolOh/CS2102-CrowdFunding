@@ -122,8 +122,7 @@
 
   </div>
   <?php
-    $query = "SELECT title, description, project_id, logo_url, start_date, end_date, target_amount, current_amount FROM projects
-              WHERE project_id IN (SELECT project_id FROM ownership WHERE publisher_email = '$email')";
+    $query = "SELECT * FROM thumbnail_info WHERE publisher_email = '$email'";
     $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
     $date_today = date("Ymd");
     if (pg_num_rows($result) > 0) {
@@ -140,10 +139,12 @@
             $description = $row[1];
             $id = $row[2];
             $logo_url = $row[3];
-            $start_date = $row[4];
-            $end_date = $row[5];
-            $target_amount = number_format($row[6]);
-      	    $current_amount = number_format($row[7]);
+            $owner_name = $row[4];
+            $start_date = $row[5];
+            $end_date = $row[6];
+            $target_amount = number_format($row[7]);
+            $current_amount = number_format($row[8]);
+            $publisher_email = $row[9];
 
       	    $current_date = date("Y/m/d");
 
@@ -158,7 +159,8 @@
              echo "
         <div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
           <div>
-            <img class= 'img-rounded project-img btn center-block' src='$logo_url' href='ProjectProfile.php?id=$id'>
+            <a href='ProjectProfile.php?id=$id'>
+            <img class= 'img-rounded btn center-block' src='$logo_url' style='height:180px; max-width:340px;'></a>
           </div>
           <div class='caption'>
             <p><a class='text-title black-font' href='ProjectProfile.php?id=$id'>$title</a></p>
@@ -221,7 +223,7 @@
   ?>
 
   <?php
-    $query = "SELECT title, description, project_id, logo_url, start_date, end_date, target_amount, current_amount FROM projects
+    $query = "SELECT * FROM thumbnail_info
                   WHERE project_id IN (SELECT project_id FROM investments WHERE investor_email = '$email')";
     $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
     $date_today = date("Ymd");
@@ -239,10 +241,12 @@
             $description = $row[1];
             $id = $row[2];
             $logo_url = $row[3];
-            $start_date = $row[4];
-            $end_date = $row[5];
-            $target_amount = number_format($row[6]);
-            $current_amount = number_format($row[7]);
+            $owner_name = $row[4];
+            $start_date = $row[5];
+            $end_date = $row[6];
+            $target_amount = number_format($row[7]);
+            $current_amount = number_format($row[8]);
+            $publisher_email = $row[9];
 
             $current_date = date("Y/m/d");
 
@@ -257,7 +261,8 @@
              echo "
         <div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
           <div>
-            <img class= 'img-rounded project-img btn center-block' src='$logo_url' href='ProjectProfile.php?id=$id'>
+            <a href='ProjectProfile.php?id=$id'>
+            <img class= 'img-rounded btn center-block' src='$logo_url' style='height:180px; max-width:340px;'></a>
           </div>
           <div class='caption'>
             <p><a class='text-title black-font' href='ProjectProfile.php?id=$id'>$title</a></p>

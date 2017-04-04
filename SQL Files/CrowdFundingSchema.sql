@@ -63,8 +63,6 @@ ON users
 FOR EACH ROW
 EXECUTE PROCEDURE alter_investment();
 
-
-
 CREATE OR REPLACE FUNCTION alter_current_amount()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -81,4 +79,9 @@ BEFORE INSERT
 ON investments
 FOR EACH ROW
 EXECUTE PROCEDURE alter_current_amount();
+
+CREATE VIEW thumbnail_info AS
+SELECT p.title, p.description, p.project_id, p.logo_url, u.name, p.start_date, p.end_date, p.target_amount, p.current_amount, o.publisher_email
+FROM projects p, ownership o, users u
+WHERE p.project_id = o.project_id AND u.email = o.publisher_email;
 
