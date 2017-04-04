@@ -127,9 +127,7 @@
 	<h3>All projects</h3><hr>
 	<div class='row'>
 	<?php
-        $query = "SELECT p.title, p.description, p.project_id, p.logo_url, u.name, p.start_date, p.end_date, p.target_amount, p.current_amount, o.publisher_email
-        			FROM projects p, ownership o, users u
-        			WHERE p.project_id = o.project_id AND u.email = o.publisher_email";
+        $query = "SELECT * FROM thumbnail_info";
         $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
         $date_today = date("Ymd");
         while ($row = pg_fetch_row($result)) {
