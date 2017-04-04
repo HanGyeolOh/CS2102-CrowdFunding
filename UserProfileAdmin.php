@@ -169,8 +169,9 @@
              echo "
         <div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
           <div>
-            <img class= 'img-rounded project-img btn center-block' src='$logo_url' href='ProjectProfile.php?id=$id'>
-          </div>
+		  <a href='ProjectProfile.php?id=$id'>		  
+			<img class= 'img-rounded project-img btn center-block' src='$logo_url' height='180px' max-width='340px' border='0'/></a>
+		  </div>
           <div class='caption'>
             <p><a class='text-title black-font' href='ProjectProfile.php?id=$id'>$title</a></p>
             <p>
@@ -272,7 +273,8 @@
              echo "
         <div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
           <div>
-            <img class= 'img-rounded project-img btn center-block' src='$logo_url' href='ProjectProfile.php?id=$id'>
+		  <a href='ProjectProfile.php?id=$id'>	
+            <img class= 'img-rounded project-img btn center-block' src='$logo_url' height='180px' max-width='340px' border='0'/></a>
           </div>
           <div class='caption'>
             <p><a class='text-title black-font' href='ProjectProfile.php?id=$id'>$title</a></p>
