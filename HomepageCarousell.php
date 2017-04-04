@@ -2,7 +2,7 @@
       session_start();
       require('dbconn.php');
 
-      $query = "SELECT * FROM projects WHERE project_id = 'kkkht0017';";
+      $query = "SELECT * FROM projects WHERE project_id = 17;";
       $result = pg_query($dbconn, $query);
       $plen = false;
       $num = 0;
@@ -10,7 +10,7 @@
         $plen = true;
         $num++;
       }
-      $query = "SELECT * FROM projects WHERE project_id = 'kkkht0003';";
+      $query = "SELECT * FROM projects WHERE project_id = 3;";
       $result = pg_query($dbconn, $query);
       $jack = false;
       if(pg_num_rows($result) == 1) {
@@ -85,7 +85,7 @@
 						<p class='carousel-small-text'>Your customizable, palm-sized companion featuring a smart camera and automation skills.</p>
 						<p class='carousel-small-text'>There for you wherever you go.</p>
 						<br>
-						<p><a href='projectprofile.php?id=kkkht0017' class='btn btn-primary btn-lg'>Learn more</a></p>
+						<p><a href='projectprofile.php?id=17' class='btn btn-primary btn-lg'>Learn more</a></p>
 					</div>
 				</div>
 
@@ -115,7 +115,7 @@
 						<p class='carousel-med-text'>Make Any Headphones Wireless</p><br>
 						<p class='carousel-small-text'>This tiny device brings Bluetooth capability to all of your audio devices.</p>
 						<br>
-						<p><a href='projectprofile.php?id=kkkht0003' class='btn btn-primary btn-lg'>Learn more</a></p>
+						<p><a href='projectprofile.php?id=3' class='btn btn-primary btn-lg'>Learn more</a></p>
 					</div>
 				</div>
 
@@ -146,7 +146,7 @@
 				<p class='carousel-small-text'>Your customizable, palm-sized companion featuring a smart camera and automation skills.</p>
 				<p class='carousel-small-text'>There for you wherever you go.</p>
 				<br>
-				<p><a href='projectprofile.php?id=kkkht0017' class='btn btn-primary btn-lg'>Learn more</a></p>
+				<p><a href='projectprofile.php?id=17' class='btn btn-primary btn-lg'>Learn more</a></p>
 			</div>
 			</div>
 
@@ -157,7 +157,7 @@
 				<p class='carousel-med-text'>Make Any Headphones Wireless</p><br>
 				<p class='carousel-small-text'>This tiny device brings Bluetooth capability to all of your audio devices.</p>
 				<br>
-				<p><a href='projectprofile.php?id=kkkht0003' class='btn btn-primary btn-lg'>Learn more</a></p>
+				<p><a href='projectprofile.php?id=3' class='btn btn-primary btn-lg'>Learn more</a></p>
 			</div>
 			</div>
 
