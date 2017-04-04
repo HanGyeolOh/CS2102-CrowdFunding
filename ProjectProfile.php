@@ -30,7 +30,7 @@
     } else {
       $days_left = ceil(abs(strtotime($end_date) - strtotime($current_date)) / 86400);
     }
-    $progress = (((float)((int)$row[6] / (int)$row[5])) * 100);
+    $progress = round ((((float)((int)$row[6] / (int)$row[5])) * 100),0);
 
     $query = "SELECT name, email FROM users WHERE email = ANY (SELECT publisher_email FROM ownership WHERE project_id = $project_id)";
     $result = pg_query($dbconn, $query);
@@ -134,7 +134,13 @@
       </h2>
       <h2><small> <?php echo $description; ?></small></h2>
       <div class="progress">
-        <?php echo "<div class='progress-bar' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>"; ?>
+        <?php
+          if ($progress >= 100) {
+            echo "<div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>";
+          } else {
+            echo "<div class='progress-bar' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>";
+          }  
+        ?>
         <span class="progress-value"> <?php echo "$progress% Raised"; ?> </span>
       </div>
       <div class="row">

@@ -152,7 +152,7 @@
 
             $query = "SELECT COUNT(*)
                 FROM projects p, investments i
-                WHERE p.project_id = i.project_id AND p.project_id = '$id'";
+                WHERE p.project_id = i.project_id AND p.project_id = $id";
             $result_two = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
             $num_investor = pg_fetch_result($result_two, 0, 0);
              echo "
