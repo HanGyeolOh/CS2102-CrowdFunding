@@ -44,7 +44,12 @@
   <?php
       session_start();
       require('dbconn.php');
-      $email = $_SESSION['username'];
+      if($_SESSION['username'] === 'admin@example.com') {
+        $email = $_GET['email'];
+      }
+      else {
+        $email = $_SESSION['username'];
+      }
       $query = "SELECT * FROM users WHERE email = '$email'";
       $result = pg_query($dbconn, $query);
       $row = pg_fetch_row($result);
@@ -85,7 +90,14 @@ function validatePassword() {
 }
 </script>
 
-<form action="EditUserForm.php" method="post" enctype="multipart/form-data" name="form">
+<?php
+  if(isset($_GET['email'])) {
+    echo "<form action='EditUserForm.php?email=$email' method='post' enctype='multipart/form-data' name='form'>";
+  }
+  else {
+    echo "<form action='EditUserForm.php' method='post' enctype='multipart/form-data' name='form'>";
+  }
+?>
   <div class="container">
     <div class="container">
       <h2 style="padding-left:0px" color="black">Edit your profile details</h2>

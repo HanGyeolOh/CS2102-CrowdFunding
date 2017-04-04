@@ -105,7 +105,12 @@
 
                   echo 'You have entered valid use name and password';
 
-                  header('Location: Homepage.php');
+                  if($username === 'admin@example.com') {
+                      header('Location: AdminPage.php');
+                  }
+                  else {
+                    header('Location: Homepage.php');
+                  }
                }else {
                   $msg = 'Wrong username or password';
                }

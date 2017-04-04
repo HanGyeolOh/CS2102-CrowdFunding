@@ -7,16 +7,16 @@
 </style>
   <div class="modal fade" id="modal-1">
     <div class="modal-dialog modal-lg">
-      <div class="modal-content">          
+      <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h3 class="modal-title black-font">Are you sure about deleting your account?</h3>
         </div>
         <div class="modal-body black-font">
           All your projects will be deleted and the process is irreversible.
-        </div> 
+        </div>
         <div class="modal-footer">
-          <a class="btn btn-success" data-dismiss="modal">Cancel</a>
+          <a class="btn btn-success" data-dismiss="modal">Cancel</a>z
           <a class="btn btn-Warning" href="DeleteUserAccount.php">Delete</a>
         </div>
       </div>

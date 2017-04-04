@@ -10,6 +10,9 @@
 
 <?php
   session_start();
+  if($_SESSION['username'] !== 'admin@example.com') {
+    header('Location: Homepage.php');
+  }
 ?>
 
 <style>
@@ -132,6 +135,7 @@
 	<h3>User List</h3><hr>
 	<div class='row'>
 	<?php
+  require('DeleteUserPopup.php');
         $date_today = date("Ymd");
         $query = "SELECT name, email, dob, address, password, image_url FROM users";
         $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
@@ -156,8 +160,8 @@
           <p class='text-justify'>Address: $address</p>
           <p class='text-justify'>Password: $password</p>
 				</div>
-        <a role='button' class='btn-warning btn' href='EditUserProfile.php?email=$email' style='margin-top:25px; margin-bottom:25px;''>Edit Profile</a>
-        <a role='button' class='btn-danger btn' data-toggle='modal' data-target='#modal-1' style='margin-top:25px; margin-bottom:25px;''>Delete Account</a>
+        <a role='button' class='btn-warning btn' href='EditUserProfile.php?email=$email' style='margin-top:25px; margin-bottom:25px;'>Edit Profile</a>
+        <a role='button' class='btn-danger btn' href='AdminDeleteUserAccount.php?email=$email' style='margin-top:25px; margin-bottom:25px;'>Delete Account</a>
 		   </div>";
 		  }
      ?>
@@ -221,6 +225,8 @@
 				</div>";
 			if(strtotime($date_today) > strtotime($end_date)) { //Time elapsed case
 				echo "
+        <a role='button' class='btn-warning btn' href='EditProjectProfile.php?id=$id' style='margin-top:25px; margin-bottom:25px;'>Edit Profile</a>
+        <a role='button' class='btn-danger btn' data-toggle='modal' data-target='#modal-1' style='margin-top:25px; margin-bottom:25px;'>Delete Project</a>
 				<div class='my-footer-past'><hr>
 					<div class='caption'>
 						<div class='col-lg-9'>

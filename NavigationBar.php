@@ -70,7 +70,19 @@
       if(!isset($_SESSION['username'])) {
         echo
         "<ul class='nav navbar-nav navbar-right'>
+        	<li><a href='UserCreation.php'>Register</a></li>
+        </ul>
+        <ul class='nav navbar-nav navbar-right'>
           <li><a href='login.php'>Login</a></li>
+        </ul>";
+      }
+      else if($_SESSION['username'] === 'admin@example.com'){
+        echo
+        "<ul class='nav navbar-nav navbar-right'>
+          <li><a href='AdminPage.php'>Admin Page</a></li>
+        </ul>
+        <ul class='nav navbar-nav navbar-right'>
+          <li><a href='logout.php'>Logout</a></li>
         </ul>";
       }
       else{
@@ -83,10 +95,6 @@
         </ul>";
       }
       ?>
-
-      <ul class="nav navbar-nav navbar-right">
-      	<li><a href="UserCreation.php">Register</a></li>
-      </ul>
 
       <ul class="nav navbar-nav navbar-right" id="searchLogo">
       	<li><a href="#searchBox" data-toggle="collapse"><img src="img/searchlogo.png" height="25"></a></li>
