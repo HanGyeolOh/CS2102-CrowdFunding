@@ -128,9 +128,8 @@
 	<div class='row'>
 	<?php
         $date_today = date("Ymd");
-        $query = "SELECT p.title, p.description, p.project_id, p.logo_url, u.name, p.start_date, p.end_date, p.target_amount, p.current_amount, o.publisher_email
-        			FROM projects p, ownership o, users u
-        			WHERE p.project_id = o.project_id AND u.email = o.publisher_email AND p.end_date > '$date_today' AND p.target_amount <= p.current_amount";
+        $query = "SELECT * FROM thumbnail_info
+        			WHERE end_date > '$date_today' AND target_amount <= current_amount";
         $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
 
         while ($row = pg_fetch_row($result)) {
@@ -159,7 +158,8 @@
 		  echo "
 			<div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
 				<div>
-					<img class= 'img-rounded project-img btn center-block' src='$logo_url' href='ProjectProfile.php?id=$id'>
+				<a href='ProjectProfile.php?id=$id'>
+					<img class= 'img-rounded btn center-block' src='$logo_url' style='height:180px; max-width:340px;'></a>
 				</div>
 				<div class='caption'>
 					<p><a class='text-title black-font' href='ProjectProfile.php?id=$id'>$title</a></p>

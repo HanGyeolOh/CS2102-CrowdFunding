@@ -157,7 +157,7 @@
 			<div class='thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
 				<div>
 				<a href='ProjectProfile.php?id=$id'>
-					<img class= 'img-rounded project-img btn center-block' src='$logo_url'></a>
+					<img class= 'img-rounded btn center-block' src='$logo_url' style='height:180px; max-width:340px;'></a>
 				</div>
 				<div class='caption'>
 					<p><a class='text-title black-font' href='ProjectProfile.php?id=$id'>$title</a></p>
