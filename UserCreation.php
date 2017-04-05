@@ -92,6 +92,7 @@ function validateType() {
   var file = document.getElementById("file").value;
   var filetype = getFileExtension(file);
   console.log(filetype);
+  document.getElementById("file_type_verification").innerHTML="";
 
   if (file == "") {
     return false;

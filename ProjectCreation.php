@@ -74,6 +74,10 @@
       document.getElementById("file1_size_verification").innerHTML="";
       document.getElementById("file2_size_verification").innerHTML="";
       document.getElementById("file3_size_verification").innerHTML="";
+      document.getElementById("logo_verification").innerHTML="";
+      document.getElementById("file1_verification").innerHTML="";
+      document.getElementById("file2_verification").innerHTML="";
+      document.getElementById("file3_verification").innerHTML="";
 
       if (logo == "") {
         checklogo = false;
