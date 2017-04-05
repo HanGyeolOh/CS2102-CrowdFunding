@@ -80,12 +80,19 @@ function validatePassword() {
     if(password == ""){
         document.getElementById("password_verification").innerHTML="";
         document.getElementById("SubmitButton").disabled = true;
-    } else if (password !== password_check) {
-        document.getElementById("password_verification").innerHTML="Password does not match";
-        document.getElementById("SubmitButton").disabled = true;
-    } else if (password === password_check) {
-        document.getElementById("password_verification").innerHTML="Password matched";
-        document.getElementById("SubmitButton").disabled = false;
+    }
+    if(password.length<8) {
+      document.getElementById("password_verification").innerHTML="Password is too short";
+      document.getElementById("SubmitButton").disabled = true;
+    }
+    else if (password.length>=8) {
+        if (password !== password_check) {
+          document.getElementById("password_verification").innerHTML="Password does not match";
+          document.getElementById("SubmitButton").disabled = true;
+      } else if (password === password_check) {
+          document.getElementById("password_verification").innerHTML="Password matched";
+          document.getElementById("SubmitButton").disabled = false;
+      }
     }
 }
 </script>
