@@ -64,7 +64,7 @@
         <div class="form-group row">
           <label for="example-text-input" class="col-2 col-form-label">Project Title</label>
           <div class="col-10">
-            <input class="form-control" type="text" id="example-text-input" name="title" required/>
+            <input class="form-control" type="text" id="example-text-input" name="title" maxlength="256" required/>
           </div>
         </div>
         <div class="form-group row">
@@ -88,7 +88,7 @@
         <div class="form-group row">
           <label for="example-text-input" class="col-2 col-form-label">Brief Description</label>
           <div class="col-10">
-            <input class="form-control" type="text" id="example-text-input" name="description" required/>
+            <input class="form-control" type="text" id="example-text-input" name="description" maxlength="256" required/>
           </div>
         </div>
         <div class="form-group row">
