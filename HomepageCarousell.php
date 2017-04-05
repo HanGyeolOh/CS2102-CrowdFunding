@@ -52,9 +52,14 @@
 						<hr>
 						<p class='carousel-small-text'>Fund Hunter provides a platform for creative individuals to realise their dreams.</p>
 						<p class='carousel-small-text'>Make the first step and launch your project today.</p>
-						<br>
-						<p><a href='projectcreation.php' class='btn btn-primary btn-lg'>Get started</a></p>
-					</div>
+						<br>";
+						$my_email = $_SESSION['username'];
+						if(!isset($_SESSION['username'])) {
+							echo "<p><a href='usercreation.php' class='btn btn-primary btn-lg'>Get started</a></p>";
+						} else {
+							echo "<p><a href='projectcreation.php' class='btn btn-primary btn-lg'>Get started</a></p>";
+						}
+					echo "</div>
 					</div>
 				</div>
 
@@ -72,9 +77,14 @@
 						<hr>
 						<p class='carousel-small-text'>Fund Hunter provides a platform for creative individuals to realise their dreams.</p>
 						<p class='carousel-small-text'>Make the first step and launch your project today.</p>
-						<br>
-						<p><a href='projectcreation.php' class='btn btn-primary btn-lg'>Get started</a></p>
-					</div>
+						<br>";
+						$my_email = $_SESSION['username'];
+						if(!isset($_SESSION['username'])) {
+							echo "<p><a href='usercreation.php' class='btn btn-primary btn-lg'>Get started</a></p>";
+						} else {
+							echo "<p><a href='projectcreation.php' class='btn btn-primary btn-lg'>Get started</a></p>";
+						}
+					echo "</div>
 				</div>
 
 				<div class='item'>
@@ -103,9 +113,14 @@
 						<hr>
 						<p class='carousel-small-text'>Fund Hunter provides a platform for creative individuals to realise their dreams.</p>
 						<p class='carousel-small-text'>Make the first step and launch your project today.</p>
-						<br>
-						<p><a href='projectcreation.php' class='btn btn-primary btn-lg'>Get started</a></p>
-					</div>
+						<br>";
+						$my_email = $_SESSION['username'];
+						if(!isset($_SESSION['username'])) {
+							echo "<p><a href='usercreation.php' class='btn btn-primary btn-lg'>Get started</a></p>";
+						} else {
+							echo "<p><a href='projectcreation.php' class='btn btn-primary btn-lg'>Get started</a></p>";
+						}
+					echo "</div>
 				</div>
 
 				<div class='item'>
