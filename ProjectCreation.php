@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<title>Create a Project</title>
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -51,6 +52,62 @@
       require('dbconn.php');
       require('NavigationBar.php');
   ?>
+
+  <script type="text/javascript">
+    function valdiateType() {
+      var file1 = document.getElementById("file1").value;
+      var file2 = document.getElementById("file2").value;
+      var file3 = document.getElementById("file3").value;
+      var filetype1 = getFileExtension(file1);
+      var filetype2 = getFileExtension(file2);
+      var filetype3 = getFileExtension(file3);
+
+      var check1 = false;
+      var check2 = false;
+      var check3 = false;
+
+      document.getElementById("SubmitButton").disabled = true;
+
+      if (file1 == "") {
+        check1 = false;
+      } else if(filetype1 != "jpeg" && filetype1 != "jpg" && filetype1 != "png" && filetype1 != "gif") {
+        document.getElementById("file1_verification").innerHTML = "Invalid File Type";
+        document.getElementById("SubmitButton").disabled = true;
+      } else {
+        document.getElementById("file1_verification").innerHTML="";
+        check1 = true;
+      }
+
+      if (file2 == "") {
+        check2 = true;
+      } else if(filetype2 != "jpeg" && filetype2 != "jpg" && filetype2 != "png" && filetype2 != "gif") {
+        document.getElementById("file2_verification").innerHTML = "Invalid File Type";
+        document.getElementById("SubmitButton").disabled = true;
+      } else {
+        document.getElementById("file2_verification").innerHTML="";
+        check2 = true;
+      }
+
+      if (file3 == "") {
+        check3 = true;
+      } else if(filetype3 != "jpeg" && filetype3 != "jpg" && filetype3 != "png" && filetype3 != "gif") {
+        document.getElementById("file3_verification").innerHTML = "Invalid File Type";
+        document.getElementById("SubmitButton").disabled = true;
+      } else {
+        document.getElementById("file3_verification").innerHTML="";
+        check3 = true;
+      }
+
+      if (check1 && check2 && check3) {
+        document.getElementById("SubmitButton").disabled = false;
+      }
+
+    }
+
+    function getFileExtension(filename) {
+      return filename.substr(filename.lastIndexOf('.')+1).toLowerCase();
+    }
+  </script>
 
   <form action="ProjectCreationForm.php" method="post" enctype="multipart/form-data" name="form">
   <div class="container">
@@ -126,14 +183,27 @@
                   <p class="lead">Select a PNG or JPEG image, having maximum size 500KB.</p>
                 </div>
                 <div class="form-group" align="center">
-                  <h3>Project Image #1 </h3><input type="file" name="file1" id="file1" required/>
-                  <h3>Project Image #2 </h3><input type="file" name="file2" id="file2" required/>
-                  <h3>Project Image #3 </h3><input type="file" name="file3" id="file3" required/>
+                  <h3>Project Image #1 </h3><input type="file" name="file1" id="file1" onchange="valdiateType()" required/>
+                </div>
+                <div style="text-align: center;">
+                  <span id="file1_verification" style="color:red;"></span>
+                </div>
+                <div class="form-group" align="center">
+                  <h3>Project Image #2 </h3><input type="file" name="file2" id="file2" onchange="valdiateType()"/>
+                </div>
+                <div style="text-align: center;">
+                  <span id="file2_verification" style="color:red;"></span>
+                </div>
+                <div class="form-group" align="center">
+                    <h3>Project Image #3 </h3><input type="file" name="file3" id="file3" onchange="valdiateType()"/>
+                </div>
+                <div style="text-align: center;">
+                  <span id="file3_verification" style="color:red;"></span>
                 </div>
               </div>
           </div>
 
-          <input type="submit" name="submit" value="Submit" class="btn btn-default" id="SubmitButton" style="float: right;"/>
+          <input type="submit" name="submit" value="Submit" class="btn btn-default" id="SubmitButton" style="float: right;" disabled/>
 
       </div>
     </div>
