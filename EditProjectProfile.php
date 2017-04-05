@@ -98,7 +98,7 @@
         <div class="form-group row">
           <label for="example-date-input" class="col-2 col-form-label">End Date</label>
           <div class="col-10">
-            <input class="form-control" type="date" value="2011-01-01" id="example-date-input" name="end_date" required value="<?php echo $end_date; ?>"/>
+            <input class="form-control" type="date" id="example-date-input" name="end_date" required value="<?php echo $end_date; ?>"/>
           </div>
         </div>
         <div class="form-group row">
