@@ -15,7 +15,11 @@ while ($row = pg_fetch_row($result)) {
   $image_url = $row[0];
   unlink($image_url);
 }
-rmdir("image/project/$id");
+$first_token = strtok($image_url, '/');
+$second_token = strtok('/');
+$third_token = strtok('/');
+$directory = $first_token . '/' . $second_token . '/' . $third_token;
+rmdir($directory);
 
 $query = "DELETE FROM projects WHERE project_id = '$project_id';";
 $result = pg_query($dbconn, $query);
