@@ -12,6 +12,13 @@ unlink($image_url);
 $query = "DELETE FROM users WHERE email = '$email';";
 $result = pg_query($dbconn, $query);
 
-header('Location: AdminPage.php');
+if($email === 'admin@example.com') {
+  header('Location: Homepage.php');
+  unset($_SESSION["username"]);
+  unset($_SESSION["password"]);
+}
+else {
+  header('Location: AdminPage.php');
+}
 
 ?>

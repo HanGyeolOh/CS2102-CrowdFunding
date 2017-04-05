@@ -70,7 +70,7 @@
         <div class="form-group row">
           <label for="example-email-input" class="col-2 col-form-label">Target Amount</label>
           <div class="col-10">
-            <input class="form-control" type="number" onkeypress="return event.charCode >= 48" min="1" id="example-email-input" name="target_amount" required/>
+            <input class="form-control" type="number" id="example-email-input" name="target_amount" required/>
           </div>
         </div>
         <div class="form-group row">

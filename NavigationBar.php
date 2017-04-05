@@ -81,13 +81,15 @@
           <li><a href='AdminPage.php'>Admin Page</a></li>
         </ul>
         <ul class='nav navbar-nav navbar-right'>
+          <li><a href='ProjectCreation.php'>Create a project</a></li>
+        </ul>
+        <ul class='nav navbar-nav navbar-right'>
           <li><a href='logout.php'>Logout</a></li>
         </ul>";
       }
       else{
         echo
-        "
-        <ul class='nav navbar-nav navbar-right'>
+        "<ul class='nav navbar-nav navbar-right'>
           <li><a href='ProjectCreation.php'>Create a project</a></li>
         </ul>
         <ul class='nav navbar-nav navbar-right'>

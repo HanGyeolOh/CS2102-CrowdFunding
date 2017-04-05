@@ -110,19 +110,13 @@
   require('NavigationBar.php');
   ?>
 
-  <?php
-	$query="SELECT * FROM thumbnail_info WHERE project_id='$project_id'";
-	$result = pg_query($query) or die('Query failed: ' . pg_last_error());
-	$row = pg_fetch_row($result);
-	$owner_email = $row[9];
-  ?>
   <!-- Project Summary -->
   <div class="row jumbotron thin-jumbotron">
     <h3 class="text-center strong">
         <a href="ProjectProfile.php?id=<?php echo $project_id; ?>" role="button"><?php echo $title; ?> - <?php echo $description; ?></a>
     </h3>
       <h5 class="text-center strong">     by
-        <?php echo "<a href='UserProfile.php?email=$owner_email' role='button'>$owner_name</a>";?>
+        <a href="User%20Profile.php" role="button"><?php echo $owner_name; ?></a>
       </h5>
     </p>
   </div>
@@ -147,7 +141,7 @@
               <div class="col-lg-4">
                 <div class="input-group has-success">
                   <span class="input-group-addon">SGD $</span>
-                  <input type="number" class="form-control" onkeypress="return event.charCode >= 48" min="1" placeholder="Investment Amount Here" name="amount" id="donation_amount"/>
+                  <input type="text" class="form-control" placeholder="Investment Amount Here" name="amount" id="donation_amount"/>
                 </div>
               </div>
               <div class="col-lg-2">

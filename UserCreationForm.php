@@ -5,8 +5,9 @@ if(isset($_POST['submit'])){
   $email = $_POST["email"];
   $query = "SELECT count(*) FROM users WHERE email = '$email';";
   $result = pg_query($dbconn, $query);
+  $number = pg_fetch_result($result, 0, 0);
 
-  if(pg_fetch_result($result, 0, 0) === 0) {
+  if($number == 0) {
     $name = $_POST["name"];
     $dob = $_POST["dob"];
     $address = $_POST["address"];
@@ -170,7 +171,7 @@ if(isset($_POST['submit'])){
   <div class="jumbotron">
     <div class="container">
       <div class="page-header" align="center">
-        <h1 style="margin-top: px">Account Already Exist with Your Email!</h1>
+        <h1 style="margin-top: px">Account Already Exist with Your Email</h1>
       </div>
       <div class="button-container" align="center">
         <a href="UserCreation.php" class="btn btn-default btn-lg" type="button">Go back</a>
