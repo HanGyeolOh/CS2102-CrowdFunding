@@ -41,3 +41,4 @@ insert into users values ('Eliza','seventynine@dmail.com','1993-05-26','112 Juro
 insert into users values ('Jonathan','jonathanclone2123@clone.com','1993-05-28','Blk 142 Sengkang Street 70, #06-09','482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
 insert into users values ('Alvin','hoasdwr@iiemail.com.usa','1993-05-29','2001 Joo Koon Green','482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
 insert into users values ('Robby','robbie@gmail.sg','1993-05-12','Blk 124 Marine Parade Street' ,'482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
+insert into users values ('Admin','admin@example.com','1995-05-12','Blk 000 Marine Parade Street' ,'482c811da5d5b4bc6d497ffa98491e38','image/profile/profilepic1');
