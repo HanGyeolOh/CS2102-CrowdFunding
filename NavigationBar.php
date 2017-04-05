@@ -62,7 +62,6 @@
       <ul class="nav navbar-nav">
         <li><a href="AboutUs.php">About Us</a></li>
         <li><a href="SuccessfulPage.php">Funded Projects</a></li>
-        <li><a href="ProjectCreation.php">Create a project</a></li>
       </ul>
 
       <?php
@@ -87,7 +86,11 @@
       }
       else{
         echo
-        "<ul class='nav navbar-nav navbar-right'>
+        "
+        <ul class='nav navbar-nav navbar-right'>
+          <li><a href='ProjectCreation.php'>Create a project</a></li>
+        </ul>
+        <ul class='nav navbar-nav navbar-right'>
           <li><a href='UserProfileAdmin.php'>My Profile</a></li>
         </ul>
         <ul class='nav navbar-nav navbar-right'>

@@ -113,7 +113,7 @@
   <!-- Project Summary -->
   <div class="row jumbotron thin-jumbotron">
     <h3 class="text-center strong">
-        <a href="Project%20Profile.php?id=<?php echo $project_id; ?>" role="button"><?php echo $title; ?> - <?php echo $description; ?></a>
+        <a href="ProjectProfile.php?id=<?php echo $project_id; ?>" role="button"><?php echo $title; ?> - <?php echo $description; ?></a>
     </h3>
       <h5 class="text-center strong">     by
         <a href="User%20Profile.php" role="button"><?php echo $owner_name; ?></a>
