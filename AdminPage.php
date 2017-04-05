@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width = device-width, initial-scale = 1">
-<title>AdminPage</title>
+<title>Admin Page</title>
 
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
@@ -87,7 +87,7 @@
 	margin-left: 40px;
 }
 .project_thumbnail{
-	height:550px;
+	height:580px;
 	width:350px;
 	margin-left: 40px;
 }
@@ -95,10 +95,10 @@
 	position: absolute;
 	width:100%;
 	bottom:15;
-	height:50px;
+	height:40px;
 }
 .my-footer-past{
-	height:70px;
+	height:80px;
 }
 .text-narrow{
 	font-size:12px;
@@ -118,6 +118,9 @@
 	height:10px;
 	margin-bottom:4px;
 	width:340px;
+}
+.hr {
+	padding-top: 5px;
 }
 </style>
 </head>
