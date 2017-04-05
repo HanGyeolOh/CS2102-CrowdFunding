@@ -74,6 +74,7 @@ function validatePassword() {
             document.getElementById("password_verification").innerHTML="Password matched";
             document.getElementById("SubmitButton").disabled = false;
         }
+      }
 }
 </script>
 

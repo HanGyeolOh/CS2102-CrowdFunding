@@ -79,7 +79,12 @@ if(isset($_POST['submit'])){
     $result = pg_query($dbconn, $query);
 
     $_SESSION['username'] = $email;
-    header('Location: UserProfileAdmin.php');
+    if($email === 'admin@example.com') {
+      header('Location: AdminPage.php');
+    }
+    else {
+      header('Location: UserProfileAdmin.php');
+    }
   }
 }
 ?>
