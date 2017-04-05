@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<title>Create a user</title>
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,27 +56,58 @@
   ?>
 
 <script type="text/javascript">
-function validatePassword() {
-    var password = document.forms["form"]["password"].value;
-    var password_check = document.forms["form"]["password_check"].value;
-    if(password == ""){
-        document.getElementById("password_verification").innerHTML="";
-        document.getElementById("SubmitButton").disabled = true;
-      }
-       if(password.length<8) {
-        document.getElementById("password_verification").innerHTML="Password is too short";
-        document.getElementById("SubmitButton").disabled = true;
-      }
-      else if (password.length>=8) {
-          if (password !== password_check) {
-            document.getElementById("password_verification").innerHTML="Password does not match";
-            document.getElementById("SubmitButton").disabled = true;
-        } else if (password === password_check) {
-            document.getElementById("password_verification").innerHTML="Password matched";
-            document.getElementById("SubmitButton").disabled = false;
-        }
-      }
+function validate () {
+  document.getElementById("SubmitButton").disabled = true;
+  var check1 = validatePassword();
+  var check2 = validateType();
+  if (check1 && check2) {
+    document.getElementById("SubmitButton").disabled = false;
+  }
 }
+function validatePassword() {
+  var password = document.forms["form"]["password"].value;
+  var password_check = document.forms["form"]["password_check"].value;
+  if(password == ""){
+    document.getElementById("password_verification").innerHTML="";
+    document.getElementById("SubmitButton").disabled = true;
+    return false;
+  }
+  if(password.length<8) {
+    document.getElementById("password_verification").innerHTML="Password is too short";
+    document.getElementById("SubmitButton").disabled = true;
+  }
+  else if (password.length>=8) {
+    if (password !== password_check) {
+      document.getElementById("password_verification").innerHTML="Password does not match";
+      document.getElementById("SubmitButton").disabled = true;
+    } else if (password === password_check) {
+      document.getElementById("password_verification").innerHTML="Password matched";
+      return true;
+    }
+  }
+  return false;
+}
+function validateType() {
+  var file = document.getElementById("file").value;
+  var filetype = getFileExtension(file);
+  console.log(filetype);
+
+  if (file == "") {
+    return false;
+  } else if(filetype != "jpeg" && filetype != "jpg" && filetype != "png" && filetype != "gif") {
+    document.getElementById("file_verification").innerHTML = "Invalid File Type";
+    return false;
+  } else {
+    document.getElementById("file_verification").innerHTML="";
+    return true;
+  }
+  return false;
+}
+
+function getFileExtension(filename) {
+  return filename.substr(filename.lastIndexOf('.')+1).toLowerCase();
+}
+
 </script>
 
 <form action="UserCreationForm.php" method="post" enctype="multipart/form-data" name="form">
@@ -123,7 +155,7 @@ function validatePassword() {
         <div class="form-group row">
           <label for="example-password-input" class="col-2 col-form-label">Retype Password</label>
           <div class="col-10">
-            <input class="form-control" type="password" id="confirmPassword" name="password_check" onkeyup="validatePassword()" required/>
+            <input class="form-control" type="password" id="confirmPassword" name="password_check" onkeyup="validate()" required/>
             <span id="password_verification"></span>
           </div>
         </div>
@@ -136,7 +168,10 @@ function validatePassword() {
                   <p class="lead">Select a PNG or JPEG image, having maximum size 500KB.</p>
                 </div>
                 <div class="form-group" align="center">
-                  <input type="file" name="file" id="file" required/>
+                  <input type="file" name="file" id="file" onchange="validate()" required/>
+                </div>
+                <div style="text-align: center;">
+                  <span id="file_verification" style="color:red;"></span>
                 </div>
               </div>
           </div>

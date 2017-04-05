@@ -54,10 +54,12 @@
   ?>
 
   <script type="text/javascript">
-    function valdiateType() {
+    function validateType() {
       var file1 = document.getElementById("file1").value;
       var file2 = document.getElementById("file2").value;
       var file3 = document.getElementById("file3").value;
+      var logo = document.getElementById("logo").value;
+      var logoType = getFileExtension(logo);
       var filetype1 = getFileExtension(file1);
       var filetype2 = getFileExtension(file2);
       var filetype3 = getFileExtension(file3);
@@ -65,8 +67,19 @@
       var check1 = false;
       var check2 = false;
       var check3 = false;
+      var checklogo = false;
 
       document.getElementById("SubmitButton").disabled = true;
+
+      if (logo == "") {
+        checklogo = false;
+      } else if(logoType != "jpeg" && logoType != "jpg" && logoType != "png" && logoType != "gif") {
+        document.getElementById("logo_verification").innerHTML = "Invalid File Type";
+        document.getElementById("SubmitButton").disabled = true;
+      } else {
+        document.getElementById("logo_verification").innerHTML="";
+        checklogo = true;
+      }
 
       if (file1 == "") {
         check1 = false;
@@ -98,7 +111,7 @@
         check3 = true;
       }
 
-      if (check1 && check2 && check3) {
+      if (check1 && check2 && check3 && checklogo) {
         document.getElementById("SubmitButton").disabled = false;
       }
 
@@ -174,7 +187,10 @@
               <p class="lead">Select a PNG or JPEG image, having maximum size 500KB.</p>
             </div>
             <div class="form-group" align="center">
-              <input type="file" name="logo" id="logo" required/>
+              <input type="file" name="logo" id="logo" onchange="validateType()" required/>
+            </div>
+            <div style="text-align: center;">
+              <span id="logo_verification" style="color:red;"></span>
             </div>
           </div>
               <div class="container">
@@ -183,19 +199,19 @@
                   <p class="lead">Select a PNG or JPEG image, having maximum size 500KB.</p>
                 </div>
                 <div class="form-group" align="center">
-                  <h3>Project Image #1 </h3><input type="file" name="file1" id="file1" onchange="valdiateType()" required/>
+                  <h3>Project Image #1 </h3><input type="file" name="file1" id="file1" onchange="validateType()" required/>
                 </div>
                 <div style="text-align: center;">
                   <span id="file1_verification" style="color:red;"></span>
                 </div>
                 <div class="form-group" align="center">
-                  <h3>Project Image #2 </h3><input type="file" name="file2" id="file2" onchange="valdiateType()"/>
+                  <h3>Project Image #2 </h3><input type="file" name="file2" id="file2" onchange="validateType()"/>
                 </div>
                 <div style="text-align: center;">
                   <span id="file2_verification" style="color:red;"></span>
                 </div>
                 <div class="form-group" align="center">
-                    <h3>Project Image #3 </h3><input type="file" name="file3" id="file3" onchange="valdiateType()"/>
+                    <h3>Project Image #3 </h3><input type="file" name="file3" id="file3" onchange="validateType()"/>
                 </div>
                 <div style="text-align: center;">
                   <span id="file3_verification" style="color:red;"></span>
