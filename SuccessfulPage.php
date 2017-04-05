@@ -1,5 +1,6 @@
 <!-- Home Page -->
 <html lang="en">
+<title>Successful Projects</title>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
