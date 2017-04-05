@@ -70,6 +70,10 @@
       var checklogo = false;
 
       document.getElementById("SubmitButton").disabled = true;
+      document.getElementById("logo_size_verification").innerHTML="";
+      document.getElementById("file1_size_verification").innerHTML="";
+      document.getElementById("file2_size_verification").innerHTML="";
+      document.getElementById("file3_size_verification").innerHTML="";
 
       if (logo == "") {
         checklogo = false;
@@ -78,7 +82,12 @@
         document.getElementById("SubmitButton").disabled = true;
       } else {
         document.getElementById("logo_verification").innerHTML="";
-        checklogo = true;
+        if (getFileSize("logo") > 500000) {
+          document.getElementById("logo_size_verification").innerHTML="File Size Exceeded";
+          checklogo = false;
+        } else {
+          checklogo = true;
+        }
       }
 
       if (file1 == "") {
@@ -88,7 +97,12 @@
         document.getElementById("SubmitButton").disabled = true;
       } else {
         document.getElementById("file1_verification").innerHTML="";
-        check1 = true;
+        if (getFileSize("file1") > 500000) {
+          document.getElementById("file1_size_verification").innerHTML="File Size Exceeded";
+          check1 = false;
+        } else {
+          check1 = true;
+        }
       }
 
       if (file2 == "") {
@@ -98,7 +112,12 @@
         document.getElementById("SubmitButton").disabled = true;
       } else {
         document.getElementById("file2_verification").innerHTML="";
-        check2 = true;
+        if (getFileSize("file2") > 500000) {
+          document.getElementById("file2_size_verification").innerHTML="File Size Exceeded";
+          check2 = false;
+        } else {
+          check2 = true;
+        }
       }
 
       if (file3 == "") {
@@ -108,18 +127,32 @@
         document.getElementById("SubmitButton").disabled = true;
       } else {
         document.getElementById("file3_verification").innerHTML="";
-        check3 = true;
+        if (getFileSize("file3") > 500000) {
+          document.getElementById("file3_size_verification").innerHTML="File Size Exceeded";
+          check3 = false;
+        } else {
+          check3 = true;
+        }
       }
 
       if (check1 && check2 && check3 && checklogo) {
         document.getElementById("SubmitButton").disabled = false;
       }
-
     }
 
     function getFileExtension(filename) {
       return filename.substr(filename.lastIndexOf('.')+1).toLowerCase();
     }
+
+    function getFileSize(input) {
+      var filepath, file;
+
+      filepath = document.getElementById(input);
+      file = filepath.files[0];
+      console.log(file.size);
+      return file.size;
+    }
+
   </script>
 
   <form action="ProjectCreationForm.php" method="post" enctype="multipart/form-data" name="form">
@@ -192,6 +225,9 @@
             <div style="text-align: center;">
               <span id="logo_verification" style="color:red;"></span>
             </div>
+            <div style="text-align: center;">
+              <span id="logo_size_verification" style="color:red;"></span>
+            </div>
           </div>
               <div class="container">
                 <div style="max-width: 650px; margin: auto;">
@@ -204,17 +240,26 @@
                 <div style="text-align: center;">
                   <span id="file1_verification" style="color:red;"></span>
                 </div>
+                <div style="text-align: center;">
+                  <span id="file1_size_verification" style="color:red;"></span>
+                </div>
                 <div class="form-group" align="center">
                   <h3>Project Image #2 </h3><input type="file" name="file2" id="file2" onchange="validateType()"/>
                 </div>
                 <div style="text-align: center;">
                   <span id="file2_verification" style="color:red;"></span>
                 </div>
+                <div style="text-align: center;">
+                  <span id="file2_size_verification" style="color:red;"></span>
+                </div>
                 <div class="form-group" align="center">
                     <h3>Project Image #3 </h3><input type="file" name="file3" id="file3" onchange="validateType()"/>
                 </div>
                 <div style="text-align: center;">
                   <span id="file3_verification" style="color:red;"></span>
+                </div>
+                <div style="text-align: center;">
+                  <span id="file3_size_verification" style="color:red;"></span>
                 </div>
               </div>
           </div>

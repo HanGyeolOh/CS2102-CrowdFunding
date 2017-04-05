@@ -60,7 +60,8 @@ function validate () {
   document.getElementById("SubmitButton").disabled = true;
   var check1 = validatePassword();
   var check2 = validateType();
-  if (check1 && check2) {
+  var check3 = validateSize();
+  if (check1 && check2 && check3) {
     document.getElementById("SubmitButton").disabled = false;
   }
 }
@@ -95,10 +96,10 @@ function validateType() {
   if (file == "") {
     return false;
   } else if(filetype != "jpeg" && filetype != "jpg" && filetype != "png" && filetype != "gif") {
-    document.getElementById("file_verification").innerHTML = "Invalid File Type";
+    document.getElementById("file_type_verification").innerHTML = "Invalid File Type";
     return false;
   } else {
-    document.getElementById("file_verification").innerHTML="";
+    document.getElementById("file_type_verification").innerHTML="";
     return true;
   }
   return false;
@@ -106,6 +107,31 @@ function validateType() {
 
 function getFileExtension(filename) {
   return filename.substr(filename.lastIndexOf('.')+1).toLowerCase();
+}
+
+function validateSize() {
+  var file = document.getElementById("file").value;
+  document.getElementById("file_size_verification").innerHTML="";
+  if (file == "") {
+    return false;
+  } else {
+    if (getFileSize("file") > 500000) {
+      document.getElementById("file_size_verification").innerHTML="File Size Exceeded";
+      return false;
+    } else {
+      return true;
+    }
+  }
+  return false;
+}
+
+function getFileSize(input) {
+      var filepath, file;
+
+      filepath = document.getElementById(input);
+      file = filepath.files[0];
+      console.log(file.size);
+      return file.size;
 }
 
 </script>
@@ -171,7 +197,10 @@ function getFileExtension(filename) {
                   <input type="file" name="file" id="file" onchange="validate()" required/>
                 </div>
                 <div style="text-align: center;">
-                  <span id="file_verification" style="color:red;"></span>
+                  <span id="file_type_verification" style="color:red;"></span>
+                </div>
+                <div style="text-align: center;">
+                  <span id="file_size_verification" style="color:red;"></span>
                 </div>
               </div>
           </div>
