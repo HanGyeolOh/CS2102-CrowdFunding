@@ -160,7 +160,7 @@
             $current_date = date("Y/m/d");
 
             $days_left = ceil(abs(strtotime($end_date) - strtotime($current_date)) / 86400);
-            $progress = round ( (((float)((int)$row[7] / (int)$row[6])) * 100), 0);
+            $progress = round ( (((float)((int)$row[8] / (int)$row[7])) * 100), 0);
 
             $query = "SELECT COUNT(*)
                 FROM projects p, investments i
@@ -266,7 +266,7 @@
             $current_date = date("Y/m/d");
 
             $days_left = ceil(abs(strtotime($end_date) - strtotime($current_date)) / 86400);
-            $progress = round ( (((float)((int)$row[7] / (int)$row[6])) * 100), 0);
+            $progress = round ( (((float)((int)$row[8] / (int)$row[7])) * 100), 0);
 
             $query = "SELECT COUNT(*)
                 FROM projects p, investments i
