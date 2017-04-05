@@ -175,6 +175,7 @@
 	<h3>Project List</h3><hr>
 	<div class='row'>
 	<?php
+  require('DeleteProjectPopup.php');
         $date_today = date("Ymd");
         $query = "SELECT p.title, p.description, p.project_id, p.logo_url, u.name, p.start_date, p.end_date, p.target_amount, p.current_amount, o.publisher_email, p.category
         			FROM projects p, ownership o, users u
@@ -269,7 +270,7 @@
 		    		</div>
 		    	</div>
           <a role='button' class='btn-warning btn' href='EditProjectProfile.php?id=$id' style='margin-top:25px; margin-bottom:25px;'>Edit Profile</a>
-          <a role='button' class='btn-danger btn' data-toggle='modal' data-target='#modal-1' style='margin-top:25px; margin-bottom:25px;'>Delete Project</a>
+          <a role='button' class='btn-danger btn' data-toggle='modal' data-target='#modal-2' style='margin-top:25px; margin-bottom:25px;'>Delete Project</a>
 		    </div>";
 		   }
     }

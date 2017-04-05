@@ -30,7 +30,7 @@
     } else {
       $days_left = ceil(abs(strtotime($end_date) - strtotime($current_date)) / 86400);
     }
-    $progress = (((float)((int)$row[6] / (int)$row[5])) * 100);
+    $progress = round ( (((float)((int)$row[6] / (int)$row[5])) * 100), 0);
 
     $query = "SELECT name, email FROM users WHERE email = ANY (SELECT publisher_email FROM ownership WHERE project_id = $project_id)";
     $result = pg_query($dbconn, $query);

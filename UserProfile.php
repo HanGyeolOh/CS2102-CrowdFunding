@@ -133,7 +133,7 @@
 
         <div class='row'>
           <ul class='list-group'>";
-        
+
           while ($row = pg_fetch_row($result)) {
             $title = $row[0];
             $description = $row[1];
@@ -149,7 +149,7 @@
       	    $current_date = date("Y/m/d");
 
             $days_left = ceil(abs(strtotime($end_date) - strtotime($current_date)) / 86400);
-      	    $progress = round ( (((float)((int)$row[7] / (int)$row[6])) * 100), 0);
+      	    $progress = round ( (((float)((int)$row[8] / (int)$row[7])) * 100), 0);
 
             $query = "SELECT COUNT(*)
                 FROM projects p, investments i
@@ -177,7 +177,7 @@
               <div class='col-lg-9'>
                 <p class='text-strong'>$$current_amount</p>
                 <p class='text-narrow'>invested of $$target_amount target</p>
-              </div>  
+              </div>
               <div class='col-lg-3'>
                 <p class='text-strong'>$num_investor</p>
                 <p class='text-narrow'>investors</p>
@@ -206,7 +206,7 @@
                 <div class='col-lg-4'>
                 <p class='text-strong'>$$current_amount</p>
                 <p class='text-narrow'>invested</p>
-              </div>  
+              </div>
                 <div class='col-lg-4'>
                   <p class='text-strong'>$days_left</p>
                   <p class='text-narrow'>days to go</p>
@@ -235,7 +235,7 @@
 
         <div class='row'>
           <ul class='list-group'>";
-        
+
           while ($row = pg_fetch_row($result)) {
             $title = $row[0];
             $description = $row[1];
@@ -251,7 +251,7 @@
             $current_date = date("Y/m/d");
 
             $days_left = ceil(abs(strtotime($end_date) - strtotime($current_date)) / 86400);
-            $progress = round ( (((float)((int)$row[7] / (int)$row[6])) * 100), 0);
+            $progress = round ( (((float)((int)$row[8] / (int)$row[7])) * 100), 0);
 
             $query = "SELECT COUNT(*)
                 FROM projects p, investments i
@@ -279,7 +279,7 @@
               <div class='col-lg-9'>
                 <p class='text-strong'>$$current_amount</p>
                 <p class='text-narrow'>invested of $$target_amount target</p>
-              </div>  
+              </div>
               <div class='col-lg-3'>
                 <p class='text-strong'>$num_investor</p>
                 <p class='text-narrow'>investors</p>
@@ -308,7 +308,7 @@
                 <div class='col-lg-4'>
                 <p class='text-strong'>$$current_amount</p>
                 <p class='text-narrow'>invested</p>
-              </div>  
+              </div>
                 <div class='col-lg-4'>
                   <p class='text-strong'>$days_left</p>
                   <p class='text-narrow'>days to go</p>
