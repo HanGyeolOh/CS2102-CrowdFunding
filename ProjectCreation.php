@@ -96,8 +96,17 @@
           <label for="example-text-input" class="col-2 col-form-label">Category</label>
           <div class="col-10">
             <select class="form-control" type="text" id="example-text-input" name="category" required/>
-              <option>Technology</option>
-              <option>Arts</option>
+              <?php
+        			$query = 'SELECT DISTINCT category FROM projects';
+        			$result = pg_query($query) or die('Query failed: ' . pg_last_error());
+
+        			while($line = pg_fetch_array($result, null, PGSQL_ASSOC)){
+        				foreach ($line as $col_value) {
+        					echo "<option value=\"".$col_value."\">".$col_value."</option><br>";
+        				}
+        			}
+        			pg_free_result($result);
+        			?>
             </select>
           </div>
         </div>

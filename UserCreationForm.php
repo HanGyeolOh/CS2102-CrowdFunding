@@ -38,7 +38,15 @@ if(isset($_POST['submit'])){
           else
           {
             $sourcePath = $_FILES["file"]["tmp_name"];
-            $targetPath = $destination_directory . $email;
+            if ($_FILES["logo"]["type"] == "image/png") {
+              $targetPath = "image/profile/$email.png";
+            } else if ($_FILES["logo"]["type"] == "image/jpg") {
+              $targetPath = "image/profile/$email.jpg";
+            } else if ($_FILES["logo"]["type"] == "image/jpeg") {
+              $targetPath = "image/profile/$email.jpeg";
+            } else if ($_FILES["logo"]["type"] == "image/gif") {
+            $targetPath = "image/profile/$email.gif";
+            }
             move_uploaded_file($sourcePath, $targetPath);
             echo "<div class=\"alert alert-success\" role=\"alert\">";
             echo "<p>Image uploaded successful</p>";
