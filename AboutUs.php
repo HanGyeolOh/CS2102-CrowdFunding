@@ -93,7 +93,7 @@
 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
 	<img src="img/kristen.jpg" class="img-circle center-block" width="80" height="80">
 	<div class="caption">
-	<h4 class="text-center">Kristen</h4>
+	<h4 class="text-center">Marianne</h4>
 	</div>
 </div>
 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
