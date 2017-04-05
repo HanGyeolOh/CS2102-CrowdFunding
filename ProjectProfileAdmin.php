@@ -167,6 +167,10 @@
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
           <a href="EditProjectProfile.php?id=<?php echo $project_id; ?>" class="button-middle btn btn-warning btn-lg pull-center">Edit Project</a>
+          <a role="button" class="button-middle btn btn-danger btn-lg pull-center" data-toggle="modal" data-target="#modal-2" style="margin-top:25px; margin-bottom:25px;">Delete Project</a>
+          <?php
+            require('DeleteProjectPopup.php');
+          ?>
         </div>
       </div>
     </div>
