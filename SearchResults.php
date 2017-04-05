@@ -82,52 +82,36 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 	$restrictions = "ORDER BY title ASC LIMIT $limit OFFSET $start_from";	
 	
 	
-	if (strcmp($title,"")==0 && strcmp($date,"")==0 && strcmp($category,"")==0){ //empty search
-		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
-		FROM projects ";
-	
-	} else if (strcmp($title,"")==0 && strcmp($date,"")==0) { // search by category only
-		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
+	if(strcmp($category,"")!=0){
+		$catquery="SELECT title, description, target_amount, current_amount, start_date, project_id
 		FROM projects
 		WHERE category='$category'";
-		
-	} else if(strcmp($category,"")==0 && strcmp($date,"")==0){ // search by title only 
-		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
+	} else {
+		$catquery="SELECT title, description, target_amount, current_amount, start_date, project_id
+		FROM projects";
+	} 
+	
+	if(strcmp($title,"")!=0){
+		$titlequery="SELECT title, description, target_amount, current_amount, start_date, project_id
 		FROM projects
 		WHERE lower(title) like lower('%".$title."%')";
+	} else {
+		$titlequery="SELECT title, description, target_amount, current_amount, start_date, project_id
+		FROM projects";
+	} 
 	
-	} else if(strcmp($category,"")==0 && strcmp($title,"")==0){ // search by year only 
-		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
+	if(strcmp($date,"")!=0){
+		$datequery="SELECT title, description, target_amount, current_amount, start_date, project_id
 		FROM projects
 		WHERE EXTRACT(YEAR FROM start_date) = '$date'";
-
-	} else if(strcmp($category,"")==0){ // search by year and title only 
-		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
-		FROM projects
-		WHERE EXTRACT(YEAR FROM start_date) = '$date'
-		AND lower(title) like lower('%".$title."%')";
-		
-	} else if(strcmp($date,"")==0){ // search by category & title
-		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
-		FROM projects
-		WHERE lower(title) like lower('%".$title."%')
-		AND category='$category'";
-	
-	} else if(strcmp($title,"")==0){ // search by category and date
-		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
-		FROM projects
-		WHERE EXTRACT(YEAR FROM start_date) = '$date'
-		AND category='$category'";
-	
-	} else { // search by category, title, date
-		$query="SELECT title, description, target_amount, current_amount, start_date, project_id
-		FROM projects
-		WHERE EXTRACT(YEAR FROM start_date) = '$date'
-		AND category='$category'
-		AND lower(title) like lower('%".$title."%')";
+	} else {
+		$datequery="SELECT title, description, target_amount, current_amount, start_date, project_id
+		FROM projects";
 	}
 	
-	$complete_query = $query . $restrictions;	
+	$query = $catquery . " INTERSECT " . $datequery . " INTERSECT " . $titlequery . " ";
+	$complete_query = $query . $restrictions;		
+
 	$result = pg_query($complete_query) or die('Query failed: ' . pg_last_error()); 
 	
 	$index = ($page - 1) * $limit + 1;
