@@ -154,7 +154,7 @@
 		  echo "
 			<div class='user_thumbnail col-lg-3 col-md-3 col-sm-4 col-xs-6'>
 				<div>
-					<img class= 'img-rounded project-img btn center-block' src='$image_url.jpg' href='UserProfile.php?email=$email'>
+					<img class= 'img-rounded project-img btn center-block' src='$image_url' href='UserProfile.php?email=$email'>
 				</div>
 				<div class='caption'>
 					<p><a class='text-title black-font' href='UserProfile.php?email=$email'>$name</a></p>
