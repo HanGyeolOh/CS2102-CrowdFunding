@@ -43,7 +43,15 @@ if(isset($_POST['submit'])){
           else
           {
             $sourcePath = $_FILES["logo"]["tmp_name"];
-            $targetPath = $destination_directory . $project_id;
+            if ($_FILES["logo"]["type"] == "image/png") {
+              $targetPath = "image/company/$project_id.png";
+            } else if ($_FILES["logo"]["type"] == "image/jpg") {
+              $targetPath = "image/company/$project_id.jpg";
+            } else if ($_FILES["logo"]["type"] == "image/jpeg") {
+              $targetPath = "image/company/$project_id.jpeg";
+            } else if ($_FILES["logo"]["type"] == "image/gif") {
+              $targetPath = "image/company/$project_id.gif";
+            }
             $logo_url = $targetPath;
             move_uploaded_file($sourcePath, $targetPath);
             echo "<div class=\"alert alert-success\" role=\"alert\">";
@@ -97,7 +105,15 @@ if(isset($_POST['submit'])){
           else
           {
             $sourcePath = $_FILES["file1"]["tmp_name"];
-            $targetPath = $destination_directory . $project_id . '_1';
+            if ($_FILES["logo"]["type"] == "image/png") {
+              $targetPath = "image/project/$project_id/$project_id"."_1.png";
+            } else if ($_FILES["logo"]["type"] == "image/jpg") {
+              $targetPath = "image/project/$project_id/$project_id"."_1.jpg";
+            } else if ($_FILES["logo"]["type"] == "image/jpeg") {
+              $targetPath = "image/project/$project_id/$project_id"."_1.jpeg";
+            } else if ($_FILES["logo"]["type"] == "image/gif") {
+              $targetPath = "image/project/$project_id/$project_id"."_1.gif";
+            }
             $picture_url_1 = $targetPath;
             move_uploaded_file($sourcePath, $targetPath);
             echo "<div class=\"alert alert-success\" role=\"alert\">";
@@ -146,7 +162,15 @@ if(isset($_POST['submit'])){
           else
           {
             $sourcePath = $_FILES["file2"]["tmp_name"];
-            $targetPath = $destination_directory . $project_id . '_2';
+            if ($_FILES["logo"]["type"] == "image/png") {
+              $targetPath = "image/project/$project_id/$project_id"."_2.png";
+            } else if ($_FILES["logo"]["type"] == "image/jpg") {
+              $targetPath = "image/project/$project_id/$project_id"."_2.jpg";
+            } else if ($_FILES["logo"]["type"] == "image/jpeg") {
+              $targetPath = "image/project/$project_id/$project_id"."_2.jpeg";
+            } else if ($_FILES["logo"]["type"] == "image/gif") {
+              $targetPath = "image/project/$project_id/$project_id"."_2.gif";
+            }
             $picture_url_2 = $targetPath;
             move_uploaded_file($sourcePath, $targetPath);
             echo "<div class=\"alert alert-success\" role=\"alert\">";
@@ -195,7 +219,15 @@ if(isset($_POST['submit'])){
           else
           {
             $sourcePath = $_FILES["file3"]["tmp_name"];
-            $targetPath = $destination_directory . $project_id . '_3';
+            if ($_FILES["logo"]["type"] == "image/png") {
+              $targetPath = "image/project/$project_id/$project_id"."_3.png";
+            } else if ($_FILES["logo"]["type"] == "image/jpg") {
+              $targetPath = "image/project/$project_id/$project_id"."_3.jpg";
+            } else if ($_FILES["logo"]["type"] == "image/jpeg") {
+              $targetPath = "image/project/$project_id/$project_id"."_3.jpeg";
+            } else if ($_FILES["logo"]["type"] == "image/gif") {
+              $targetPath = "image/project/$project_id/$project_id"."_3.gif";
+            }
             $picture_url_3 = $targetPath;
             move_uploaded_file($sourcePath, $targetPath);
             echo "<div class=\"alert alert-success\" role=\"alert\">";
@@ -220,16 +252,6 @@ if(isset($_POST['submit'])){
   }
 
   require('dbconn.php');
-
-  // if ($_FILES["logo"]["type"] == "image/png") {
-  //   $logo_url = "image/company/$project_id.png";
-  // } else if ($_FILES["logo"]["type"] == "image/jpg") {
-  //   $logo_url = "image/company/$project_id.jpg";
-  // } else if ($_FILES["logo"]["type"] == "image/jpeg") {
-  //   $logo_url = "image/company/$project_id.jpeg";
-  // } else if ($_FILES["logo"]["type"] == "image/gif") {
-  //   $logo_url = "image/company/$project_id.gif";
-  // }
 
   $query = "INSERT INTO projects VALUES('$title', '$description', '$start_date', '$end_date', $project_id, $target_amount, $current_amount, '$category', '$logo_url')";
   $result = pg_query($dbconn, $query);
