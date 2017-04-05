@@ -75,13 +75,13 @@
 <h2 class="text-center">Our Team</h2>
 <br>
 <div class="col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-4 col-xs-4">
-	<img src="img/heisenberg.jpg" class="img-circle center-block" width="80" height="80">
+	<img src="img/han.jpg" class="img-circle center-block" width="80" height="80">
 	<div class="caption">
 	<h4 class="text-center">Han</h4>
 	</div>
 </div>
 <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-	<img src="img/heisenberg.jpg" class="img-circle center-block" width="80" height="80">
+	<img src="img/kenphoto.jpg" class="img-circle center-block" width="80" height="80">
 	<div class="caption">
 	<h4 class="text-center">Ken</h4>
 	</div>
@@ -93,13 +93,13 @@
 	</div>
 </div>
 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-	<img src="img/heisenberg.jpg" class="img-circle center-block" width="80" height="80">
+	<img src="img/kristen.jpg" class="img-circle center-block" width="80" height="80">
 	<div class="caption">
 	<h4 class="text-center">Kristen</h4>
 	</div>
 </div>
 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-	<img src="img/heisenberg.jpg" class="img-circle center-block" width="80" height="80">
+	<img src="img/tiankai.jpg" class="img-circle center-block" width="80" height="80">
 	<div class="caption">
 	<h4 class="text-center">Tian Kai</h4>
 	</div>
