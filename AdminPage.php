@@ -146,6 +146,9 @@
         while ($row = pg_fetch_row($result)) {
           $name = $row[0];
           $email = $row[1];
+          if($email === 'd_user@gmail.com') {
+            continue;
+          }
           $dob = $row[2];
           $address = $row[3];
           $password = $row[4];
