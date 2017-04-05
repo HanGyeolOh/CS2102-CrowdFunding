@@ -181,7 +181,6 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 	pg_free_result($result);
 	
 	echo '<li>'. $pageLink .'</li>';
-	echo "done";
 
 	if($page != $total_pages){
 		$next_page = $page + 1;
