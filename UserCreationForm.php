@@ -44,13 +44,14 @@ if(isset($_POST['submit'])){
             else
             {
               $sourcePath = $_FILES["file"]["tmp_name"];
-              if ($_FILES["logo"]["type"] == "image/png") {
+              $targetPath = "";
+              if ($_FILES["file"]["type"] == "image/png") {
                 $targetPath = "image/profile/$email.png";
-              } else if ($_FILES["logo"]["type"] == "image/jpg") {
+              } else if ($_FILES["file"]["type"] == "image/jpg") {
                 $targetPath = "image/profile/$email.jpg";
-              } else if ($_FILES["logo"]["type"] == "image/jpeg") {
+              } else if ($_FILES["file"]["type"] == "image/jpeg") {
                 $targetPath = "image/profile/$email.jpeg";
-              } else if ($_FILES["logo"]["type"] == "image/gif") {
+              } else if ($_FILES["file"]["type"] == "image/gif") {
                 $targetPath = "image/profile/$email.gif";
               }
               move_uploaded_file($sourcePath, $targetPath);
