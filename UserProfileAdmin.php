@@ -103,7 +103,7 @@
     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
       <!-- Profile Picture Thumbnail -->
       <?php
-        echo "<img src='$image_url' id='profilepic1' class='img-thumbnail pull-left' width='200' height='300'>";
+        echo "<img src='$image_url' id='profilepic' class='img-thumbnail pull-left' width='200' height='300'>";
       ?>
     </div>
 
@@ -127,8 +127,8 @@
     </div>
 
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-      <a role="button" class="btn-warning btn" href="EditUserProfile.php" style="margin-top:25px; margin-bottom:25px;">Edit Profile Details</a>
-      <a role="button" class="btn-danger btn" data-toggle="modal" data-target="#modal-1" style="margin-top:25px; margin-bottom:25px;">Delete Account</a>
+      <a role="button" class="btn-warning btn btn-lg pull-center" href="EditUserProfile.php" style="margin-top:25px; margin-bottom:25px;">Edit Profile Details</a>
+      <a role="button" class="btn-danger btn btn-lg pull-center" data-toggle="modal" data-target="#modal-1" style="margin-top:25px; margin-bottom:25px;">Delete Account</a>
       <?php
         require('DeleteUserPopup.php');
       ?>

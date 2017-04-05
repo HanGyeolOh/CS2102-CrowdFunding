@@ -98,7 +98,9 @@
 
     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
       <!-- Profile Picture Thumbnail -->
-      <img src="img/profilepic1.jpg" id="profilepic1" class="img-thumbnail pull-left" width="200" height="300">
+      <?php
+        echo "<img src='$image_url' id='profilepic' class='img-thumbnail pull-left' width='200' height='300'>";
+      ?>
     </div>
 
     <!-- Profile Info Table -->
