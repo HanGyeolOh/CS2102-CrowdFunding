@@ -65,8 +65,6 @@
 	<br>
 	<p><h4>As an investor in the Fund Hunter community, you may browse through thousands of projects according to your interests. More importantly, you can lend support to any interesting project you come across and play a part in realising the project.</h4></p>
 	<br>
-	<a role="button" class="btn btn-success btn-lg" href="ProjectCreation.php">Create Project</button></a>
-	<a role="button" class="btn btn-info btn-lg" href="AllProjects.php">Browse Projects</button></a>
 </div>
 </div>
 
