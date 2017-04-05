@@ -1,6 +1,7 @@
 <!-- Search Results Page -->
 <html lang="en">
 <head>
+<title>Search Results</title>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width = device-width, initial-scale = 1">
@@ -127,7 +128,6 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 <th class='text-center'>Start Date</th>
 <th class='text-center'>Funding Sought</th>
 <th class='text-center'>Amount Raised</th>
-<th class='text-center'>Invest!</th>
 </tr>
 </thead>
 
@@ -143,12 +143,11 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 		$project_id = $row[5];
 
 		echo "<tr><td align='center'>$index</td>
-		<td align='center'>$retrieved_title</td>
+		<td align='center'><a href='ProjectProfile.php?id=$project_id' class='btn'>$retrieved_title</a></td>
 		<td align='center'>$retrieved_desc</td>
 		<td align='center'>$retrieved_date</td>
 		<td align='center'>$retrieved_target</td>
-		<td align='center'>$retrieved_current</td>
-		<td align='center'><p><a href='ProjectProfile.php?id=".$project_id."' class='btn btn-primary btn-xs'>Invest!</a></p> </td></tr>";
+		<td align='center'>$retrieved_current</td></tr>";
 	
 		$index++;
 	}
