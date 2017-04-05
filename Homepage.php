@@ -124,7 +124,7 @@
 ?>
 
 <div class="container">
-	<h3>All projects!</h3><hr>
+	<h3>All projects</h3><hr>
 	<div class='row'>
 	<?php
         $query = "SELECT * FROM thumbnail_info";
