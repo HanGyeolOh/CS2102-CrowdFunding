@@ -153,7 +153,12 @@
             if($expired) {
               echo "<a href='#' class='button-middle btn btn-danger btn-lg pull-center'>Deadline Expired</a>";
             } else {
-              echo "<a href='InvestmentPage.php?id=$project_id' class='button-middle btn btn-info btn-lg pull-center'>Invest In This Project</a>";
+				$my_email = $_SESSION['username'];
+				if(!isset($_SESSION['username'])) {
+					echo "<a href='login.php' class='button-middle btn btn-info btn-lg pull-center'>Invest In This Project!</a>";
+				} else {
+					echo "<a href='InvestmentPage.php?id=$project_id' class='button-middle btn btn-info btn-lg pull-center'>Invest In This Project!</a>";
+				}
             }
           ?>
         </div>
