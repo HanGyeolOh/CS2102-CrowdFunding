@@ -147,7 +147,7 @@
               <div class="col-lg-4">
                 <div class="input-group has-success">
                   <span class="input-group-addon">SGD $</span>
-                  <input type="text" class="form-control" placeholder="Investment Amount Here" name="amount" id="donation_amount"/>
+                  <input type="number" class="form-control" onkeypress="return event.charCode >= 48" min="1" placeholder="Investment Amount Here" name="amount" id="donation_amount"/>
                 </div>
               </div>
               <div class="col-lg-2">
