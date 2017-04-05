@@ -47,9 +47,8 @@
 
 <body>
   <?php
+      session_start();
       require('dbconn.php');
-  ?>
-  <?php
       require('NavigationBar.php');
   ?>
 

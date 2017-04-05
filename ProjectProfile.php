@@ -139,7 +139,7 @@
             echo "<div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>";
           } else {
             echo "<div class='progress-bar' role='progressbar' aria-valuenow=$progress aria-valuemin='0' aria-valuemax='100' style='width: $progress%'></div>";
-          }  
+          }
         ?>
         <span class="progress-value"> <?php echo "$progress% Raised"; ?> </span>
       </div>
@@ -153,7 +153,7 @@
             if($expired) {
               echo "<a href='#' class='button-middle btn btn-danger btn-lg pull-center'>Deadline Expired</a>";
             } else {
-              echo "<a href='InvestmentPage.php?id=<?php echo $project_id; ?>' class='button-middle btn btn-info btn-lg pull-center'>Invest In This Project</a>";
+              echo "<a href='InvestmentPage.php?id=$project_id' class='button-middle btn btn-info btn-lg pull-center'>Invest In This Project</a>";
             }
           ?>
         </div>
