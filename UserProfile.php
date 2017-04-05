@@ -84,6 +84,7 @@
         $name = pg_fetch_result($result, 0, 0);
         $dob = pg_fetch_result($result, 0, 2);
         $address = pg_fetch_result($result, 0, 3);
+        $image_url = pg_fetch_result($result, 0, 5);
       }
   ?>
 
