@@ -134,12 +134,7 @@
     <div class="panel-group" id="accordion">
       <!-- Default investment option -->
       <div class="panel panel-info">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a href="#defaultinvestmentoption" data-toggle="collapse" data-parent="accordion">Make an investment without a reward!</a>
-          </h4>
-        </div>
-        <div id="defaultinvestmentoption" class="panel-collapse collapse">
+        <div>
           <div class="panel-body">
             <h4>Thanks!</h4>
             <br>
@@ -149,7 +144,7 @@
               <div class="col-lg-4">
                 <div class="input-group has-success">
                   <span class="input-group-addon">SGD $</span>
-                  <input type="text" class="form-control" placeholder="Investment Amount Here" name="amount" id="donation_amount"/>
+                  <input type="number" min="0" class="form-control" placeholder="Investment Amount Here" name="amount" id="donation_amount"/>
                 </div>
               </div>
               <div class="col-lg-2">

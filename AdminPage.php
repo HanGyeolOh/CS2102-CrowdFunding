@@ -138,7 +138,6 @@
 	<h3>User List</h3><hr>
 	<div class='row'>
 	<?php
-  require('DeleteUserPopup.php');
         $date_today = date("Ymd");
         $query = "SELECT name, email, dob, address, password, image_url FROM users";
         $result = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
@@ -181,7 +180,6 @@
 	<h3>Project List</h3><hr>
 	<div class='row'>
 	<?php
-  require('DeleteProjectPopup.php');
         $date_today = date("Ymd");
         $query = "SELECT p.title, p.description, p.project_id, p.logo_url, u.name, p.start_date, p.end_date, p.target_amount, p.current_amount, o.publisher_email, p.category
         			FROM projects p, ownership o, users u
@@ -233,7 +231,7 @@
 			if(strtotime($date_today) > strtotime($end_date)) { //Time elapsed case
 				echo "
         <a role='button' class='btn-warning btn' href='EditProjectProfile.php?id=$id' style='margin-top:25px; margin-bottom:25px;'>Edit Profile</a>
-        <a role='button' class='btn-danger btn' data-toggle='modal' data-target='#modal-1' style='margin-top:25px; margin-bottom:25px;'>Delete Project</a>
+        <a role='button' class='btn-danger btn' href='AdminDeleteProject.php?id=$id' style='margin-top:25px; margin-bottom:25px;'>Delete Project</a>
 				<div class='my-footer-past'><hr>
 					<div class='caption'>
 						<div class='col-lg-9'>
@@ -276,7 +274,7 @@
 		    		</div>
 		    	</div>
           <a role='button' class='btn-warning btn' href='EditProjectProfile.php?id=$id' style='margin-top:25px; margin-bottom:25px;'>Edit Profile</a>
-          <a role='button' class='btn-danger btn' data-toggle='modal' data-target='#modal-2' style='margin-top:25px; margin-bottom:25px;'>Delete Project</a>
+          <a role='button' class='btn-danger btn' href='AdminDeleteProject.php?id=$id' style='margin-top:25px; margin-bottom:25px;'>Delete Project</a>
 		    </div>";
 		   }
     }
