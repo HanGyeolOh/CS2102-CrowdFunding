@@ -81,14 +81,13 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 	
 	$start_from = ($page-1) * $limit;  
 	$restrictions = "ORDER BY title ASC LIMIT $limit OFFSET $start_from";	
-	
+	$fullquery = "SELECT title, description, target_amount, current_amount, start_date, project_id FROM projects";
 	if(strcmp($category,"")!=0){
 		$catquery="SELECT title, description, target_amount, current_amount, start_date, project_id
 		FROM projects
 		WHERE category='$category'";
 	} else {
-		$catquery="SELECT title, description, target_amount, current_amount, start_date, project_id
-		FROM projects";
+		$catquery=$fullquery;
 	} 
 	
 	if(strcmp($title,"")!=0){
@@ -96,8 +95,7 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 		FROM projects
 		WHERE lower(title) like lower('%".$title."%')";
 	} else {
-		$titlequery="SELECT title, description, target_amount, current_amount, start_date, project_id
-		FROM projects";
+		$titlequery=$fullquery;
 	} 
 	
 	if(strcmp($date,"")!=0){
@@ -105,8 +103,7 @@ a.current{background: #f00; color:#fff; border: 1px solid #000}
 		FROM projects
 		WHERE EXTRACT(YEAR FROM start_date) = '$date'";
 	} else {
-		$datequery="SELECT title, description, target_amount, current_amount, start_date, project_id
-		FROM projects";
+		$datequery=$fullquery;
 	} 
 	
 	$query = $catquery . " INTERSECT " . $datequery . " INTERSECT " . $titlequery . " ";
